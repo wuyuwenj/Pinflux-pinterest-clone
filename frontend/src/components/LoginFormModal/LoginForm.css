@@ -1,0 +1,20 @@
+.modalForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Loginbutton {
+    width: 10%;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    background-color: rgb(230, 0, 35);
+    font-size: 15px;
+    cursor: pointer;
+}
+.Loginbutton:hover {
+    background-color: rgb(180, 0, 35);
+}

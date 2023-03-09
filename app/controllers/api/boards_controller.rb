@@ -1,0 +1,38 @@
+class Api::BoardsController < ApplicationController
+
+  def create
+   @board = Board.new(board_params)
+        @board.owner_id = current_user.id
+    if @board.save
+            render :show
+    else
+      render json: { errors: @board.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def index
+    @boards=Board.all
+    # @boards=Board.where(owner_id: params[:owner_id])
+    render :index
+  end
+
+  def show
+    @board=Board.find_by(id: params[:id])
+    render :show
+  end
+   def destroy
+
+        @board = Board.find(params[:id])
+
+        if @board && @board.destroy
+            render json: ["Delete success"]
+        else
+            render json: @board.errors.full_messages
+        end
+    end
+  private
+
+  def board_params
+    params.require(:board).permit(:name, :body, :private, :owner_id)
+  end
+end

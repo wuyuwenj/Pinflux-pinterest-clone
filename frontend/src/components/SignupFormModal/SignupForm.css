@@ -1,0 +1,20 @@
+.modalForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.signinButton {
+    width: 10%;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    color: black;
+    background-color: rgb(240, 238, 239);
+    font-size: 15px;
+    cursor: pointer;
+}
+.signinButton:hover {
+    background-color: rgba(200, 200, 200, 0.512);
+}

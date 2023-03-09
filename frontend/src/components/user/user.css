@@ -1,0 +1,50 @@
+.username1{
+    font-size: 36px;
+}
+
+.username2{
+    font-size: 14px;
+}
+
+
+.plusMenu{
+    padding: 10px;
+        position: absolute;
+        background-color: #ffffff;
+        border-radius: 25px;
+        min-width: 200px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        right: 0;
+        z-index: 1000;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+}
+
+.PLUS{
+    position: fixed;
+    margin-right: 10px;
+}
+.boardimg{
+    height: 157px;
+    width: 157px;
+            border-radius: 20%;
+}
+.plusButton{
+    position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        border-radius: 50%;
+        font-size: 40px;
+        width: 48px;
+        height: 48px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+            right: 0;
+                /* Add this line */
+}
+.plusButton:hover {
+    background-color: rgba(132, 130, 130, 0.429);
+}

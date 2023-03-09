@@ -1,77 +1,82 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  email           :string           not null
+#  username        :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 class User < ApplicationRecord
-  validates :username, 
-    uniqueness: true, 
-    length: { in: 3..30 }, 
-    format: { without: URI::MailTo::EMAIL_REGEXP, message:  "can't be an email" }
+  has_secure_password
+
   validates :email, 
     uniqueness: true, 
     length: { in: 3..255 }, 
     format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :session_token, presence: true, uniqueness: true
   validates :password, length: { in: 6..255 }, allow_nil: true
-
-  has_secure_password
-
+  
   before_validation :ensure_session_token
 
+  has_many :pins,
+  class_name: :Pin,
+  foreign_key: :author_id,
+  dependent: :destroy
+
+  has_many :boards,
+  class_name: :Board,
+  foreign_key: :owner_id,
+  dependent: :destroy
+
+  has_many :savedpins_relations,
+  class_name: :SavedPin,
+  foreign_key: :user_id,
+  dependent: :destroy
+
+  has_many :savedpins,
+  through: :savedpins_relations,
+  source: :pin
+
+    def self.retrieve_created_pins(user_id)
+        Pin.with_attached_image
+            .select("pins.id, pins.title, pins.body, pins.created_at")
+            .order("pins.created_at DESC")
+            .where("pins.author_id = (?)", user_id)
+    end
+
+    def self.retrieve_saved_pins(user_id)
+        Pin.with_attached_image
+            .select("pins.id, pins.title, pins.body, pins.created_at, saved_pins.user_id")
+            .joins(:savedpins_relations)
+            .order("pins.created_at DESC")
+            .where("saved_pins.user_id = (?)", user_id)
+    end
+    
+  def self.find_by_credentials(credential, password)
+    field = credential =~ URI::MailTo::EMAIL_REGEXP ? :email : :username
+    user = User.find_by(field => credential)
+    user&.authenticate(password)
+  end
+
   def reset_session_token!
-    self.session_token = generate_unique_session_token
-    save!
-    session_token
+    self.update!(session_token: generate_unique_session_token)
+    self.session_token
   end
 
   private
 
- 
-  
   def generate_unique_session_token
-    # in a loop:
-      # use SecureRandom.base64 to generate a random token
-      # use `User.exists?` to check if this `session_token` is already in use
-      # if already in use, continue the loop, generating a new token
-      # if not in use, return the token
     loop do
-    # Generate a new token using SecureRandom.base64
-    token = SecureRandom.base64(24)
-
-    # Check if the token is already in use
-    unless User.exists?(session_token: token)
-      # If the token is not in use, return it
-      return token
+      token = SecureRandom.base64
+      break token unless User.exists?(session_token: token)
     end
-  end
   end
 
   def ensure_session_token
-    # If the session token is already present, leave it be
-    return unless session_token.nil?
-
-    # If the session token is nil, set it to a new token
-    self.session_token = generate_unique_session_token
+    self.session_token ||= generate_unique_session_token
   end
-
- 
-
-  def self.find_by_credentials(credential, password)
-    if credential.match?(URI::MailTo::EMAIL_REGEXP)
-      user = find_by(email: credential)
-    else
-      user = find_by(username: credential)
-    end
-
-    return nil unless user
-
-    if user.authenticate(password)
-      return user
-    else
-      return nil
-    end
-  end
-  
 end
-
-u = User.first
-old_token = u.session_token
-new_token = u.reset_session_token!
-u.session_token != old_token
-u.session_token == new_token
