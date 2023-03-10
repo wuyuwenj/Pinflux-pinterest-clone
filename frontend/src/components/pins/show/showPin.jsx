@@ -5,6 +5,8 @@ import { fetchPin, getPin,fetchPins } from "../../../store/pins";
 import { fetchUsers, getUsers } from "../../../store/user";
 import { Link } from "react-router-dom";
 import { Modal } from '../../../context/Modal';
+import { Redirect } from "react-router-dom"
+
 
 import "./show.css"
 import { fetchBoards } from "../../../store/boards";
@@ -19,6 +21,8 @@ export default function ShowPin(){
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user)
     const [selectedboard, setSelectedboard] = useState("")
+    const [redirect, setRedirect] = useState(false)
+
     // const state=localStorage.getItem('pins');
     // console.log(state,'state')
    
@@ -29,7 +33,6 @@ export default function ShowPin(){
      
     const boards = useSelector(getBoards)
     const pin = useSelector(getPin(id))
-    console.log(boards,"boards")
     // let user=null;
     // if(pin.author){
     //    user = useSelector(getUsers(author_id))
@@ -54,6 +57,13 @@ export default function ShowPin(){
         // }
 
         dispatch(addPinBoardMapping(pinId, boardId))
+        setTimeout(setRedirect(true), 5000)
+
+    }
+    if (redirect) {
+        return (
+            <Redirect to="/" />
+        )
     }
     
 
@@ -90,7 +100,7 @@ export default function ShowPin(){
                                 <br />
                                 <br />
                                 <br />
-       <div className="showuserButton-container">
+                                    <div className="showuserButton-container">
                                     <Link to={`/user/${sessionUser.id}`} className="showuserButton">
                                         <span className="showUsername">{sessionUser.username[0]}</span>
                                         <span className="showfullUsername">{sessionUser.username}</span>
@@ -103,13 +113,9 @@ export default function ShowPin(){
                                 <div className="Pintitle">{pin.title}</div>
                                 <div className="Pinbody">{pin.body}</div>
                                 <div>{pin.alt_text}</div>
-
                                 <br />
                                 <br />
-                                <br /><br />
-                                <br />
-                                <br />
-                                <br />
+                                <br /><br /><br /><br /><br />
                                 <br />
                                 <br /><br />
                                 <br />

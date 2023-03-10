@@ -9,8 +9,12 @@ import ShowPin from "./components/pins/show/showPin";
 import ShowUser from "./components/user/showUser";
 import CreateBoardPage from "./components/board/create/createBoard";
 import ShowBoard from "./components/board/show/showBoard";
+import Splash from "./components/Splash/splash";
+import { useSelector } from "react-redux";
 
 function App() {
+  const sessionUser = useSelector((state) => state.session.user);
+
   return (
     <>
       <Navigation />
@@ -31,8 +35,8 @@ function App() {
           <CreateBoardPage />
         </Route>
           <Route exact path="/">
-              {/* {loggedIn ? <Homepage /> : <PinIndex />} */}
-              <PinIndex />
+          {sessionUser ?  <PinIndex />:<Splash /> }
+
           </Route>
           
         </Switch>

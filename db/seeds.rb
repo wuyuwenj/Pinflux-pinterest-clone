@@ -112,7 +112,7 @@ Pin.first(10).each_with_index do |chicken, index|
     filename: "chicken#{index + 1}.jpg"
   )
 end
-Pin.offset(10).limit(10).each_with_index do |salmon, index|
+Pin.limit(10).each_with_index do |salmon, index|
   # puts index
   salmon.image.attach(
     # The string passed to URI.open should be the URL of the image in its bucket.
@@ -122,7 +122,7 @@ Pin.offset(10).limit(10).each_with_index do |salmon, index|
   )
 end
 
-Pin.offset(20).limit(20).each_with_index do |dinner, index|
+Pin.limit(20).each_with_index do |dinner, index|
   dinner.image.attach(
     # The string passed to URI.open should be the URL of the image in its bucket.
     # This sample assumes the bucket name is `benchbnb-seeds`.

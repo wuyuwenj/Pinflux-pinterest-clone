@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { createBoard } from "../../../store/boards";
 import { fetchBoards } from "../../../store/boards";
+import "./createBoard.css"
 
 const CreateBoardPage = () => {    
     const currentUserId = useSelector(state => state.session.user.id)
@@ -31,8 +32,8 @@ const CreateBoardPage = () => {
 
 
     return (
-        <div className="imageShowPage">
-            <div className="imageShowBox">
+        <div className="pagebg">
+            <div className="formbox">
                 <form onSubmit={handleSubmit}>
                     <h2>Create a New Board</h2>
 
@@ -40,21 +41,22 @@ const CreateBoardPage = () => {
                     <br />
                     <h3>Board Name</h3>
                     <input type="text"
-                        className="titleInput"
+                        className="boardtitleInput"
                         value={name}
                         placeholder='Board Name'
                         onChange={(e) => setName(e.target.value)}
                     />
                     <br />
                     <br />
-                    <h3>Board Body</h3>
+                    <h3>Description</h3>
                     <input type="text"
-                        className="titleInput"
+                        className="boardtitleInput"
                         value={body}
-                        placeholder='description'
+                        placeholder='What is your board about?'
                         onChange={(e) => setBody(e.target.value)}
                     />
-                    <input className="saveShow" type="submit" value='Create' />
+                    <br />
+                    <input className="Createboardbtn" type="submit" value='Create' />
                 </form>
 
 

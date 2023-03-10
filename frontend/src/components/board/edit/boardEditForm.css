@@ -1,0 +1,9 @@
+.modalinput {
+
+    width: 90%;
+    height: 38px;
+    border-radius: 15px;
+    border-color: rgba(167, 167, 167, 0.568);
+    padding-inline: 5%;
+    font-size: 18px;
+}

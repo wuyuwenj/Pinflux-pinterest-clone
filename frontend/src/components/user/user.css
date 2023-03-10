@@ -28,7 +28,8 @@
 .boardimg{
     height: 157px;
     width: 157px;
-            border-radius: 20%;
+    border-radius: 20%;
+    padding: 10px;
 }
 .plusButton{
     position: absolute;

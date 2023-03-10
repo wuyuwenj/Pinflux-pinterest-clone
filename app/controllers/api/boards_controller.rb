@@ -30,6 +30,16 @@ class Api::BoardsController < ApplicationController
             render json: @board.errors.full_messages
         end
     end
+
+def update
+        @board = Board.find(params[:id])
+        
+        if @board.update(board_params)
+            render :show
+        else
+            render json: @board.errors.full_messages
+        end
+end
   private
 
   def board_params

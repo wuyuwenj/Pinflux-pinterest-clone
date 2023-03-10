@@ -9,6 +9,7 @@ import BoardEditForm from "../edit/boardEditForm";
 import { fetchBoard } from "../../../store/boards";
 import { getBoards, getBoard } from "../../../store/boards";
 import { addPinBoardMapping } from "../../../store/pinboard";
+import "./showBoard.css"
 export default function ShowBoard() {
     const { id } = useParams();
     console.log(id,'idshowpin')
@@ -95,15 +96,17 @@ export default function ShowBoard() {
     // console.log(author,"author")
     // console.log(pin[id],'pin!')
     return (
-        <div className='pagebg'>
+        <div className='showboardpagebg'>
             <div><h1 className = "boardname">{board&&board.name}</h1>
-                <button className='Loginbutton' onClick={() => setShowModal(true)}>Edit</button>
+                <button className='showboardloginbt' onClick={() => setShowModal(true)}>Edit</button>
 
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <BoardEditForm board={board} />
                     </Modal>
                 )}
+                <br />
+                <p>{board && board.body}</p>
             <br />
             {boardPins && boardPins.map(pin => <Link to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link>)}</div>
            

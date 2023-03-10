@@ -1,16 +1,23 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { deletePin, updatePin } from "../../../store/pins"
+import { Redirect } from "react-router-dom"
+
+import "./pinsedit.css"
 
 const PinEditForm = (props) => {
     const {pin}=props
     const [title, setTitle] = useState(pin.title)
     const [body, setBody]=useState(pin.body)
     const dispatch=useDispatch();
-    console.log(pin.id,"passedpin")
+    const [redirect, setRedirect] = useState(false)
+
+
     const handleDelete=(e)=>{
         e.preventDefault()
         dispatch(deletePin(pin.id));
+        setTimeout(setRedirect(true), 5000)
+
     }
 
     const handleSubmit = (e) => {
@@ -21,6 +28,13 @@ const PinEditForm = (props) => {
             body
         }
         dispatch(updatePin(Data));
+        setTimeout(setRedirect(true), 5000)
+
+    }
+    if (redirect) {
+        return (
+            <Redirect to='/' />
+        )
     }
 
     return(
@@ -37,16 +51,16 @@ const PinEditForm = (props) => {
                             <div className="pin-edit-title">
                                 <label htmlFor="pin-edit-title">Title</label>
                                 <input
-                                    id="pin-edit-title"
+                                    className="modalinput"
                                     type="text"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
                             </div>
-                            <div className="pin-edit-description">
-                                <label htmlFor="pin-edit-description">body</label>
+                            <div className="pin-edit-body">
+                                <label htmlFor="pin-edit-body">body</label>
                                 <input
-                                    id="pin-edit-description"
+                                    className="modalinput"
                                     type="text"
                                     value={body}
                                     onChange={(e) => setBody(e.target.value)}
@@ -55,16 +69,20 @@ const PinEditForm = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="edit-form-buttons">
-                    <div onClick={handleDelete}
-                        className={`button-delete`}>
+                <br />
+                <br />
+                <div>
+                    <button type="button" onClick={handleDelete} className="edit-delete-buttons">
                         <h1>Delete</h1>
-                    </div>
-
-                    <button type="submit" className={`button-save`}>
-                        <h1>Save</h1>
                     </button>
+
+                    
+        
+                <button type="submit" className="edit-save-buttons">
+                    <h1>Save</h1>
+                </button>
                 </div>
+                
             </form>
         </div>
     )
