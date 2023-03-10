@@ -48,10 +48,10 @@ export const createPin = (formData) => async (dispatch) => {
         method: "POST",
         body: formData
     });
-    console.log(res)
+
     if (res.ok) {
         const pin = await res.json();
-        console.log(pin)
+
         dispatch(receivePin(pin))
     }
 }
@@ -84,7 +84,6 @@ export default function pinsReducer(oldstate = {}, action) {
         case RECEIVE_PINS:
             return action.pins;
         case RECEIVE_PIN:
-            console.log(action.pin.id)
             newState[action.pin.id] = action.pin
             return newState;
         case REMOVE_PIN:

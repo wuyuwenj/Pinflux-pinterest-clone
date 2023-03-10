@@ -20,16 +20,9 @@ export default function PinIndex() {
     },[])
     // if(!loading){
         const pins = useSelector(getPins); 
-        // console.log(pins, "pins");
     // }
-    // console.log()
-    // console.log(pins[0]===true,"true?")
-    // if(pins[0]){
-        
-    //     console.log(Object.keys(pins[0])[0], 'pins[0]')
-    // }
+
     
-    // console.log(pins[0].id, 'pins[0].id')
 
     const breakpointColumnsObj = {
         default: 3,

@@ -17,14 +17,13 @@ export default function ShowPin(){
     const {id} = useParams();
     const [showModal, setShowModal] = useState(false);
 
-    // console.log(id,'idshowpin')
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user)
     const [selectedboard, setSelectedboard] = useState("")
     const [redirect, setRedirect] = useState(false)
 
     // const state=localStorage.getItem('pins');
-    // console.log(state,'state')
+
    
     useEffect(()=>{
         dispatch(fetchPin(id));
@@ -37,8 +36,7 @@ export default function ShowPin(){
     // if(pin.author){
     //    user = useSelector(getUsers(author_id))
     // }
-    // console.log(pin, "pin")
-    // console.log(user, "user")
+
     if (pin === undefined || pin.imageUrl === undefined) {
         return null;
     }
@@ -67,9 +65,7 @@ export default function ShowPin(){
     }
     
 
-    // console.log(pin,"SHOWPIN")
-    // console.log(author,"author")
-    // console.log(pin[id],'pin!')
+
     return(
         <div className='pinshowpagebg'>
             <form className="showformbox" onSubmit={handleSubmit}>

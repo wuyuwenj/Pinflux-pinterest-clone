@@ -20,7 +20,7 @@ function SignupForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setUsername(email.split('@')[0])
-    console.log(username)
+
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password }))
         .catch(async (res) => {

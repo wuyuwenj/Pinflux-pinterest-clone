@@ -17,7 +17,7 @@ export default function ShowUser() {
         setShowMenu(true);
     };
     const { id } = useParams();
-    // console.log(id, 'idshowpin')
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -39,10 +39,10 @@ export default function ShowUser() {
         // await dispatch(fetchPin(id));
         // dispatch(fetchUser(id))
     }, [id])
-    // console.log(current)
+
     // const pins = useSelector(getPins())
 
-    // console.log(pins, "SHOWPIN")
+
     
     const boards = useSelector(getBoards) || [];
     const pins = useSelector(getPins);

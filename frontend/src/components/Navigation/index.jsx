@@ -11,10 +11,9 @@ import SearchBar from './searchbar';
 import DropDown from './dropdown';
 
 function Navigation() {
-  // console.log("testest")
+
   const sessionUser = useSelector(state => state.session.user);
   const [selectbutton,setSelectButton] = useState("home");
-  // console.log(sessionUser ? "loggedIn" : "loggedOut")
   
   let sessionLinks;
   if (sessionUser) {

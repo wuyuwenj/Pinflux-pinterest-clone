@@ -80,11 +80,9 @@ export const updateBoard = (boardData) => async dispatch => {
 
 
 export const deleteBoard = (boardId) => async dispatch => {
-    // console.log(currentUserId, boardId)
     const res = await csrfFetch(`/api/boards/${boardId}`, {
         method: 'DELETE'
     })
-    // console.log(res)
     dispatch(removeBoard(boardId))
 }
 

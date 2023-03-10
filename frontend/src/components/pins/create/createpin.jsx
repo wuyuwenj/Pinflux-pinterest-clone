@@ -31,7 +31,6 @@ const CreatePinPage=()=>{
             setImgUrl(reader.result)
             img.src = reader.result;
         };
-        console.log(file)
        
     }
 

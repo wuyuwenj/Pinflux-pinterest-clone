@@ -33,7 +33,7 @@ function LoginForm() {
     setCredential("DemoUser1@email.com")
     setPassword("password")
     const user = { username: 'DemoUser1', password: 'password' }
-    console.log(user)
+
     return dispatch(sessionActions.login(user))
     
   }
