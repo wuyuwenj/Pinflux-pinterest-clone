@@ -8,11 +8,14 @@
 
 }
 .boardname{
+    
     text-align: center;
 }
 .showboardloginbt {
-    width: 10%;
-    height: 40px;
+        position: absolute;
+        margin-top: 24px;
+    width: 7%;
+    height: 4%;
     border-radius: 20px;
     border: none;
     color: white;
