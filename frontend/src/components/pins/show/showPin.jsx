@@ -5,9 +5,7 @@ import { fetchPin, getPin,fetchPins } from "../../../store/pins";
 import { fetchUsers, getUsers } from "../../../store/user";
 import { Link } from "react-router-dom";
 import { Modal } from '../../../context/Modal';
-import { Redirect } from "react-router-dom"
-
-
+import { Redirect } from "react-router-dom";
 import "./show.css"
 import { fetchBoards } from "../../../store/boards";
 import { getBoards } from "../../../store/boards";
@@ -16,7 +14,6 @@ import PinEditForm from "../edit/pinsedit";
 export default function ShowPin(){
     const {id} = useParams();
     const [showModal, setShowModal] = useState(false);
-
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user)
     const [selectedboard, setSelectedboard] = useState("")

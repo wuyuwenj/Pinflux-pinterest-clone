@@ -20,6 +20,7 @@ export default function PinIndex() {
     },[])
     // if(!loading){
         const pins = useSelector(getPins); 
+        const a2=1;
     // }
 
     
