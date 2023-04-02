@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 
 export default function PinIndex() {
     const [loading, setLoading] = useState(true);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth); // get initial window width
+
      const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(fetchPins());
@@ -17,43 +19,39 @@ export default function PinIndex() {
         //     setLoading(false)
         // };
         // fetchData();
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     },[])
     // if(!loading){
         const pins = useSelector(getPins); 
-        const a2=1;
     // }
 
     
 
     const breakpointColumnsObj = {
-        default: 3,
-        1100: 2, 
-        700: 1
+        default: Math.floor(windowWidth/252)
        
     };
 
     return(
         <div className='grid'>
-            {pins.map(pin => <Link to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link> ) }
-            {/* <Masonry */}
-                {/* breakpointCols={breakpointColumnsObj}
+            {/* {pins.map(pin => <Link key={pin.id} to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link> ) } */}
+            
+            <Masonry
+                breakpointCols={breakpointColumnsObj}
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column"
-            >    */}
-            {/* <h1>hello</h1> */}
-            {/* {pins.map(pin => <RenderSingle pin={pin} />)} */}
-
-                {/* {pins.map(pin => pin.image ) } */}
-
-                {/* {pins.map(pin => <RenderSingle pin={pin} />)} */}
-                {/* {pins.map(pin => (
-                    <div key={pin.id}>
-                        <img src={pin.imageUrl} alt={pin.title} />
+            >
+                {pins.map(pin => (
+                        <Link key={pin.id} to={`/pins/${pin.id}`} className='link'>
+                        <img className="images" src={pin.imageUrl} alt={pin.title} />
                         <h3>{pin.title}</h3>
                         <p>{pin.description}</p>
-                    </div>
+                    </Link>
+
                 ))}
-            </Masonry> */}
+            </Masonry>
         </div>
         
     )
