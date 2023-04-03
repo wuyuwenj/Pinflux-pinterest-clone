@@ -13,6 +13,7 @@ export default function PinIndex() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth); // get initial window width
 
     function updateGridMargin() {
+        console.log(window.innerWidth)
         setWindowWidth(window.innerWidth)
         const grid = document.querySelector('.my-masonry-grid');
         let width = 236 * Math.floor(windowWidth / 252) + (20*Math.floor(windowWidth / 252));
@@ -31,13 +32,21 @@ export default function PinIndex() {
         //     setLoading(false)
         // };
         // fetchData();
-        // const handleResize = () => setWindowWidth(window.innerWidth);
-        // window.addEventListener('resize', handleResize);
-        window.addEventListener('resize', updateGridMargin);
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        // window.addEventListener('resize', updateGridMargin);
 
-        // return () => window.removeEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', updateGridMargin);
+        return () => window.removeEventListener('resize', handleResize);
+        // return () => window.removeEventListener('resize', updateGridMargin);
     }, [windowWidth])
+    // useEffect(() => {
+    //     const handleResize = () => setWindowWidth(window.innerWidth);
+    //     window.addEventListener('resize', handleResize);
+    //     return () => window.removeEventListener('resize', handleResize);
+    // }, []);
+    useEffect(()=>{
+        updateGridMargin()
+    }, [window.innerWidth])
     // if(!loading){
     const pins = useSelector(getPins); 
     // }
@@ -48,7 +57,8 @@ export default function PinIndex() {
         default: Math.floor(windowWidth/252)
        
     };
-
+    let revpins;
+    revpins = pins.slice().reverse()
     return(
         <div className='grid'>
             {/* {pins.map(pin => <Link key={pin.id} to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link> ) } */}
@@ -58,7 +68,9 @@ export default function PinIndex() {
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column"
             >
-                {pins.map(pin => (
+
+
+                {revpins.map(pin => (
                         <Link key={pin.id} to={`/pins/${pin.id}`} className='link'>
                         <img className="images" src={pin.imageUrl} alt={pin.title} />
                         <h3>{pin.title}</h3>
