@@ -5,11 +5,11 @@ import './user.css';
 import { Link } from "react-router-dom";
 import ShowDropDown from "./showDropdown";
 import { fetchPin, getPins, fetchPins } from "../../store/pins";
-import { fetchUser } from "../../store/user";
+import { fetchUser,fetchUsers } from "../../store/user";
 import { fetchBoards, getBoards } from "../../store/boards";
+import { getUser } from "../../store/user";
 export default function ShowUser() {
     const sessionUser = useSelector((state) => state.session.user)
-
     const [showMenu, setShowMenu] = useState(false)
 
     const openMenu = () => {
@@ -17,9 +17,10 @@ export default function ShowUser() {
         setShowMenu(true);
     };
     const { id } = useParams();
-
+    console.log(id,"userId")
     const dispatch = useDispatch();
-
+    const User=useSelector(getUser(id))
+    console.log(User,"user")
     useEffect(() => {
         if (!showMenu) return;
         const closeMenu = () => {
@@ -35,7 +36,8 @@ export default function ShowUser() {
     useEffect(() => {
         dispatch(fetchBoards())
         dispatch(fetchPins());
-        
+        // dispatch(fetchUsers());
+        dispatch(fetchUser(id))
         // await dispatch(fetchPin(id));
         // dispatch(fetchUser(id))
     }, [id])
@@ -63,21 +65,22 @@ export default function ShowUser() {
 
     return (
         <div>
-            <h1 className="userpage">{sessionUser.imgurl ? <img className="pfpPic" src={sessionUser.imgurl} alt="" /> : <div className="NopicBig">{sessionUser.username[0]}</div>}
+            <h1 className="userpage">{User ? User.imgurl ? <img className="pfpPic" src={User.imgurl} alt="" /> : <div className="NopicBig">{User.username[0]}</div> : null}
                <br />
-               <p className="username1">{sessionUser.username}</p>
-                <p className="username2">@{sessionUser.username}</p>
+               <p className="username1">{User&&User.username}</p>
+                <p className="username2">@{User&&User.username}</p>
                 
                 <div>
                     {/* <Link to="/"><button>created</button></Link>
                     <Link to="/"><button>saved</button></Link> */}
                 </div>
-                    <div className="plusButton">
+                {User &&sessionUser&&sessionUser.id===User.id&&(<div className="plusButton">
                         <div className="PLUS"><i onClick={openMenu} className={`fa-solid fa-plus fa-2xs`}></i></div>
-                    </div>
-                      
+                    </div>      
+                )}
                 <br />
-                 {showMenu && (<div className="plusMenu">
+
+                 {showMenu &&(<div className="plusMenu">
                    
                     <p>Create</p>
                     <Link to="/pin/create">
@@ -87,10 +90,13 @@ export default function ShowUser() {
                         <div>Create board</div>
                     </Link>
                   
-                </div>  )}
+                </div>)}  
+
+                
+                    
                 <p>Boards</p>
                 <div>
-                    {imageUrl.map((url,i) => (<Link to={`/boards/${boards[i].id}`} className='link'><img src={url} alt="" className="boardimg"/></Link>))}
+                    {imageUrl.map((url,i) => (<Link key={boards[i].id} to={`/boards/${boards[i].id}`} className='link'><img src={url} alt="" className="boardimg"/></Link>))}
                     
                     {/* {boards.each(board=>(<img ></img>))} */}
                 </div>

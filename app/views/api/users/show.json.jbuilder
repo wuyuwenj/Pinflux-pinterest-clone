@@ -1,4 +1,4 @@
-json.user do
+
 json.extract! @user, :id, :email, :username
 
 created_pins_array = []
@@ -12,4 +12,3 @@ User.retrieve_saved_pins(@user.id).each do |pin|
   saved_pins_array << pin.id
 end
 json.saved_pins saved_pins_array
-end

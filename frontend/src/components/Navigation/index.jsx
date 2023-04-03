@@ -46,6 +46,7 @@ function Navigation() {
   )
   }
   if(sessionUser){
+    console.log(sessionUser)
     return(
     <div className="navBar" id='loggedInNav'>
       <div><Link to="/"><img className="logo" src={logo} height="46"/></Link></div>
@@ -58,7 +59,7 @@ function Navigation() {
       <div className='backNav'>
         <div className='icons'><button className="circleButton"><i class="fa-solid fa-bell"></i></button></div>
         <div className='icons'><button className="messageButton"><i class="fa-solid fa-comment-dots"></i></button></div>
-          <div className='icons'><Link to={`/user/${sessionUser.id}`} className="userButton"><div className="name-text">{sessionUser.username[0]}</div></Link></div>
+          <div className='icons'><Link to={`/user/${sessionUser.id}`} className="userButton"><div className="name-text">{sessionUser.username&&sessionUser.username[0]}</div></Link></div>
         <div className='icon'><DropDown></DropDown></div>
       </div>
     </div>

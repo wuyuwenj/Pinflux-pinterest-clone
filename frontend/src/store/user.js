@@ -13,7 +13,6 @@ export const receiveUsers = (users) => ({
     users
 })
 export const getUser = (id) => (state) => {
-
     return state.entitles.users ? state.entitles.users[id] : null
 }
 export const getUsers = (state) => {
@@ -46,8 +45,8 @@ export default function UsersReducer(oldstate = {}, action) {
         case RECEIVE_USERS:
             return action.users;
         case RECEIVE_USER:
+            // newState['adf'] = action.user
             newState[action.user.id] = action.user
-            return newState;
         default:
             return oldstate
     }

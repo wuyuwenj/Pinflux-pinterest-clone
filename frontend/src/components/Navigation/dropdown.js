@@ -57,7 +57,7 @@ const DropDown = () => {
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>{sessionUser.imgurl ? <img className="pfpPic" src={sessionUser.imgurl} alt="" /> : <div className="Nopic">{sessionUser.username[0]}</div>}</td>
+                                    <td>{sessionUser.imgurl ? <img className="pfpPic" src={sessionUser.imgurl} alt="" /> : <div className="Nopic">{sessionUser.username&&sessionUser.username[0]}</div>}</td>
                                     <td>
                                         <div className="username">{sessionUser.username}</div>
                                         <div className="userinfo">Personal</div>
