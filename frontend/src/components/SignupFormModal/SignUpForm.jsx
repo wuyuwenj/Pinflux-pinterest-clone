@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 import logo from '../../images/png/logo-black.png'
-
+import LoginFormModal from "../LoginFormModal";
 
 function SignupForm() {
   const dispatch = useDispatch();
@@ -14,15 +14,19 @@ function SignupForm() {
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [errors, setErrors] = useState([]);
+  useEffect(() => {
+    setUsername(email.split('@')[0])
+  }, [email])
 
   if (sessionUser) return <Redirect to="/" />;
 
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUsername(email.split('@')[0])
-
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password }))
+      
         .catch(async (res) => {
           let data;
           try {
@@ -38,7 +42,9 @@ function SignupForm() {
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
-
+const handleform = () => {
+    
+}
   return (
     <>
       <div className='modalLogo'><a href=""><img className="mLogo" src={logo} alt="" width="55" height="55" /></a></div>
@@ -89,6 +95,9 @@ function SignupForm() {
         <br />
         <br />
         <button type="submit" className="modalButton">Sign Up</button>
+        <div>
+          Already a member?
+          <p className="change-form" onClick={handleform}>Log in</p></div>
       </form>
     </>
   );

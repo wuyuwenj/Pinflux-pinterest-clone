@@ -33,9 +33,11 @@ export const getBoard = (id) => (state) => {
 export const getBoards = (state) => {
     return state.entitles.boards ? Object.values(state.entitles.boards) : []
 }
-export const fetchBoards = () => async dispatch => {
-    const res = await csrfFetch(`/api/boards`);
+
+export const fetchBoards = (userId) => async dispatch => {
+    const res = await csrfFetch(`/api/users/${userId}/boards`);
     const data = await res.json();
+    console.log(data,"data")
     dispatch(receiveBoards(data));
 }
 
@@ -45,6 +47,12 @@ export const fetchBoard = (boardId) => async dispatch => {
     const data = await res.json();
     dispatch(receiveBoard(data));
 }
+
+// export const fetchUserBoards = (userId) => async dispatch => {
+//     const res = await csrfFetch(`/api/boards/user/${userId}`);
+//     const data = await res.json();
+//     dispatch(receiveBoards(data));
+// }
 
 export const createBoard = (boardData) => async dispatch => {
     const res = await csrfFetch(`/api/boards`, {

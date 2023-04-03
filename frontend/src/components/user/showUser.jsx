@@ -11,7 +11,6 @@ import { getUser } from "../../store/user";
 export default function ShowUser() {
     const sessionUser = useSelector((state) => state.session.user)
     const [showMenu, setShowMenu] = useState(false)
-
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
@@ -34,10 +33,10 @@ export default function ShowUser() {
 
     
     useEffect(() => {
-        dispatch(fetchBoards())
+        dispatch(fetchBoards(id))
         dispatch(fetchPins());
         // dispatch(fetchUsers());
-        dispatch(fetchUser(id))
+        dispatch(fetchUsers())
         // await dispatch(fetchPin(id));
         // dispatch(fetchUser(id))
     }, [id])

@@ -2,7 +2,7 @@ import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchPin, getPin,fetchPins } from "../../../store/pins";
-import { fetchUsers, getUsers } from "../../../store/user";
+import { fetchUsers, getUser, getUsers } from "../../../store/user";
 import { Link } from "react-router-dom";
 import { Modal } from '../../../context/Modal';
 import { Redirect } from "react-router-dom";
@@ -21,14 +21,21 @@ export default function ShowPin(){
 
     // const state=localStorage.getItem('pins');
 
-   
     useEffect(()=>{
         dispatch(fetchPin(id));
-        dispatch(fetchBoards())
+        dispatch(fetchBoards());
+        dispatch(fetchUsers());
     },[dispatch,id])
      
     const boards = useSelector(getBoards)
     const pin = useSelector(getPin(id))
+    let authorId;
+    if(pin&&pin.authorId){
+        authorId=pin.authorId;
+    }
+    const pinowner = useSelector(getUser(authorId))
+    console.log(pinowner,"pinowner")
+
     // let user=null;
     // if(pin.author){
     //    user = useSelector(getUsers(author_id))
@@ -64,7 +71,7 @@ export default function ShowPin(){
 
 
     return(
-        <div className='pinshowpagebg'>
+        (pinowner &&<div className='pinshowpagebg'>
             <form className="showformbox" onSubmit={handleSubmit}>
                 <table className="table1">
                     <tbody>
@@ -94,9 +101,9 @@ export default function ShowPin(){
                                 <br />
                                 <br />
                                     <div className="showuserButton-container">
-                                    <Link to={`/user/${sessionUser.id}`} className="showuserButton">
-                                        <span className="showUsername">{sessionUser.username[0]}</span>
-                                        <span className="showfullUsername">{sessionUser.username}</span>
+                                    <Link to={`/user/${pinowner.id}`} className="showuserButton">
+                                        <span className="showUsername">{pinowner.username[0]}</span>
+                                        <span className="showfullUsername">{pinowner.username}</span>
                                     </Link>
                                 </div>
                                 <br />
@@ -126,6 +133,10 @@ export default function ShowPin(){
             </form>
             
         </div>
+            
+            
+            )
+        
     )
    
 

@@ -11,8 +11,9 @@ class Api::BoardsController < ApplicationController
   end
 
   def index
-    @boards=Board.all
-    # @boards=Board.where(owner_id: params[:owner_id])
+    # @boards=Board.all
+
+    @boards=Board.where(owner_id: params[:user_id])
     render :index
   end
 
@@ -20,8 +21,8 @@ class Api::BoardsController < ApplicationController
     @board=Board.find_by(id: params[:id])
     render :show
   end
-   def destroy
-
+  
+  def destroy
         @board = Board.find(params[:id])
 
         if @board && @board.destroy
