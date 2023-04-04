@@ -11,6 +11,7 @@ import CreateBoardPage from "./components/board/create/createBoard";
 import ShowBoard from "./components/board/show/showBoard";
 import Splash from "./components/Splash/splash";
 import { useSelector } from "react-redux";
+import Setting from "./components/user/setting/setting";
 
 function App() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -25,6 +26,9 @@ function App() {
           <Route path="/pins/:id">
             <ShowPin />
           </Route>
+        <Route path="/users/:id/setting">
+          <Setting />
+        </Route>
         <Route  path="/user/:id">
           <ShowUser />
         </Route>
@@ -34,6 +38,7 @@ function App() {
         <Route path="/board/create">
           <CreateBoardPage />
         </Route>
+        
           <Route exact path="/">
           {sessionUser ?  <PinIndex />:<Splash /> }
 

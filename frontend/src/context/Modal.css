@@ -47,6 +47,7 @@
   border-color: rgba(167, 167, 167, 0.568);
   padding-inline: 5%;
   font-size: 18px;
+  border-width: 3px;
 }
 .modalinputsign {
 
@@ -59,9 +60,13 @@
 }
 .modalinput:focus {
   outline: none;
-  border-color: rgba(0, 153, 255, 0.389);
-  border-width: 5px;
+  /* height:41px; */
+  /* border-color: rgba(0, 153, 255, 0.389); */
+  /* padding-block: 1%; */
+  box-shadow: 0 0 0 4px rgba(0, 153, 255, 0.389);
 }
+.modalinput:not(:focus):hover {
+  border-color: rgba(233, 231, 231, 0.568);}
 
 .modalButton {
   

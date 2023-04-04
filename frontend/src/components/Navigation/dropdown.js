@@ -70,7 +70,7 @@ const DropDown = () => {
                     <br/>
                     <div className="moreoption">More options</div>
                     <br/>
-                    <Link to="/" className="setting">Settings(bonus)</Link>
+                    <Link to= {`/users/${sessionUser.id}/setting`} className="setting">Settings</Link>
                     
                     <Link to="/" className="logout" onClick={logoutClick}>Log Out</Link>
                 </div>
