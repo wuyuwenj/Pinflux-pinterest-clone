@@ -28,7 +28,18 @@ export const fetchUsers = (users) =>async (dispatch) => {
     }
 }
 
+export const updateUser = (userpayload,userId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/users/${userId}/setting`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userpayload)
+    });
 
+    if (res.ok) {
+        const user = await res.json();
+        dispatch(receiveUser(user))
+    }
+}
 
 export const fetchUser = (userId) => async(dispatch) => {
     const res = await csrfFetch(`/api/users/${userId}`);

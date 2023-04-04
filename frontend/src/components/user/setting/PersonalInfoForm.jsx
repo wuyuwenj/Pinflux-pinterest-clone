@@ -35,6 +35,9 @@ export default function PersonalInfoForm() {
                         <span class="checkmark"></span>
                 </label>
             </div>
+            <button type="submit" className="public-form-buttons">
+                <p className="save-but-content">Save</p>
+            </button>
         </div>
     )
 }
