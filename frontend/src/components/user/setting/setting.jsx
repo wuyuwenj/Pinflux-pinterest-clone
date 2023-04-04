@@ -5,6 +5,9 @@ import { useState } from "react";
 import PublicForm from "./PublicForm";
 import PersonalInfoForm from "./PersonalInfoForm";
 import './setting.css';
+import { useParams } from "react-router-dom";
+import { fetchUsers } from "../../../store/user";
+import { getUser } from "../../../store/user";
 const pages={
     1:'Public',
     2:'Personal'
@@ -12,11 +15,15 @@ const pages={
 export default function Setting(){
     const history = useHistory();
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.session.user);
+    const {id}=useParams();
+    const user = useSelector(getUser(id));
     const [page,setPage] = useState('Public');
     useEffect(() => {
         console.log(page,"page")
     }, [page])
+    useEffect(()=>{
+        dispatch(fetchUsers())
+    },[])
     return(
     <div className="settingPage">
 

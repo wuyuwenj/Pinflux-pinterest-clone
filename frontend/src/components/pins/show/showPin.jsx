@@ -59,18 +59,21 @@ export default function ShowPin(){
     if (boards === undefined) {
         return null;
     }
-    const handleSubmit= (e)=>{
+    const handleSubmit= async(e)=>{
         e.preventDefault();
-        const board = boards.find(board => board.name === selectedboard)
+        let board;
 
         const pinId = pin.id
-        const boardId = board.id
+        // const boardId = board.id
         // const mappingData = {
         //     pin_id: pinId,
         //     board_id: boardId
         // }
-
-        dispatch(addPinBoardMapping(pinId, boardId))
+        console.log(boards,"boards")
+        board = await boards.find(board => board.name === selectedboard)
+        // const boardId=await board.id;
+        console.log(board,"board")
+        dispatch(addPinBoardMapping(pinId, board.id))
         setTimeout(setRedirect(true), 5000)
 
     }
@@ -89,9 +92,9 @@ export default function ShowPin(){
                 <table className="table1" style={{ height: boxHeight ? `${boxHeight-140}px !important` : 'auto' }}>
                     <tbody>
                         <tr>
-                            <td> <img src={pin.imageUrl} alt="" className="showimg" style={{ height: boxHeight ? `${boxHeight}px` : 'auto' }} /></td>
+                            <td> <img src={pin.imageUrl} alt="" className="showimg" /></td>
                             <td className="pinshowright" style={{ height: boxHeight ? `${boxHeight-140}px` : 'auto' }}>      
-                                <button className='Editbutton' onClick={() => setShowModal(true)}>Edit</button>
+                                <button type='button' className='Editbutton' onClick={() => setShowModal(true)}>Edit</button>
     
                                 {showModal && (
                                     <Modal onClose={() => setShowModal(false)}>
