@@ -18,7 +18,7 @@ export default function ShowPin(){
     const sessionUser = useSelector((state) => state.session.user)
     const [selectedboard, setSelectedboard] = useState("")
     const [redirect, setRedirect] = useState(false)
-
+    const [boxHeight, setBoxHeight] = useState(null)
     // const state=localStorage.getItem('pins');
 
     useEffect(()=>{
@@ -32,9 +32,21 @@ export default function ShowPin(){
     let authorId;
     if(pin&&pin.authorId){
         authorId=pin.authorId;
+        const imge = new Image();
+        imge.src = pin.imageUrl;
+        imge.onload = () => {
+            // const imgheight = img.height;
+            setBoxHeight(imge.height * (440 / imge.width ));
+
+        };
+        
     }
+
+    // useEffect(()=>{
+    //     console.log(boxHeight,"boxHeight")
+    // },[boxHeight])
     const pinowner = useSelector(getUser(authorId))
-    console.log(pinowner,"pinowner")
+    // console.log(pinowner,"pinowner")
 
     // let user=null;
     // if(pin.author){
@@ -72,12 +84,13 @@ export default function ShowPin(){
 
     return(
         (pinowner &&<div className='pinshowpagebg'>
-            <form className="showformbox" onSubmit={handleSubmit}>
-                <table className="table1">
+            <form className="showformbox" onSubmit={handleSubmit} style={{ height: boxHeight ? `${boxHeight}px` : 'auto' }}>
+                {console.log(boxHeight,"boxHeight")}
+                <table className="table1" style={{ height: boxHeight ? `${boxHeight-140}px !important` : 'auto' }}>
                     <tbody>
                         <tr>
-                            <td> <img src={pin.imageUrl} alt="" className="showimg"/></td>
-                            <td className="pinshowright">      
+                            <td> <img src={pin.imageUrl} alt="" className="showimg" style={{ height: boxHeight ? `${boxHeight}px` : 'auto' }} /></td>
+                            <td className="pinshowright" style={{ height: boxHeight ? `${boxHeight-140}px` : 'auto' }}>      
                                 <button className='Editbutton' onClick={() => setShowModal(true)}>Edit</button>
     
                                 {showModal && (
@@ -93,12 +106,7 @@ export default function ShowPin(){
                                 <input className="saveButton" type="submit" value="Save" />
                                 <br />
                                 <br />
-                                <br />
-                                <br />
-                                
-                                <br />
-                                <br />
-                                <br />
+                               
                                 <br />
                                     <div className="showuserButton-container">
                                     <Link to={`/user/${pinowner.id}`} className="showuserButton">
@@ -114,15 +122,7 @@ export default function ShowPin(){
                                 <div className="Pinbody">{pin.body}</div>
                                 <div>{pin.alt_text}</div>
                                 <br />
-                                <br />
-                                <br /><br /><br /><br /><br />
-                                <br />
-                                <br /><br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
+                               
                             </td>
                         </tr>
                         <tr>
