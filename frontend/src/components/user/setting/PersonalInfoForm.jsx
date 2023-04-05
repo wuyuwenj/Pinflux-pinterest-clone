@@ -1,8 +1,11 @@
 import './setting.css';
 import { useEffect, useState } from 'react';
-
+import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 export default function PersonalInfoForm() {
+    const {id}=useParams();
     const [gender,setGender]=useState("Male")
+    const history = useHistory();
     const handleChangeGender=(e)=>{
         setGender(e.target.value);
         
@@ -10,6 +13,9 @@ export default function PersonalInfoForm() {
     useEffect(() => {
         // console.log(gender, "current gender")
     },[gender])
+    const handleSubmit=(e)=>{
+        history.push(`/user/${id}`)
+    }
     return(
         <div>
             <div>
@@ -35,7 +41,7 @@ export default function PersonalInfoForm() {
                         <span class="checkmark"></span>
                 </label>
             </div>
-            <button type="submit" className="public-form-buttons">
+            <button type="submit" className="public-form-buttons" onClick={handleSubmit}>
                 <p className="save-but-content">Save</p>
             </button>
         </div>

@@ -99,36 +99,24 @@ pin_38 = Pin.create!({title: "random DINNER", body: "SALMON", alt_text: "SALMON"
 pin_39 = Pin.create!({title: "random DINNER", body: "SALMON", alt_text: "SALMON", author_id:demo_user.id})
 pin_40 = Pin.create!({title: "random DINNER", body: "SALMON", alt_text: "SALMON", author_id:user3.id})
 
-# image_1 = URI.open("https://pinflux-seeds.s3.us-west-1.amazonaws.com/chicken1.jpg")
-# pin_1.image.attach(io: image_1, filename:"chicken1.jpg")
-# DemoUser.save!
 
-
-Pin.first(10).each_with_index do |chicken, index|
-  chicken.image.attach(
-    # The string passed to URI.open should be the URL of the image in its bucket.
-    # This sample assumes the bucket name is `benchbnb-seeds`.
-    io: URI.open("https://pinflux-seeds.s3.us-west-1.amazonaws.com/chicken#{index + 1}.jpg"), 
-    filename: "chicken#{index + 1}.jpg"
-  )
-end
-Pin.limit(10).each_with_index do |salmon, index|
-  # puts index
-  salmon.image.attach(
-    # The string passed to URI.open should be the URL of the image in its bucket.
-    # This sample assumes the bucket name is `benchbnb-seeds`.
-    io: URI.open("https://pinflux-seeds.s3.us-west-1.amazonaws.com/salmon#{index + 1}.jpg"), 
-    filename: "salmon#{index + 1}.jpg"
-  )
-end
-
-Pin.limit(20).each_with_index do |dinner, index|
-  dinner.image.attach(
-    # The string passed to URI.open should be the URL of the image in its bucket.
-    # This sample assumes the bucket name is `benchbnb-seeds`.
-    io: URI.open("https://pinflux-seeds.s3.us-west-1.amazonaws.com/dinner#{index + 1}.jpg"), 
-    filename: "dinner#{index + 1}.jpg"
-  )
+Pin.first(40).each_with_index do |pin, index|
+  if index < 10
+    pin.image.attach(
+      io: URI.open("https://pinflux-seeds.s3.us-west-1.amazonaws.com/chicken#{index + 1}.jpg"), 
+      filename: "chicken#{index + 1}.jpg"
+    )
+  elsif index < 20
+    pin.image.attach(
+      io: URI.open("https://pinflux-seeds.s3.us-west-1.amazonaws.com/salmon#{index - 9}.jpg"), 
+      filename: "salmon#{index - 9}.jpg"
+    )
+  elsif index < 40
+    pin.image.attach(
+      io: URI.open("https://pinflux-seeds.s3.us-west-1.amazonaws.com/dinner#{index - 19}.jpg"), 
+      filename: "dinner#{index - 19}.jpg"
+    )
+  end
 end
 board_1 = Board.create({name: 'chicken_board', body: 'chicken dinner!',private:false, owner_id: demo_user.id})
 board_2 = Board.create({name: 'board2', body: 'board', private:false, owner_id: demo_user.id})

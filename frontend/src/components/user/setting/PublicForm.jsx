@@ -2,9 +2,10 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../../../store/user";
-import { useParams } from "react-router-dom";
+import { useParams,useHistory } from "react-router-dom";
 import './setting.css';
 import { updateUser } from "../../../store/user";
+
 export default function PublicForm(props) {
     const sessionUser =useSelector((state)=>state.session.user)
     const {id}=useParams()
@@ -12,6 +13,7 @@ export default function PublicForm(props) {
     const {user}=props;
     const [username,setUsername]=useState(user.username)
     const [email, setEmail] = useState(user.email)
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(fetchUser(id))
@@ -28,6 +30,8 @@ export default function PublicForm(props) {
             email,
         };
         dispatch(updateUser(payload,id));
+        history.push(`/user/${id}`)
+
     }
     return(
         <div>
