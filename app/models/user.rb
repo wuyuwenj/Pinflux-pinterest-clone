@@ -41,6 +41,20 @@ class User < ApplicationRecord
   through: :savedpins_relations,
   source: :pin
 
+  has_many :followings,
+  class_name: :Follow,
+  foreign_key: :followee_id,
+  dependent: :destroy
+
+  has_many :followers,
+  class_name: :Follow,
+  foreign_key: :follower_id,
+  dependent: :destroy
+
+  def remove_following(follower)
+    followings.find_by(follower_id: follower.id).destroy
+  end
+  
     def self.retrieve_created_pins(user_id)
         Pin.with_attached_image
             .select("pins.id, pins.title, pins.body, pins.created_at")

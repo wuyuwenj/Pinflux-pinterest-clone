@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get '/users/:user_id/boards/name/:name', to: 'boards#find_by_name', as: 'find_by_name'
     get 'csrf_token', to: 'csrf#token'
 
+    resources :follows, only: [:create, :destroy, :index]
   end
   
 

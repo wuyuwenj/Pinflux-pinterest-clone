@@ -182,3 +182,8 @@ pin_board_relations27 = PinBoardRelation.create({board_id: board_1.id, pin_id: p
 pin_board_relations28 = PinBoardRelation.create({board_id: board_2.id, pin_id: pin_28.id})
 pin_board_relations29 = PinBoardRelation.create({board_id: board_3.id, pin_id: pin_29.id})
 pin_board_relations30 = PinBoardRelation.create({board_id: board_4.id, pin_id: pin_30.id})
+
+
+follow1=Follow.create({followee_id:demo_user.id, follower_id:user2.id})
+follow2=Follow.create({followee_id:user2.id, follower_id:user3.id})
+follow3=Follow.create({followee_id:user3.id, follower_id:demo_user.id})

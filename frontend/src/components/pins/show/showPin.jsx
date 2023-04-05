@@ -23,11 +23,16 @@ export default function ShowPin(){
 
     useEffect(()=>{
         dispatch(fetchPin(id));
-        dispatch(fetchBoards());
+        dispatch(fetchBoards(sessionUser.id));
         dispatch(fetchUsers());
-    },[dispatch,id])
-     
+    },[dispatch,id])    
     const boards = useSelector(getBoards)
+
+    useEffect(() => {
+        if(!selectedboard&&boards[0]){
+            setSelectedboard(boards[0].name)
+        }
+    }, [boards])
     const pin = useSelector(getPin(id))
     let authorId;
     if(pin&&pin.authorId){
@@ -88,7 +93,6 @@ export default function ShowPin(){
     return(
         (pinowner &&<div className='pinshowpagebg'>
             <form className="showformbox" onSubmit={handleSubmit} style={{ height: boxHeight ? `${boxHeight}px` : 'auto' }}>
-                {console.log(boxHeight,"boxHeight")}
                 <table className="table1" style={{ height: boxHeight ? `${boxHeight-140}px !important` : 'auto' }}>
                     <tbody>
                         <tr>
