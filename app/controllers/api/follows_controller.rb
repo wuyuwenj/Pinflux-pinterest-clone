@@ -1,5 +1,5 @@
 class Api::FollowsController < ApplicationController
-    # wrap_parameters include:  ['followeeId','followerId']
+    wrap_parameters include:  ['followeeId','followerId']
 
     def index
         @follows = Follow.all
@@ -9,7 +9,8 @@ class Api::FollowsController < ApplicationController
 
     def create
         new_follow = Follow.new(follow_params)
-        @user = User.find(params[:follow_params][:followee_id])
+        
+        @user = User.find(params[:followee_id])
 
         if new_follow.save
             render "api/users/show"
@@ -34,9 +35,9 @@ class Api::FollowsController < ApplicationController
     # end
      def destroy
         @follow = Follow.find_by(followee_id: params[:followee_id], follower_id: params[:follower_id])
-
+        
         if @follow.destroy
-            render "api/users/show"
+            # render "api/users/show"
         else
             render json: ["Something went wrong"], status: 422
         end

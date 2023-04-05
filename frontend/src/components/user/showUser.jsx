@@ -7,16 +7,17 @@ import ShowDropDown from "./showDropdown";
 import { fetchPin, getPins, fetchPins } from "../../store/pins";
 import { fetchUser,fetchUsers } from "../../store/user";
 import { fetchBoards, getBoards } from "../../store/boards";
-import { getUser } from "../../store/user";
+import { getUser, getUsers } from "../../store/user";
+import FollowButton from "./following/followbutton";
 export default function ShowUser() {
     const sessionUser = useSelector((state) => state.session.user)
     const [showMenu, setShowMenu] = useState(false)
+    const [Following,setFollowing] = useState(false)
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
     };
     const { id } = useParams();
-    console.log(id,"userId")
     const dispatch = useDispatch();
     const User=useSelector(getUser(id))
     console.log(User,"user")
@@ -31,15 +32,21 @@ export default function ShowUser() {
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
+    useEffect(()=>{
+        console.log(Following);
+    })
     
     useEffect(() => {
-        dispatch(fetchBoards(id))
+        dispatch(fetchBoards(id));
+    }, [dispatch, id]);
+
+    useEffect(() => {
         dispatch(fetchPins());
-        // dispatch(fetchUsers());
-        dispatch(fetchUsers())
-        // await dispatch(fetchPin(id));
-        // dispatch(fetchUser(id))
-    }, [id])
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(fetchUsers());
+    }, [dispatch]);
 
     // const pins = useSelector(getPins())
 
@@ -47,7 +54,66 @@ export default function ShowUser() {
     
     const boards = useSelector(getBoards) || [];
     const pins = useSelector(getPins);
+    const users = useSelector(getUsers)
+    const currentUser =users.find(user=>user.id===sessionUser.id)
 
+    let followersArr;
+    let followeesArr;
+  
+    useEffect(()=>{
+        console.log('pass')
+        if (User && User.followings) {
+            dispatch(fetchUsers());
+        }
+    }, [Following])
+    
+
+    useEffect(()=>{
+        if (User) {
+            followersArr = User.followers.map(id => {
+                for (let i = 0; i < users.length; i++) {
+                    if (id === users[i].id) {
+                        return users[i];
+                    }
+                }
+            }
+            )
+        }
+
+        if (User) {
+            followeesArr = User.followings.map(id => {
+                for (let i = 0; i < users.length; i++) {
+                    if (id === users[i].id) {
+                        return users[i];
+                    }
+                }
+            }
+            )
+        }
+        setFollowing(false);
+    },[users])
+
+    if(User){
+        followersArr=User.followers.map(id=>{
+            for(let i=0;i<users.length;i++){
+                if(id===users[i].id){
+                    return users[i];
+                }
+            }
+        }
+        )
+    }
+
+    if (User) {
+        followeesArr = User.followings.map(id => {
+            for (let i = 0; i < users.length; i++) {
+                if (id === users[i].id) {
+                    return users[i];
+                }
+            }
+        }
+        )
+    }
     let imageUrl=[];
     if (boards && boards.length > 0) {
         const boardspins = boards.map((board) => {
@@ -69,6 +135,25 @@ export default function ShowUser() {
                <p className="username1">{User&&User.username}</p>
                 <p className="username2">@{User&&User.username}</p>
                 
+                <div className="FollowingRow">
+                    {followersArr&&followersArr.length>0&&(
+                    <div className="followers">
+                        <span>{followersArr.length} followers</span>
+                    </div>
+                )}
+                    {followersArr && followersArr.length > 0 && followeesArr && followeesArr.length > 0&&(<span className="dot">  ·  </span>)}
+                    {followeesArr && followeesArr.length > 0 && (
+                        <div className="followees">
+                            <span>{User.followings.length} following</span>
+                        </div>
+                    )}
+                </div>
+                {/* {console.log(User,sessionUser)} */}
+                {User && currentUser && User.email !== currentUser.email && (<FollowButton followerId={sessionUser.id} followeeId={User.id} followeesArr={currentUser.followings} Following={Following} setFollowing={setFollowing} />)
+
+                }
+                
+
                 <div>
                     {/* <Link to="/"><button>created</button></Link>
                     <Link to="/"><button>saved</button></Link> */}
@@ -79,7 +164,7 @@ export default function ShowUser() {
                 )}
                 <br />
 
-                 {showMenu &&(<div className="plusMenu">
+                {showMenu &&(<div className="plusMenu">
                    
                     <p>Create</p>
                     <Link to="/pin/create">

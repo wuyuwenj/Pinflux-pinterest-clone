@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get 'csrf_token', to: 'csrf#token'
 
     resources :follows, only: [:create, :destroy, :index]
+    delete '/follows/:follower_id/:followee_id', to: 'follows#destroy', as: 'delete_follow'
   end
   
 

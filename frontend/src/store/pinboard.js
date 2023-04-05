@@ -1,12 +1,12 @@
 import csrfFetch from "./csrf";
 
 
-export const updatePinBoardMapping = board => {
-    return {
-        type: "RECEIVE_BOARD",
-        board
-    }
-};
+// export const updatePinBoardMapping = board => {
+//     return {
+//         type: "RECEIVE_BOARD",
+//         board
+//     }
+// };
 
 export const addPinBoardMapping = (pinId, boardId) => async (dispatch) => {
     const response = await csrfFetch(`/api/pin_board_relations`, {
@@ -16,7 +16,7 @@ export const addPinBoardMapping = (pinId, boardId) => async (dispatch) => {
         },
         body: JSON.stringify({ pinId, boardId })
     });
-    const data = await response.json();
-    dispatch(updatePinBoardMapping(data));
+    // const data = await response.json();
+    // // dispatch(updatePinBoardMapping(data));
 };
 
