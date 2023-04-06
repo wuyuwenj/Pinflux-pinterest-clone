@@ -12,3 +12,18 @@ User.retrieve_saved_pins(@user.id).each do |pin|
   saved_pins_array << pin.id
 end
 json.saved_pins saved_pins_array
+
+
+followers_array = []
+@user.followers.each do |follower|
+
+  followers_array << follower.followee_id
+end
+json.followers followers_array
+
+followees_array = []
+@user.followings.each do |followee|
+
+  followees_array << followee.follower_id
+end
+json.followings followees_array

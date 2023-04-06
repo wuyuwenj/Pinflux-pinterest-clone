@@ -21,3 +21,51 @@
 .black{
     background-color: rgb(2, 2, 2);
 }
+
+.followRow{
+    width: 460px;
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    justify-content: space-between;
+}
+
+.NopicSmall {
+    display: inline-block;
+    background-color: rgb(233, 233, 233);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border: none;
+    outline: none;
+}
+.followRowName{
+    width: 200px;
+    margin-left: -100px;
+    margin-top: 10px;
+}
+
+.followbutton {
+    margin-top: -15px !important;
+}
+
+.followmodeltitle{
+    text-align: center;
+            font-weight: var(--font-weight-semibold);
+}
+
+.youbutton {
+    /* margin-top: 30px; */
+    /* margin-left: 85%; */
+    margin-right: -24%;
+    width: 22%;
+    height: 48px;
+    border-radius: 25px;
+    border: none;
+    color: rgb(108, 105, 105);
+    background-color: rgb(240, 238, 239);
+    font-size: 16px;
+    cursor: pointer;
+}

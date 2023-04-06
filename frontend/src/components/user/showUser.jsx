@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import './user.css';
@@ -9,6 +9,9 @@ import { fetchUser,fetchUsers } from "../../store/user";
 import { fetchBoards, getBoards } from "../../store/boards";
 import { getUser, getUsers } from "../../store/user";
 import FollowButton from "./following/followbutton";
+import FollowingModal from "./following/followingsModel";
+export const FollowingContext = createContext();
+
 export default function ShowUser() {
     const sessionUser = useSelector((state) => state.session.user)
     const [showMenu, setShowMenu] = useState(false)
@@ -130,67 +133,67 @@ export default function ShowUser() {
 
     return (
         <div>
-            <h1 className="userpage">{User ? User.imgurl ? <img className="pfpPic" src={User.imgurl} alt="" /> : <div className="NopicBig">{User.username[0]}</div> : null}
-               <br />
-               <p className="username1">{User&&User.username}</p>
-                <p className="username2">@{User&&User.username}</p>
-                
-                <div className="FollowingRow">
-                    {followersArr&&followersArr.length>0&&(
-                    <div className="followers">
-                        <span>{followersArr.length} followers</span>
-                    </div>
-                )}
-                    {followersArr && followersArr.length > 0 && followeesArr && followeesArr.length > 0&&(<span className="dot">  ·  </span>)}
-                    {followeesArr && followeesArr.length > 0 && (
-                        <div className="followees">
-                            <span>{User.followings.length} following</span>
-                        </div>
-                    )}
-                </div>
-                {/* {console.log(User,sessionUser)} */}
-                {User && currentUser && User.email !== currentUser.email && (<FollowButton followerId={sessionUser.id} followeeId={User.id} followeesArr={currentUser.followings} Following={Following} setFollowing={setFollowing} />)
-
-                }
-                
-
-                <div>
-                    {/* <Link to="/"><button>created</button></Link>
-                    <Link to="/"><button>saved</button></Link> */}
-                </div>
-                {User &&sessionUser&&sessionUser.id===User.id&&(<div className="plusButton">
-                        <div className="PLUS"><i onClick={openMenu} className={`fa-solid fa-plus fa-2xs`}></i></div>
-                    </div>      
-                )}
+            <FollowingContext.Provider value={{ Following, setFollowing,currentUser }}>
+                <h1 className="userpage">{User ? User.imgurl ? <img className="pfpPic" src={User.imgurl} alt="" /> : <div className="NopicBig">{User.username[0]}</div> : null}
                 <br />
-
-                {showMenu &&(<div className="plusMenu">
-                   
-                    <p>Create</p>
-                    <Link to="/pin/create">
-                        <div>Create pin</div>
-                    </Link>
-                    <Link to="/board/create">
-                        <div>Create board</div>
-                    </Link>
-                  
-                </div>)}  
-
-                
+                <p className="username1">{User&&User.username}</p>
+                    <p className="username2">@{User&&User.username}</p>
                     
-                <p>Boards</p>
-                <div>
-                    {imageUrl.map((url,i) => (<Link key={boards[i].id} to={`/boards/${boards[i].id}`} className='link'><img src={url} alt="" className="boardimg"/></Link>))}
+                    <div className="FollowingRow">
+                        {followersArr&&followersArr.length>0&&(
+                            <FollowingModal followType={'following'} followersArr={followersArr} followeesArr={followeesArr} />
+                    )}
+                        {followersArr && followersArr.length > 0 && followeesArr && followeesArr.length > 0&&(<span className="dot">  ·  </span>)}
+                        {followeesArr && followeesArr.length > 0 && (
+                            <FollowingModal followType={'follower'} followeesArr={followeesArr} />
+
+                        )}
+                    </div>
+                    {/* {console.log(User,sessionUser)} */}
+                    {User && currentUser && User.email !== currentUser.email && (<FollowButton followerId={sessionUser.id} followeeId={User.id} followeesArr={currentUser.followings} Following={Following} setFollowing={setFollowing} />)
+
+                    }
                     
-                    {/* {boards.each(board=>(<img ></img>))} */}
-                </div>
-                {/* <table>
-                    <tbody>    
-                        <td><Link to="">created</Link></td>
-                        <td><button>saved</button></td>
-                    </tbody>
-                </table> */}
-            </h1>
+
+                    <div>
+                        {/* <Link to="/"><button>created</button></Link>
+                        <Link to="/"><button>saved</button></Link> */}
+                    </div>
+                    {User &&sessionUser&&sessionUser.id===User.id&&(<div className="plusButton">
+                            <div className="PLUS"><i onClick={openMenu} className={`fa-solid fa-plus fa-2xs`}></i></div>
+                        </div>      
+                    )}
+                    <br />
+
+                    {showMenu &&(<div className="plusMenu">
+                    
+                        <p>Create</p>
+                        <Link to="/pin/create">
+                            <div>Create pin</div>
+                        </Link>
+                        <Link to="/board/create">
+                            <div>Create board</div>
+                        </Link>
+                    
+                    </div>)}  
+
+                    
+                        
+                    <p>Boards</p>
+                    <div>
+                        {imageUrl.map((url,i) => (<Link key={boards[i].id} to={`/boards/${boards[i].id}`} className='link'><img src={url} alt="" className="boardimg"/></Link>))}
+                        
+                        {/* {boards.each(board=>(<img ></img>))} */}
+                    </div>
+                    {/* <table>
+                        <tbody>    
+                            <td><Link to="">created</Link></td>
+                            <td><button>saved</button></td>
+                        </tbody>
+                    </table> */}
+                </h1>
+            </FollowingContext.Provider>
+            
          
 
         </div>

@@ -29,9 +29,7 @@ export default function ShowBoard() {
     const pins = useSelector(getPins);
     const board = useSelector(getBoard(id))
     
-  
-    console.log(pins,"pins")
-    console.log(boards,"boards")
+
     let imageUrl = [];
     let boardPins=null;
     
