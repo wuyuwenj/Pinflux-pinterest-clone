@@ -19,61 +19,51 @@ export default function ShowPin(){
     const [selectedboard, setSelectedboard] = useState("")
     const [redirect, setRedirect] = useState(false)
     const [boxHeight, setBoxHeight] = useState(null)
+    const [loaded, setLoaded] = useState(false);
+    const [isPinOwnerLoaded, setIsPinOwnerLoaded] = useState(false);
     // const state=localStorage.getItem('pins');
+    const boards = useSelector(getBoards)
+    const pin = useSelector(getPin(id))
+    let authorId=null;
+    if (pin && authorId ===null&&pin.authorId) authorId = pin.authorId;
+    if (pin && authorId === null && pin.author) authorId = pin.author;
+
+    // console.log(pin,"pin")
+    // console.log(authorId,"authoId")
+    const pinowner = useSelector(getUser(authorId));
 
     useEffect(()=>{
-        dispatch(fetchPin(id));
-        dispatch(fetchBoards(sessionUser.id));
-        dispatch(fetchUsers());
+        setLoaded(false);
+        Promise.all([
+        dispatch(fetchPin(id)),
+        dispatch(fetchBoards(sessionUser.id)),
+        dispatch(fetchUsers())
+        ]).then(() => {
+      
+            setLoaded(true);
+        })
     },[dispatch,id])    
-    const boards = useSelector(getBoards)
+    // const boards = useSelector(getBoards)
+    // const pin = useSelector(getPin(id))
 
     useEffect(() => {
         if(!selectedboard&&boards[0]){
             setSelectedboard(boards[0].name)
         }
     }, [boards])
-    const pin = useSelector(getPin(id))
-    let authorId;
-    if (pin && pin.authorId) {
-        authorId = pin.authorId;
-        const imge = new Image();
-        imge.src = pin.imageUrl;
-        imge.onload = () => {
-            // const imgheight = img.height;
-            setBoxHeight(imge.height * (440 / imge.width));
-
-        };
-
-    }
-    useEffect(()=>{
-        if(pin&&pin.authorId){
-        authorId=pin.authorId;
-        const imge = new Image();
-        imge.src = pin.imageUrl;
-        imge.onload = () => {
-            // const imgheight = img.height;
-            setBoxHeight(imge.height * (440 / imge.width ));
-
-        };
-        
-    }
-    },[pin,boards])
+ 
     
-    const pinowner = useSelector(getUser(authorId))
-    // console.log(pinowner)
+    
    
-    // let user=null;
-    // if(pin.author){
-    //    user = useSelector(getUsers(author_id))
+
+        // console.log(pinowner, "owner")
+
+    // if (!loaded || !isPinOwnerLoaded) {
+    //     return null;
     // }
 
-    if (pin === undefined || pin.imageUrl === undefined) {
-        return null;
-    }
-    if (boards === undefined) {
-        return null;
-    }
+
+   
     const handleSubmit= async(e)=>{
         e.preventDefault();
         let board;
@@ -90,6 +80,8 @@ export default function ShowPin(){
         setTimeout(setRedirect(true), 5000)
 
     }
+
+    console.log(pinowner)
     if (redirect) {
         return (
             <Redirect to="/" />
@@ -102,7 +94,7 @@ export default function ShowPin(){
     if (boards === undefined) {
         return null;
     }
-    if (pinowner === undefined) {
+    if (loaded===false||pinowner === undefined) {
         return <div>Loading...</div>; // Or render some placeholder content
     }
 
