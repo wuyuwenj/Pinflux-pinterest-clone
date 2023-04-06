@@ -48,7 +48,6 @@ export default function ShowPin(){
     }
 
     const pinowner = useSelector(getUser(authorId))
-
     // let user=null;
     // if(pin.author){
     //    user = useSelector(getUsers(author_id))
@@ -82,7 +81,15 @@ export default function ShowPin(){
         )
     }
     
-
+    if (pin === undefined || pin.imageUrl === undefined) {
+        return null;
+    }
+    if (boards === undefined) {
+        return null;
+    }
+    if (pinowner === undefined) {
+        return <div>Loading...</div>; // Or render some placeholder content
+    }
 
     return(
         (pinowner &&<div className='pinshowpagebg'>
