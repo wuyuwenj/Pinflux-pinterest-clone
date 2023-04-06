@@ -81,7 +81,6 @@ export default function ShowPin(){
 
     }
 
-    console.log(pinowner)
     if (redirect) {
         return (
             <Redirect to="/" />

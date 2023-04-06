@@ -29,7 +29,7 @@ const PinEditForm = (props) => {
         }
         dispatch(updatePin(Data));
         setTimeout(setRedirect(true), 5000)
-
+        e.stopPropagation();
     }
     if (redirect) {
         return (

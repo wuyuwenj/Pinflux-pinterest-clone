@@ -78,7 +78,7 @@ export default function ShowBoard() {
                 <p>{board && board.body}</p>
             <br />
             {boardPins && boardPins.map(pin => <Link to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link>)}</div>
-           
+            
             
 
    
