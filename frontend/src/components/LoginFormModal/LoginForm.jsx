@@ -15,6 +15,8 @@ function LoginForm() {
     e.preventDefault();
     
     setErrors([]);
+  
+    if (!credential||!password)return;
     return dispatch(sessionActions.login({ credential, password }))
       .catch(async (res) => {
         let data;
@@ -30,14 +32,19 @@ function LoginForm() {
       });
   };
 
-  const handleDemo=()=>{
-    setCredential("DemoUser1@email.com")
-    setPassword("password")
-    const user = { username: 'DemoUser1', password: 'password' }
+  const handleDemo = async () => {
+    setCredential("DemoUser1@email.com");
+    setPassword("password");
+    const user = { credential: "DemoUser1@email.com", password: "password" };
 
-    return dispatch(sessionActions.login(user))
-    
-  }
+    try {
+      await dispatch(sessionActions.login(user));
+      // Wait for the login dispatch to finish before calling handleSubmit
+      handleSubmit(new Event("submit"));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className='modalLogo'><a href=""><img className="mLogo" src={logo} alt="" width="55" height="55" /></a></div>
