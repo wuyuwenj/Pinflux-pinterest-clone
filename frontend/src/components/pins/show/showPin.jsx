@@ -35,7 +35,19 @@ export default function ShowPin(){
     }, [boards])
     const pin = useSelector(getPin(id))
     let authorId;
-    if(pin&&pin.authorId){
+    if (pin && pin.authorId) {
+        authorId = pin.authorId;
+        const imge = new Image();
+        imge.src = pin.imageUrl;
+        imge.onload = () => {
+            // const imgheight = img.height;
+            setBoxHeight(imge.height * (440 / imge.width));
+
+        };
+
+    }
+    useEffect(()=>{
+        if(pin&&pin.authorId){
         authorId=pin.authorId;
         const imge = new Image();
         imge.src = pin.imageUrl;
@@ -46,8 +58,11 @@ export default function ShowPin(){
         };
         
     }
-
+    },[pin,boards])
+    
     const pinowner = useSelector(getUser(authorId))
+    // console.log(pinowner)
+   
     // let user=null;
     // if(pin.author){
     //    user = useSelector(getUsers(author_id))

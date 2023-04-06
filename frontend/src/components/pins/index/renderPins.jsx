@@ -49,8 +49,8 @@ export default function PinIndex() {
     // if(!loading){
     const pins = useSelector(getPins); 
     // }
-    const users=useSelector(getUsers)
-    let usersArr;
+    // const users=useSelector(getUsers)
+    // let usersArr;
 
     const breakpointColumnsObj = {
         default: Math.floor(windowWidth/252)
