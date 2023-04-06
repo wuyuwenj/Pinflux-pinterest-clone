@@ -13,7 +13,6 @@ export default function PinIndex() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth); // get initial window width
 
     function updateGridMargin() {
-        console.log(window.innerWidth)
         setWindowWidth(window.innerWidth)
         const grid = document.querySelector('.my-masonry-grid');
         let width = 236 * Math.floor(windowWidth / 252) + (20*Math.floor(windowWidth / 252));

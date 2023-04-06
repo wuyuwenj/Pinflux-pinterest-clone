@@ -23,7 +23,6 @@ export default function ShowUser() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const User=useSelector(getUser(id))
-    console.log(User,"user")
     useEffect(() => {
         if (!showMenu) return;
         const closeMenu = () => {
@@ -36,7 +35,6 @@ export default function ShowUser() {
     }, [showMenu]);
 
     useEffect(()=>{
-        console.log(Following);
     })
     
     useEffect(() => {
@@ -64,7 +62,6 @@ export default function ShowUser() {
     let followeesArr;
   
     useEffect(()=>{
-        console.log('pass')
         if (User && User.followings) {
             dispatch(fetchUsers());
         }
@@ -149,7 +146,6 @@ export default function ShowUser() {
 
                         )}
                     </div>
-                    {/* {console.log(User,sessionUser)} */}
                     {User && currentUser && User.email !== currentUser.email && (<FollowButton followerId={sessionUser.id} followeeId={User.id} followeesArr={currentUser.followings} Following={Following} setFollowing={setFollowing} />)
 
                     }

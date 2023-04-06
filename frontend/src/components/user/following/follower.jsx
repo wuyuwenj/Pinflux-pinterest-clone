@@ -2,8 +2,9 @@ import { useContext } from "react"
 import FollowButton from "./followbutton";
 import { FollowingContext } from '../showUser';
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import './follow.css';
-export default function FollowerShow({ followersArr,followeesArr }) {
+export default function FollowerShow({ followersArr,followeesArr,setShowModal }) {
     const { Following, setFollowing, currentUser } = useContext(FollowingContext);
     const sessionUser = useSelector((state) => state.session.user)
     
@@ -19,9 +20,16 @@ export default function FollowerShow({ followersArr,followeesArr }) {
                     {user.imgurl ? (
                         <img className="pfpPic" src={user.imgurl} alt="" />
                     ) : (
-                        <div className="NopicSmall">{user.username[0]}</div>
+                        <div onClick={()=>setShowModal(false)}>
+                                <Link to={`/user/${user.id}`}><div className="NopicSmall">{user.username[0]}</div></Link>
+                        
+                        </div>
+                            
                     )}
-                    <p className="followRowName">{user.username}</p>
+                    <div onClick={() => setShowModal(false)}>
+
+                    <Link to={`/user/${user.id}`}><p className="followRowName">{user.username}</p></Link>
+                    </div>
                     {user.email === sessionUser.email && (
                         <button className="youbutton">That's You!</button>
                     )}

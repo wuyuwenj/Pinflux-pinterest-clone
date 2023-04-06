@@ -47,11 +47,7 @@ export default function ShowPin(){
         
     }
 
-    // useEffect(()=>{
-    //     console.log(boxHeight,"boxHeight")
-    // },[boxHeight])
     const pinowner = useSelector(getUser(authorId))
-    // console.log(pinowner,"pinowner")
 
     // let user=null;
     // if(pin.author){
@@ -74,10 +70,8 @@ export default function ShowPin(){
         //     pin_id: pinId,
         //     board_id: boardId
         // }
-        console.log(boards,"boards")
         board = await boards.find(board => board.name === selectedboard)
         // const boardId=await board.id;
-        console.log(board,"board")
         dispatch(addPinBoardMapping(pinId, board.id))
         setTimeout(setRedirect(true), 5000)
 

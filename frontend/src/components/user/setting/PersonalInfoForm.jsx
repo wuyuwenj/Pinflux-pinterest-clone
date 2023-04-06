@@ -10,9 +10,7 @@ export default function PersonalInfoForm() {
         setGender(e.target.value);
         
     }
-    useEffect(() => {
-        // console.log(gender, "current gender")
-    },[gender])
+
     const handleSubmit=(e)=>{
         history.push(`/user/${id}`)
     }

@@ -37,7 +37,6 @@ export const getBoards = (state) => {
 export const fetchBoards = (userId) => async dispatch => {
     const res = await csrfFetch(`/api/users/${userId}/boards`);
     const data = await res.json();
-    console.log(data,"data")
     dispatch(receiveBoards(data));
 }
 

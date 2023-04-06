@@ -18,9 +18,7 @@ export default function Setting(){
     const {id}=useParams();
     const user = useSelector(getUser(id));
     const [page,setPage] = useState('Public');
-    useEffect(() => {
-        console.log(page,"page")
-    }, [page])
+
     useEffect(()=>{
         dispatch(fetchUsers())
     },[])

@@ -18,9 +18,7 @@ export default function PublicForm(props) {
     useEffect(() => {
         dispatch(fetchUser(id))
     }, [])
-    useEffect(() => {
-    console.log(sessionUser,"sessionUser")
-    }, [sessionUser])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();

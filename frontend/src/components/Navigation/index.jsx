@@ -46,7 +46,6 @@ function Navigation() {
   )
   }
   if(sessionUser){
-    console.log(sessionUser)
     return(
     <div className="navBar" id='loggedInNav'>
       <div><Link to="/"><img className="logo" src={logo} height="46"/></Link></div>
