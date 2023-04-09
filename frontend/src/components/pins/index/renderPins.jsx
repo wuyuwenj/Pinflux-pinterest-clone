@@ -8,10 +8,9 @@ import "./indexPin.css"
 import { Link } from 'react-router-dom';
 import { fetchUsers, getUsers } from '../../../store/user';
 
-export default function PinIndex() {
+export default function PinIndex({boardpins}) {
     const [loading, setLoading] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth); // get initial window width
-
     function updateGridMargin() {
         setWindowWidth(window.innerWidth)
         const grid = document.querySelector('.my-masonry-grid');
@@ -57,7 +56,11 @@ export default function PinIndex() {
        
     };
     let revpins;
+    if(!boardpins){
     revpins = pins.slice().reverse()
+    }else{
+        revpins = boardpins.slice().reverse()
+    }
     return(
         <div className='grid'>
             {/* {pins.map(pin => <Link key={pin.id} to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link> ) } */}

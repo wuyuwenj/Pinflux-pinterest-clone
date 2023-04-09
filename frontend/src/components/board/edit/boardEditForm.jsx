@@ -56,7 +56,7 @@ const BoardEditForm = (props) => {
                                 />
                             </div>
                             <div className="pin-edit-body">
-                                <label htmlFor="pin-edit-body">body</label>
+                                <label htmlFor="pin-edit-body">description</label>
                                 <input
                                     className="modalinput"
                                     type="text"

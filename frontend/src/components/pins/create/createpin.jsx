@@ -66,7 +66,7 @@ return(
                     <tbody>
                         <tr>
                         <td>
-                            <div className='icons'><button className="circleButton"><i class="fa-solid fa-ellipsis"></i></button></div>
+                            <div className='icons'><button className="circleButton" type='button'><i class="fa-solid fa-ellipsis"></i></button></div>
                         </td>
                         <td className='redbut'>
                         {/* <DropDown></DropDown> */}

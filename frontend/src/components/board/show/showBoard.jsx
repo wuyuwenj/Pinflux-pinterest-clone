@@ -9,6 +9,7 @@ import BoardEditForm from "../edit/boardEditForm";
 import { fetchBoard } from "../../../store/boards";
 import { getBoards, getBoard } from "../../../store/boards";
 import { addPinBoardMapping } from "../../../store/pinboard";
+import PinIndex from "../../pins/index/renderPins";
 import "./showBoard.css"
 export default function ShowBoard() {
     const { id } = useParams();
@@ -76,9 +77,10 @@ export default function ShowBoard() {
                 )}
                 <br />
                 <p>{board && board.body}</p>
-            <br />
-            {boardPins && boardPins.map(pin => <Link to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link>)}</div>
-            
+            <br />            
+            <PinIndex boardpins={boardPins}/>
+
+            </div>
             
 
    

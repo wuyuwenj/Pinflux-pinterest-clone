@@ -7,6 +7,34 @@
     font-size: 12px;
 
 }
+.Selections{
+
+    /* width: 115px; */
+
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 10px;
+    /* margin-bottom: 8px; */
+    font-family: var(--font-family-default-latin);
+    font-weight: var(--font-weight-semibold);
+    /* padding: 8px 8px 8px 8px; */
+}
+.Selections>div {
+    display: inline-block;
+    font-size: 16px;
+}
+.Selections:hover{
+        display: inline-block;
+    cursor: pointer;
+    background-color: #dfdfdf;
+}
+.selected{
+    border-bottom: 3px solid #000305;
+    color: #000305;
+    font-weight: var(--font-weight-semibold);
+}
 .settingformtitle{
     margin-bottom: -5px;
         word-wrap: break-word;

@@ -27,14 +27,14 @@ export default function Setting(){
 
         
         <div className="leftset column">
-            <div>
+                <div className="Selections">
                 
-                <p onClick={()=>setPage(pages[1])}>Public profile</p>
+                <div onClick={()=>setPage(pages[1])} className={page===pages[1] ? "selected" : ""}>Public profile</div>
                 
             </div>
-            <div>
+                <div className="Selections">
                 
-                <p onClick={() => setPage(pages[2])}>Personal information</p>
+                    <div onClick={() => setPage(pages[2])} className={page===pages[2] ? "selected" : ""}>Personal information</div>
                
             </div>
         </div>

@@ -10,6 +10,8 @@ import { fetchBoards, getBoards } from "../../store/boards";
 import { getUser, getUsers } from "../../store/user";
 import FollowButton from "./following/followbutton";
 import FollowingModal from "./following/followingsModel";
+import BoardCover from "../board/index/board_cover";
+
 export const FollowingContext = createContext();
 
 export default function ShowUser() {
@@ -38,8 +40,10 @@ export default function ShowUser() {
     })
     
     useEffect(() => {
+
         dispatch(fetchBoards(id));
     }, [dispatch, id]);
+
 
     useEffect(() => {
         dispatch(fetchPins());
@@ -114,16 +118,21 @@ export default function ShowUser() {
         }
         )
     }
-    let imageUrl=[];
+    // let imageUrl=[];
+    let boardspins;
     if (boards && boards.length > 0) {
-        const boardspins = boards.map((board) => {
-            return pins.find((pin) => pin.id === board.pins[0]);
+        boardspins = boards.map((board) => {
+            let arr=[];
+            for(let i=0;i<board.pins.length;i++){
+                arr.push(pins.find((pin) => pin.id === board.pins[i]))
+            }
+            return arr;
         });
-        boardspins.forEach((pin,i)=>{
-             if (boardspins[i]) {
-                 imageUrl[i] = pin.imageUrl;
-        }
-        })
+        // boardspins.forEach((pin,i)=>{
+        //      if (boardspins[i]) {
+        //          imageUrl[i] = pin.imageUrl;
+        // }
+        // })
        
     }
     
@@ -177,8 +186,17 @@ export default function ShowUser() {
                         
                     <p>Boards</p>
                     <div>
-                        {imageUrl.map((url,i) => (<Link key={boards[i].id} to={`/boards/${boards[i].id}`} className='link'><img src={url} alt="" className="boardimg"/></Link>))}
-                        
+                        {/* {imageUrl.map((url,i) => (<Link key={boards[i].id} to={`/boards/${boards[i].id}`} className='link'><img src={url} alt="" className="boardimg"/></Link>))} */}
+                        {boardspins && console.log(boardspins, "boardspins")}
+                        {boards && console.log(boards, "boards")}
+
+                        {boardspins && boards.map((url, i) => (<Link key={boards[i].id} to={`/boards/${boards[i].id}`} className='link'>
+                            {/* <div className="boardContainer"> */}
+                            <BoardCover pins={boardspins[i]} board={boards[i]}/>
+                                
+                            {/* </div> */}
+                            </Link>))}
+
                         {/* {boards.each(board=>(<img ></img>))} */}
                     </div>
                     {/* <table>
