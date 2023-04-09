@@ -38,7 +38,7 @@ const BoardEditForm = (props) => {
     return (
         <div className="pin-edit-form-container">
             <div className="pin-edit-heading">
-                <h1>Edit this Board</h1>
+                <div>Edit Your Board</div>
             </div>
             <form className="form-form-container" onSubmit={handleSubmit} action="">
                 <div className="pin-edit-form">
@@ -71,16 +71,20 @@ const BoardEditForm = (props) => {
                 <br />
                 <div>
 
-                    <button type="button" onClick={handleDelete} className="edit-delete-buttons">
-                        <h1>Delete</h1>
+                    <button type="button" onClick={handleDelete} className="editFormDeleteButton">
+                        <div>Action</div>
+                        <h1>Delete board</h1>
+                        <div>Delete this board and all of its Pins forever.</div>
+                        <div>You can't undo this.</div>
                     </button>
 
 
 
-                    <button type="submit" className="edit-save-buttons">
-                        <h1>Save</h1>
-                    </button>
+                    
                 </div>
+                <button type="submit" className="editFormSaveButton">
+                    <div>Done</div>
+                </button>
             </form>
         </div>
     )
