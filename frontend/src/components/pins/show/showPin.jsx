@@ -12,6 +12,7 @@ import { getBoards } from "../../../store/boards";
 import { addPinBoardMapping } from "../../../store/pinboard";
 import PinEditForm from "../edit/pinsedit";
 import Loading from "../../LoadingPage/Loading";
+import FollowButton from "../../user/following/followbutton";
 export default function ShowPin(){
     const {id} = useParams();
     const [showModal, setShowModal] = useState(false);
@@ -40,13 +41,26 @@ export default function ShowPin(){
         dispatch(fetchBoards(sessionUser.id)),
         dispatch(fetchUsers())
         ]).then(() => {
-      
             setLoaded(true);
         })
     },[dispatch,id])    
     // const boards = useSelector(getBoards)
     // const pin = useSelector(getPin(id))
 
+    function settingbox(){
+        if(pin){
+           const img = new Image();
+        img.src = pin.imageUrl;
+        img.onload = function () {
+            setBoxHeight(img.height * (440/img.width));
+        }; 
+        }
+        
+
+    }
+    useEffect(() => {
+        settingbox();
+    }, [pin])
     useEffect(() => {
         if(!selectedboard&&boards[0]){
             setSelectedboard(boards[0].name)
@@ -98,61 +112,125 @@ export default function ShowPin(){
         return <Loading />
     }
 
-    return(
-        (pinowner &&<div className='pinshowpagebg'>
-            <form className="showformbox" onSubmit={handleSubmit} style={{ height: boxHeight ? `${boxHeight}px` : 'auto' }}>
-                <table className="table1" style={{ height: boxHeight ? `${boxHeight-140}px !important` : 'auto' }}>
-                    <tbody>
-                        <tr>
-                            <td> <img src={pin.imageUrl} alt="" className="showimg" /></td>
-                            <td className="pinshowright" style={{ height: boxHeight ? `${boxHeight-140}px` : 'auto' }}>      
-                                <button type='button' className='Editbutton' onClick={() => setShowModal(true)}>Edit</button>
+    // return(
+    //     (pinowner &&<div className='pinshowpagebg'>
+    //         <form className="showformbox" onSubmit={handleSubmit} style={{ height: boxHeight ? `${boxHeight}px` : 'auto' }}>
+    //             <table className="table1" style={{ height: boxHeight ? `${boxHeight-140}px !important` : 'auto' }}>
+    //                 <tbody>
+    //                     <tr>
+    //                         <td> <img src={pin.imageUrl} alt="" className="showimg" /></td>
+    //                         <td className="pinshowright" style={{ height: boxHeight ? `${boxHeight-140}px` : 'auto' }}>      
+    //                             <button type='button' className='Editbutton' onClick={() => setShowModal(true)}>Edit</button>
     
-                                {showModal && (
-                                    <Modal onClose={() => setShowModal(false)}>
-                                        <PinEditForm pin={pin} />
-                                    </Modal>
-                                )}
-                                <label for="boards"></label>
+    //                             {showModal && (
+    //                                 <Modal onClose={() => setShowModal(false)}>
+    //                                     <PinEditForm pin={pin} />
+    //                                 </Modal>
+    //                             )}
+    //                             <label for="boards"></label>
 
-                                <select name="boards" value={selectedboard} onChange={e=>setSelectedboard(e.target.value)} className="boarddropdown">
-                                    {boards.map(board => ( <option value={board.name}>{board.name}</option> ))}
-                                </select>
-                                <input className="saveButton" type="submit" value="Save" />
-                                <br />
-                                <br />
+    //                             <select name="boards" value={selectedboard} onChange={e=>setSelectedboard(e.target.value)} className="boarddropdown">
+    //                                 {boards.map(board => ( <option value={board.name}>{board.name}</option> ))}
+    //                             </select>
+    //                             <input className="saveButton" type="submit" value="Save" />
+    //                             <br />
+    //                             <br />
                                
-                                <br />
-                                    <div className="showuserButton-container">
-                                    <Link to={`/user/${pinowner.id}`} className="showuserButton">
-                                        <span className="showUsername">{pinowner.username[0]}</span>
-                                        <span className="showfullUsername">{pinowner.username}</span>
-                                    </Link>
-                                </div>
-                                <br />
-                                <br />
-                                <br />
-                                {/* <div>Uploaded by {pin.author.username}</div> */}
-                                <div className="Pintitle">{pin.title}</div>
-                                <div className="Pinbody">{pin.body}</div>
-                                <div>{pin.alt_text}</div>
-                                <br />
+    //                             <br />
+    //                             <div className="showuserButton-container">
+    //                                 <Link to={`/user/${pinowner.id}`} className="showuserButton">
+    //                                     <span className="showUsername">{pinowner.username[0]}</span>
+    //                                     <span className="showfullUsername">{pinowner.username}</span>
+    //                                 </Link>
+    //                                 {/* <FollowButton followeeId={pinowner.id} followerId={sessionUser.id}  /> */}
+    //                             </div>
+    //                             <br />
+    //                             <br />
+    //                             <br />
+    //                             {/* <div>Uploaded by {pin.author.username}</div> */}
+    //                             <div className="Pintitle">{pin.title}</div>
+    //                             <div className="Pinbody">{pin.body}</div>
+    //                             <div>{pin.alt_text}</div>
+    //                             <br />
                                
-                            </td>
-                        </tr>
-                        <tr>
+    //                         </td>
+    //                     </tr>
+    //                     <tr>
 
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+    //                     </tr>
+    //                 </tbody>
+    //             </table>
+    //         </form>
             
-        </div>
+    //     </div>
             
             
-            )
+    //         )
         
-    )
+    // )
+    return (
+        pinowner && (
+            <div className="pinshowpagebg">
+                <form
+                    className="showformbox"
+                    onSubmit={handleSubmit}
+                    style={{ height: boxHeight ? `${boxHeight}px` : 'auto' }}
+                >
+                    <div className="left-container">
+                        <img src={pin.imageUrl} alt="" className="showimg" />
+                    </div>
+                    <div className="right-container">
+                        <button
+                            type="button"
+                            className="Editbutton"
+                            onClick={() => setShowModal(true)}
+                        >
+                            Edit
+                        </button>
+
+                        {showModal && (
+                            <Modal onClose={() => setShowModal(false)}>
+                                <PinEditForm pin={pin} />
+                            </Modal>
+                        )}
+                        <label htmlFor="boards" />
+                        <select
+                            name="boards"
+                            value={selectedboard}
+                            onChange={(e) => setSelectedboard(e.target.value)}
+                            className="boarddropdown"
+                        >
+                            {boards.map((board) => (
+                                <option key={board.id} value={board.name}>
+                                    {board.name}
+                                </option>
+                            ))}
+                        </select>
+                        <input className="saveButton" type="submit" value="Save" />
+                        <br />
+                        <br />
+                        <br />
+                        <div className="showuserButton-container">
+                            <Link to={`/user/${pinowner.id}`} className="showuserButton">
+                                <span className="showUsername">{pinowner.username[0]}</span>
+                                <span className="showfullUsername">{pinowner.username}</span>
+                            </Link>
+                            {/* <FollowButton followeeId={pinowner.id} followerId={sessionUser.id}  /> */}
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        {/* <div>Uploaded by {pin.author.username}</div> */}
+                        <div className="Pintitle">{pin.title}</div>
+                        <div className="Pinbody">{pin.body}</div>
+                        <div>{pin.alt_text}</div>
+                        <br />
+                    </div>
+                </form>
+            </div>
+        )
+    );
+
    
 
 }

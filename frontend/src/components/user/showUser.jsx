@@ -193,8 +193,7 @@ export default function ShowUser() {
                         <p>Boards</p>
                         <div>
                             {/* {imageUrl.map((url,i) => (<Link key={boards[i].id} to={`/boards/${boards[i].id}`} className='link'><img src={url} alt="" className="boardimg"/></Link>))} */}
-                            {boardspins && console.log(boardspins, "boardspins")}
-                            {boards && console.log(boards, "boards")}
+
 
                             {boardspins && boards.map((url, i) => (<Link key={boards[i].id} to={`/boards/${boards[i].id}`} className='link'>
                                 {/* <div className="boardContainer"> */}

@@ -12,7 +12,6 @@ const BoardCover = ({ openModal, board, isUser, user, pins }) => {
     //             path: `/users/${user.username}`
     //         })
     // }
-    console.log(pins, "pins")
     return (
         <div className="boardPictureContainer">
             {/* <div>test</div> */}

@@ -2,13 +2,18 @@
     display: flex;
     margin-top: 1%;
     background-color: white;
-    /* height: auto; */
-        max-height: 690px;
+    /* max-height: 690px; */
     width: 880px;
     justify-content: center;
     align-items: center;
     border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 20px 0px;
+}
 
+.left-container{
+    height: 100%;
+    margin-left: 0%;
+    margin-right: 50px;
 }
 .pinshowpagebg {
     position: absolute;
@@ -17,35 +22,37 @@
     display: flex;
     justify-content: center;
 }
-.showimg{
+
+.showimg {
     height: auto;
-    max-height: 690px;
     width: 440px;
-    margin-left: -13px;
-    margin-top: 5px;
-    border-radius: 25px;
+    object-fit: cover;
+    border-radius: 25px 0px 0px 25px;
 }
-td{
-    padding: 10px;
+
+.showformcontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 440px;
+    height: 100%;
 }
-.boarddropdown{
+
+.boarddropdown {
     padding: 5px;
-        background-color: #ffffff;
-        border-radius: 25px;
-        min-width: 200px;
-        overflow: auto;
+    background-color: #ffffff;
+    border-radius: 25px;
+    min-width: 200px;
+    overflow: auto;
     border: none;
-        z-index: 1000;
-        font-size: 20px;
+    z-index: 1000;
+    font-size: 20px;
 }
-.table1{
-    height: 440px;
-        /* max-height: 690px; */
-    width: 100%;
-}
+
 .Editbutton {
-    
-    width: 20%;
+    width: 55px;
     height: 40px;
     border-radius: 10px;
     text-align: center;
@@ -60,11 +67,11 @@ td{
     background-color: rgb(180, 0, 35);
 }
 
-.Pintitle{
+.Pintitle {
     font-size: 36px;
 }
 
-.Pinbody{
+.Pinbody {
     font-size: 14px;
 }
 
@@ -83,15 +90,34 @@ td{
     cursor: pointer;
 }
 
+.showUsername {
+    margin-left: 20px;
+}
 
-.pinshowright{
-    margin-top: -50px;
-    top: 0;
-    max-height: 690px;
-}
-.showUsername{
-        margin-left: 20px;
-}
-.showfullUsername{
+.showfullUsername {
     margin-left: 25px;
+}
+
+.saveButton {
+    margin-top: 20px;
+    width: 55px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 20px;
+    text-align: center;
+    border: none;
+    color: white;
+    background-color: rgb(223, 3, 3);
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.right-container {
+    height: 100%;
+    width: 440px;
+    /* margin-left: 50px; */
+    margin-right: 
+}
+.saveButton:hover {
+    background-color: rgb(91, 1, 1);
 }
