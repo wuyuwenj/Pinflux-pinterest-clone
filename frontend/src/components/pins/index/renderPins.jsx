@@ -11,11 +11,14 @@ import Loading from '../../LoadingPage/Loading';
 export default function PinIndex({boardpins}) {
     const [loading, setLoading] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth); // get initial window width
+    const [gridWidth, setGridWidth] = useState(0);
+
     function updateGridMargin() {
         setWindowWidth(window.innerWidth)
         const grid = document.querySelector('.my-masonry-grid');
         let width = 236 * Math.floor(windowWidth / 252) + (20*Math.floor(windowWidth / 252));
         // padding=10
+        setGridWidth(width);
         // grid.style.marginLeft = padding+'px';
         // grid.style.marginRight = padding+'px';
         if(grid)grid.style.width = width+'px';
@@ -70,6 +73,7 @@ export default function PinIndex({boardpins}) {
         <Loading/>
         </>)
     }else{
+        
         return(
         <div className='grid'>
             {/* {pins.map(pin => <Link key={pin.id} to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link> ) } */}
@@ -78,6 +82,7 @@ export default function PinIndex({boardpins}) {
                 breakpointCols={breakpointColumnsObj}
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column"
+                style={{ width: gridWidth + 'px' }}
             >
 
 

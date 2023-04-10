@@ -18,7 +18,8 @@ export default function ShowBoard() {
     const sessionUser = useSelector((state) => state.session.user)
     const [selectedboard, setSelectedboard] = useState("")
     const [showModal, setShowModal] = useState(false);
-const [loaded, setLoaded] = useState(false);
+    const [loaded, setLoaded] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     useEffect(() => {
         Promise.all([
@@ -27,8 +28,11 @@ const [loaded, setLoaded] = useState(false);
         ]).then(() => {
             setLoaded(true);
         })
-        
+
     }, [dispatch, id])
+
+
+
 
 
     const boards = useSelector(getBoards) || [];
@@ -71,6 +75,7 @@ const [loaded, setLoaded] = useState(false);
     if (!loaded) {
         return <Loading />
     }else{
+
         return (
             <div className='showboardpagebg'>
                 <div><h1 className="boardname">{board && board.name}</h1>
