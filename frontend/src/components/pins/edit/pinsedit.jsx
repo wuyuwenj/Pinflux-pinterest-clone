@@ -40,7 +40,7 @@ const PinEditForm = (props) => {
     return(
         <div className="pin-edit-form-container">
             <div className="pin-edit-heading">
-                <h1>Edit this pin</h1>
+                <div>Edit this pin</div>
             </div>
             <form className="form-form-container" onSubmit={handleSubmit} action="">
                 <div className="pin-edit-form">
@@ -71,15 +71,15 @@ const PinEditForm = (props) => {
                 </div>
                 <br />
                 <br />
-                <div>
+                <div className="pinEditButContainer">
                     <button type="button" onClick={handleDelete} className="edit-delete-buttons">
-                        <h1>Delete</h1>
+                        <div>Delete</div>
                     </button>
 
                     
         
                 <button type="submit" className="edit-save-buttons">
-                    <h1>Save</h1>
+                    <div>Save</div>
                 </button>
                 </div>
                 
