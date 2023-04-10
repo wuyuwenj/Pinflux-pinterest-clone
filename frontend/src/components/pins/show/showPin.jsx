@@ -11,6 +11,7 @@ import { fetchBoards } from "../../../store/boards";
 import { getBoards } from "../../../store/boards";
 import { addPinBoardMapping } from "../../../store/pinboard";
 import PinEditForm from "../edit/pinsedit";
+import Loading from "../../LoadingPage/Loading";
 export default function ShowPin(){
     const {id} = useParams();
     const [showModal, setShowModal] = useState(false);
@@ -94,7 +95,7 @@ export default function ShowPin(){
         return null;
     }
     if (loaded===false||pinowner === undefined) {
-        return <div>Loading...</div>; // Or render some placeholder content
+        return <Loading />
     }
 
     return(

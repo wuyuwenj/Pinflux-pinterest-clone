@@ -11,17 +11,22 @@ import { getBoards, getBoard } from "../../../store/boards";
 import { addPinBoardMapping } from "../../../store/pinboard";
 import PinIndex from "../../pins/index/renderPins";
 import "./showBoard.css"
+import Loading from "../../LoadingPage/Loading";
 export default function ShowBoard() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user)
     const [selectedboard, setSelectedboard] = useState("")
     const [showModal, setShowModal] = useState(false);
-
+const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        dispatch(fetchPins());
-        dispatch(fetchBoard(id));
+        Promise.all([
+        dispatch(fetchPins()),
+        dispatch(fetchBoard(id))
+        ]).then(() => {
+            setLoaded(true);
+        })
         
     }, [dispatch, id])
 
@@ -63,30 +68,34 @@ export default function ShowBoard() {
     }
 
  
+    if (!loaded) {
+        return <Loading />
+    }else{
+        return (
+            <div className='showboardpagebg'>
+                <div><h1 className="boardname">{board && board.name}</h1>
+                    <button className='showboardloginbt' onClick={() => setShowModal(true)}>Edit</button>
 
-   
-    return (
-        <div className='showboardpagebg'>
-            <div><h1 className = "boardname">{board&&board.name}</h1>
-                <button className='showboardloginbt' onClick={() => setShowModal(true)}>Edit</button>
+                    {showModal && (
+                        <Modal onClose={() => setShowModal(false)}>
+                            <BoardEditForm board={board} />
+                        </Modal>
+                    )}
+                    <br />
+                    <p>{board && board.body}</p>
+                    <br />
+                    <PinIndex boardpins={boardPins} />
 
-                {showModal && (
-                    <Modal onClose={() => setShowModal(false)}>
-                        <BoardEditForm board={board} />
-                    </Modal>
-                )}
-                <br />
-                <p>{board && board.body}</p>
-            <br />            
-            <PinIndex boardpins={boardPins}/>
+                </div>
+
+
+
 
             </div>
-            
-
+        )
+    }
    
 
-        </div>
-    )
 
 
 }

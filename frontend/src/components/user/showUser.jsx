@@ -11,6 +11,7 @@ import { getUser, getUsers } from "../../store/user";
 import FollowButton from "./following/followbutton";
 import FollowingModal from "./following/followingsModel";
 import BoardCover from "../board/index/board_cover";
+import Loading from "../LoadingPage/Loading";
 
 export const FollowingContext = createContext();
 
@@ -18,6 +19,7 @@ export default function ShowUser() {
     const sessionUser = useSelector((state) => state.session.user)
     const [showMenu, setShowMenu] = useState(false)
     const [Following,setFollowing] = useState(false)
+    const [loaded, setLoaded] = useState(false);
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
@@ -36,22 +38,19 @@ export default function ShowUser() {
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
-    useEffect(()=>{
-    })
-    
-    useEffect(() => {
 
-        dispatch(fetchBoards(id));
+
+    useEffect(() => {
+        Promise.all([
+            dispatch(fetchPins()),
+        dispatch(fetchUsers()),
+        dispatch(fetchBoards(id))
+        ]).then(() => {
+            setLoaded(true);
+        })
     }, [dispatch, id]);
 
 
-    useEffect(() => {
-        dispatch(fetchPins());
-    }, [dispatch]);
-
-    useEffect(() => {
-        dispatch(fetchUsers());
-    }, [dispatch]);
 
     // const pins = useSelector(getPins())
 
@@ -136,7 +135,11 @@ export default function ShowUser() {
        
     }
     
-
+    if (!loaded) {
+        return (
+            <Loading />
+        )
+    }
     return (
         <div>
             <FollowingContext.Provider value={{ Following, setFollowing,currentUser }}>

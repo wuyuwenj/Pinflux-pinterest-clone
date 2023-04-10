@@ -7,7 +7,7 @@ import Masonry from 'react-masonry-css'
 import "./indexPin.css"
 import { Link } from 'react-router-dom';
 import { fetchUsers, getUsers } from '../../../store/user';
-
+import Loading from '../../LoadingPage/Loading';
 export default function PinIndex({boardpins}) {
     const [loading, setLoading] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth); // get initial window width
@@ -18,13 +18,17 @@ export default function PinIndex({boardpins}) {
         // padding=10
         // grid.style.marginLeft = padding+'px';
         // grid.style.marginRight = padding+'px';
-        grid.style.width = width+'px';
+        if(grid)grid.style.width = width+'px';
 
     }
-     const dispatch = useDispatch();
+    const dispatch = useDispatch();
     useEffect(()=>{
-        dispatch(fetchPins());
-        dispatch(fetchUsers());
+        Promise.all([
+        dispatch(fetchPins()),
+        dispatch(fetchUsers())
+        ]).then(() => {
+            setLoading(false)
+        })
         // const fetchData = async () => {
         //     await dispatch(fetchPins());
         //     setLoading(false)
@@ -61,7 +65,12 @@ export default function PinIndex({boardpins}) {
     }else{
         revpins = boardpins.slice().reverse()
     }
-    return(
+    if(loading) {
+        return(<>
+        <Loading/>
+        </>)
+    }else{
+        return(
         <div className='grid'>
             {/* {pins.map(pin => <Link key={pin.id} to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link> ) } */}
             
@@ -83,5 +92,6 @@ export default function PinIndex({boardpins}) {
         </div>
         
     )
+    }
 }
 

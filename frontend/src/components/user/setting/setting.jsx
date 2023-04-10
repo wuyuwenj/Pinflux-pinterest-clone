@@ -8,6 +8,7 @@ import './setting.css';
 import { useParams } from "react-router-dom";
 import { fetchUsers } from "../../../store/user";
 import { getUser } from "../../../store/user";
+import Loading from "../../LoadingPage/Loading";
 const pages={
     1:'Public',
     2:'Personal'
@@ -18,10 +19,14 @@ export default function Setting(){
     const {id}=useParams();
     const user = useSelector(getUser(id));
     const [page,setPage] = useState('Public');
+    const [loading,setLoading] = useState(true);
 
     useEffect(()=>{
-        dispatch(fetchUsers())
+        dispatch(fetchUsers()).then(()=>setLoading(false))
     },[])
+    if(loading){
+        return <Loading/>
+    }
     return(
     <div className="settingPage">
 
