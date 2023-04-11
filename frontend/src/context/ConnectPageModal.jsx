@@ -2,9 +2,9 @@ import React, { useContext, useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './ConnectPageModal.css';
 
-const ModalContext = React.createContext();
+const ConnectPageModalContext = React.createContext();
 
-export function ModalProvider({ children }) {
+export function ConnectPageModalProvider({ children }) {
     const modalRef = useRef();
     const [value, setValue] = useState();
 
@@ -14,23 +14,24 @@ export function ModalProvider({ children }) {
 
     return (
         <>
-            <ModalContext.Provider value={value}>
+            <ConnectPageModalContext.Provider value={value}>
                 {children}
-            </ModalContext.Provider>
+            </ConnectPageModalContext.Provider>
             <div ref={modalRef} />
         </>
     );
 }
 
-export function Modal({ onClose, children }) {
-    const modalNode = useContext(ModalContext);
+export function ConnectPageModal({ onClose, children }) {
+    const modalNode = useContext(ConnectPageModalContext);
     if (!modalNode) return null;
 
     return ReactDOM.createPortal(
-        <div id="modal">
-            <div id="modal-background" onClick={onClose} />
-            <div id="modal-content">
-                <div id="x" onClick={onClose}>x</div>
+
+        <div id="connect-modal">
+            <div id="connect-modal-background" onClick={onClose} />
+            <div id="connect-modal-content">
+                <div id="cx" onClick={onClose}>x</div>
                 {children}
             </div>
         </div>,

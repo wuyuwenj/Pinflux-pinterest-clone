@@ -34,9 +34,7 @@ export default function ShowUser() {
         const closeMenu = () => {
             setShowMenu(false);
         };
-
         document.addEventListener('click', closeMenu);
-
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
@@ -66,13 +64,14 @@ export default function ShowUser() {
     let followersArr;
     let followeesArr;
   
+    //fetching users everytime the user follows/unfollows someone
     useEffect(()=>{
         if (User && User.followings) {
             dispatch(fetchUsers());
         }
     }, [Following])
     
-
+    //
     useEffect(()=>{
         if (User) {
             followersArr = User.followers.map(id => {

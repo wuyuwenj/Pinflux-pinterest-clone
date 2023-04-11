@@ -16,7 +16,7 @@ const SearchBar = () => {
             <input type="text" className="searchInput"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search" />
+                placeholder="Search:still in development, please try other functions!" />
         </form>
     );
 }

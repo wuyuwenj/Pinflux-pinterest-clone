@@ -9,7 +9,8 @@ import './Navigation.css';
 import { useState } from 'react';
 import SearchBar from './searchbar';
 import DropDown from './dropdown';
-
+import NotificationModel from '../notification/notiModel';
+import MessageModel from '../message/messageModel';
 function Navigation() {
 
   const sessionUser = useSelector(state => state.session.user);
@@ -56,8 +57,8 @@ function Navigation() {
       <div className='searchBar'><SearchBar></SearchBar></div>
 
       <div className='backNav'>
-        <div className='icons'><button className="circleButton"><i class="fa-solid fa-bell"></i></button></div>
-        <div className='icons'><button className="messageButton"><i class="fa-solid fa-comment-dots"></i></button></div>
+        <NotificationModel/>
+        <MessageModel/>
           <div className='icons'><Link to={`/user/${sessionUser.id}`} className="userButton"><div className="name-text">{sessionUser.username&&sessionUser.username[0]}</div></Link></div>
         <div className='icon'><DropDown></DropDown></div>
       </div>

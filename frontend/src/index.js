@@ -8,7 +8,7 @@ import App from './App';
 import configureStore from './store';
 import csrfFetch from "./store/csrf";
 import * as sessionActions from './store/session';
-
+import { ConnectPageModalProvider } from './context/ConnectPageModal';
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
@@ -22,12 +22,14 @@ if (process.env.NODE_ENV !== "production") {
 function Root() {
   return (
     <ModalProvider>
-      <Provider store={store}>
+      <ConnectPageModalProvider>
+        <Provider store={store}>
         <BrowserRouter>
           <App />
           {/* <Carrot /> */}
         </BrowserRouter>
       </Provider>
+      </ConnectPageModalProvider>
     </ModalProvider>
   );
 }

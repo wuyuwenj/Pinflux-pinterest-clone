@@ -5,7 +5,7 @@ import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 import logo from '../../images/png/logo-black.png'
 import LoginFormModal from "../LoginFormModal";
-
+import Loading from "../LoadingPage/Loading";
 function SignupForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
@@ -14,6 +14,7 @@ function SignupForm() {
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [errors, setErrors] = useState([]);
+  const [Loading, setLoading] = useState(false);
   useEffect(() => {
     setUsername(email.split('@')[0])
   }, [email])
@@ -23,11 +24,15 @@ function SignupForm() {
   
 
   const handleSubmit = (e) => {
+    setLoading(true)
     e.preventDefault();
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password }))
-      
-        .catch(async (res) => {
+      .then(() => {
+        dispatch(sessionActions.login({ credential: email, password }))})
+        .then(() => {
+          setLoading(false);
+        }).catch(async (res) => {
           let data;
           try {
             // .clone() essentially allows you to read the response body twice
@@ -45,11 +50,13 @@ function SignupForm() {
 const handleform = () => {
     
 }
+// if(Loading) return <Loading />
   return (
     <>
       <div className='modalLogo'><a href=""><img className="mLogo" src={logo} alt="" width="55" height="55" /></a></div>
 
       <h1>Welcome to Pinflux</h1>
+      {/* {Loading ? <Loading />: null} */}
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error) => <li key={error}>{error}</li>)}
@@ -80,7 +87,7 @@ const handleform = () => {
           />
         </label>
         <br />
-        <label>
+        {/* <label>
           Age
           <br />
           <input
@@ -91,13 +98,13 @@ const handleform = () => {
             placeholder="Age"
             required
           />
-        </label>
+        </label> */}
         <br />
         <br />
         <button type="submit" className="modalButton">Sign Up</button>
-        <div>
+        {/* <div>
           Already a member?
-          <p className="change-form" onClick={handleform}>Log in</p></div>
+          <p className="change-form" onClick={handleform}>Log in</p></div> */}
       </form>
     </>
   );
