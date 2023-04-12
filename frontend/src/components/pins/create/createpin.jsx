@@ -4,7 +4,8 @@ import { createPin } from '../../../store/pins';
 import './createpin.css'
 import DropDown from './boarddrop';
 import { Redirect } from 'react-router-dom';
-
+import Loading from '../../LoadingPage/Loading';
+import { useHistory } from 'react-router-dom';
 const CreatePinPage=()=>{
     const dispatch=useDispatch();
     const sessionUser = useSelector((state) => state.session.user)
@@ -17,7 +18,9 @@ const CreatePinPage=()=>{
     const [imgurl, setImgUrl] = useState('');
     const [redirect, setRedirect] = useState(false)
     // const [boards, setBoard] = useState([]);
+    const [loading, setLoading] = useState(false);
 
+    const history = useHistory();
     const handleFile=(e)=>{
         const file = e.target.files[0];
         // Save file for submission
@@ -37,7 +40,7 @@ const CreatePinPage=()=>{
     const handleSubmit = (e)=>{
         e.preventDefault();
        
-
+        setLoading(true)
         const formData = new FormData();
         formData.append('pin[title]', title);
         formData.append('pin[body]', body);
@@ -46,8 +49,12 @@ const CreatePinPage=()=>{
         formData.append('pin[author_id]', sessionUser.id);
         formData.append('pin[image]', imgfile);
        
-        dispatch(createPin(formData))
-        setTimeout(setRedirect(true), 1000)
+        dispatch(createPin(formData)).then(() => {
+            setLoading(false)
+        }).then(() => {
+            history.push('/')
+        })
+        
         
     }
 
@@ -57,7 +64,11 @@ const CreatePinPage=()=>{
         )
     }
 
-
+if (loading) {
+        return (<>
+            <Loading />
+        </>)
+    } else {
 return(
     
     <div className='pagebg'>
@@ -149,6 +160,7 @@ return(
             
 
 );
+    }
 }
 
 export default CreatePinPage;

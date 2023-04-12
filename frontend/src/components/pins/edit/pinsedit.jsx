@@ -1,42 +1,51 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { deletePin, updatePin } from "../../../store/pins"
-import { Redirect } from "react-router-dom"
-
+import { useHistory } from "react-router-dom"
+import Loading from "../../LoadingPage/Loading"
 import "./pinsedit.css"
 
 const PinEditForm = (props) => {
-    const {pin}=props
+    const { pin, setShowModal }=props
     const [title, setTitle] = useState(pin.title)
     const [body, setBody]=useState(pin.body)
     const dispatch=useDispatch();
     const [redirect, setRedirect] = useState(false)
-
+    const history = useHistory();
+    const [isLoading, setLoading] = useState(false);
 
     const handleDelete=(e)=>{
         e.preventDefault()
-        dispatch(deletePin(pin.id));
-        setTimeout(setRedirect(true), 5000)
+        dispatch(deletePin(pin.id)).then(() => {
+            setLoading(false)
+        }).then(() => {
+            history.push('/')
+        })
 
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true)
         const Data={
             ...pin,
             title,
             body
         }
-        dispatch(updatePin(Data));
-        setTimeout(setRedirect(true), 5000)
+        console.log(pin)
+        dispatch(updatePin(Data)).then(() => {
+            setLoading(false)
+        }).then(()=>{
+            setShowModal(false)
+        })
         e.stopPropagation();
     }
-    if (redirect) {
-        return (
-            <Redirect to='/' />
-        )
-    }
-
+    
+    if (isLoading){
+        return (<>
+            <Loading />
+        </>)    
+        }else{
     return(
         <div className="pin-edit-form-container">
             <div className="pin-edit-heading">
@@ -86,6 +95,7 @@ const PinEditForm = (props) => {
             </form>
         </div>
     )
+    }
   
 }
 export default PinEditForm

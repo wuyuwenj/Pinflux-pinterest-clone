@@ -190,7 +190,7 @@ export default function ShowPin(){
 
                         {showModal && (
                             <Modal onClose={() => setShowModal(false)}>
-                                <PinEditForm pin={pin} />
+                                <PinEditForm pin={pin} setShowModal={setShowModal}/>
                             </Modal>
                         )}
                         <label htmlFor="boards" />
