@@ -11,4 +11,58 @@
   
 ## Site View
 
+The implemented solution effectively utilizes FormData for creating pins with images through AWS and Redux. By employing a loading page, chaining actions with .then() on the dispatched function, and useHistory, a responsive and seamless user experience is achieved, allowing instant pin display upon successful creation.
 
+```
+# createpin.jsx
+
+ const handleSubmit = (e)=>{
+        e.preventDefault();
+       
+        setLoading(true)
+        const formData = new FormData();
+        formData.append('pin[title]', title);
+        formData.append('pin[body]', body);
+        formData.append('pin[alt_text]', alttext);
+        formData.append('pin[destination_link]', deslink);
+        formData.append('pin[author_id]', sessionUser.id);
+        formData.append('pin[image]', imgfile);
+       
+        dispatch(createPin(formData)).then(() => {
+            setLoading(false)
+        }).then(() => {
+            history.push('/')
+        })
+        
+        
+    }
+ ```
+ 
+By filtering only the necessary information for rendering pins on the main page using Jbuilder, the efficiency of page loading is significantly improved. Additionally, setting the key of the pin to its ID enhances the efficiency of searching for a specific pin in other functions.
+
+ ```
+ #index.json.jbuilder
+   @pins.each do |pin|
+    json.set! pin.id do
+      json.extract! pin, :id, :title
+      json.imageUrl url_for(pin.image) if pin.image.attached?
+    end
+  end
+ 
+ #sample state
+  {
+  entities: {
+    pins: {
+      1: {
+        id: 1,
+        body: "Check out this amazing recipe for homemade pizza!",
+        title: "Homemade Pizza Recipe"
+      },
+      2: {
+        id: 2,
+        body: "This is a great article on the benefits of meditation.",
+        title: "Benefits of Meditation"
+       }
+    }
+  }
+  ```
