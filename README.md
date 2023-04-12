@@ -30,7 +30,10 @@ Setting Page
 
 ## Code Snippets
 
-The implemented solution effectively utilizes FormData for creating pins with images through AWS and Redux. By employing a loading page, chaining actions with .then() on the dispatched function, and useHistory, a responsive and seamless user experience is achieved, allowing instant pin display upon successful creation.
+The solution makes use of FormData to create pins with images using AWS and Redux. A loading page is used, along with chained actions in the dispatch function and useHistory, to provide a smooth user experience. This approach allows pins to be displayed instantly after they are created successfully.
+
+
+
 
 ```
 # createpin.jsx
