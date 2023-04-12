@@ -17,6 +17,7 @@ const Splash = () => {
                     </div>
                 </div>
             
+            
                 <div className="splishColumns" id="column2">
                 <div className="pic2">
                     <img className="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea2.jpg" />
