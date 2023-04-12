@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import { createBoard } from "../../../store/boards";
 import { fetchBoards } from "../../../store/boards";
 import "./createBoard.css"
-import Loading from "../../LoadingPage/Loading";
 
 const CreateBoardPage = () => {    
     const currentUserId = useSelector(state => state.session.user.id)
@@ -12,7 +11,6 @@ const CreateBoardPage = () => {
     const [name, setName] = useState('')
     const [body, setBody] = useState('')
     const [redirect, setRedirect] = useState(false)
-    const [loading, setLoading] = useState(true);
 
 
 
@@ -22,10 +20,7 @@ const CreateBoardPage = () => {
 
         dispatch(createBoard({ name, body, private:false, owner_id:currentUserId })),
         dispatch(fetchBoards())
-        ]).then(() => {
-            setLoading(false)
-        })
-
+        ])
         setTimeout(setRedirect(true), 5000)
     }
 
@@ -37,11 +32,7 @@ const CreateBoardPage = () => {
     }
 
 
-    if (loading) {
-        return (<>
-            <Loading />
-        </>)
-    } else {
+   
     return (
         <div className="pagebg">
             <div className="formbox">
@@ -74,6 +65,6 @@ const CreateBoardPage = () => {
             </div>
         </div>
     );
-    }
+    
 }
 export default CreateBoardPage;
