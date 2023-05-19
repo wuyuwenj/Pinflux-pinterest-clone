@@ -48,6 +48,15 @@ const Splash = () => {
                     <img className="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea7.jpg" />
                 </div>
                 </div>
+
+        </div>
+        <div className="footer">
+            <div>
+            Here is how it works      
+            </div>
+            <svg class="aUZ R19 U90 kVc" height="12" width="12" viewBox="0 0 24 24" aria-label="arrow down icon" role="img">
+<path d="M12 19.5.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"></path>
+</svg>
         </div>
         </div>
        
