@@ -1,10 +1,14 @@
 .SplashPage {
+    /* --mask: linear-gradient(to bottom,
+            rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 1) 90%,
+            rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0) 0) 100% 50% / 100% 100% repeat-x; */
     position: relative;
     text-align: center;
     width: 100%;
     height: 91vh;
     overflow: hidden;
-
+    /* mask: var(--mask); */
+    z-index: 1;
 }
 
 .splashTitles{
@@ -25,13 +29,14 @@
 }
 
 .image-container {
-  
+
         width: 100%;
             height: auto;
             position: relative;
             top: -5%;
             display: flex;
             justify-content: center;
+
 }
 
 .splishPic{
@@ -78,14 +83,15 @@
 
 }
 
-.footer{
+.footer {
     display: flex;
-    height: 60px;
+    height: 5vh;
     width: 100%;
     background-color: rgb(249, 249, 94);
-    position:absolute;
+    position: fixed;
     justify-content: center;
     align-items: center;
     bottom: 0px;
     cursor: pointer;
+    z-index: 2;
 }

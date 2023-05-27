@@ -48,7 +48,6 @@ const Splash = () => {
                     <img className="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea7.jpg" />
                 </div>
                 </div>
-
         </div>
         <div className="footer">
             <div>
