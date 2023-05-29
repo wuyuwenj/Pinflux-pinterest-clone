@@ -95,3 +95,16 @@
     cursor: pointer;
     z-index: 2;
 }
+
+
+.container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /* Hide scrollbar */
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch,Redirect } from "react-router-dom";
 // import SignupFormPage from "./components/SignupFormPage";
 // import LoginFormPage from "./components/LoginFormPage";
 import Navigation from "./components/Navigation";
@@ -39,11 +39,12 @@ function App() {
           <CreateBoardPage />
         </Route>
         
-          <Route exact path="/">
-          {sessionUser ?  <PinIndex />:<Splash /> }
+          <Route 
+  exact path="/" 
+  render={(props) => sessionUser ? <PinIndex {...props} /> : <Splash {...props} key={window.location.pathname + window.location.search + window.location.hash} />} 
+/>
 
-          </Route>
-          
+        <Redirect to="/" />
         </Switch>
     </>
   );
