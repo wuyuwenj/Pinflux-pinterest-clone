@@ -8,6 +8,8 @@ import "./indexPin.css"
 import { Link } from 'react-router-dom';
 import { fetchUsers, getUsers } from '../../../store/user';
 import Loading from '../../LoadingPage/Loading';
+import Navigation from '../../Navigation';
+
 export default function PinIndex({boardpins}) {
     const [loading, setLoading] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth); // get initial window width
@@ -75,6 +77,10 @@ export default function PinIndex({boardpins}) {
     }else{
         
         return(
+        <div>
+
+        
+        <Navigation />
         <div className='grid'>
             {/* {pins.map(pin => <Link key={pin.id} to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link> ) } */}
             
@@ -95,7 +101,7 @@ export default function PinIndex({boardpins}) {
                 ))}
             </Masonry>
         </div>
-        
+        </div>
     )
     }
 }

@@ -21,21 +21,27 @@ function App() {
       <Navigation />
         <Switch>
           <Route path="/pin/create" >
+            <Navigation />
             <CreatePinPage />
           </Route>
           <Route path="/pins/:id">
+            <Navigation />
             <ShowPin />
           </Route>
         <Route path="/users/:id/setting">
+          <Navigation />
           <Setting />
         </Route>
         <Route  path="/user/:id">
+          <Navigation />
           <ShowUser />
         </Route>
         <Route path="/boards/:id" >
+          <Navigation />
           <ShowBoard />
         </Route>
         <Route path="/board/create">
+          <Navigation />
           <CreateBoardPage />
         </Route>
         
