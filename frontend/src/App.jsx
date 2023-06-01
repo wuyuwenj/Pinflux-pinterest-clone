@@ -18,7 +18,6 @@ function App() {
 
   return (
     <>
-      <Navigation />
         <Switch>
           <Route path="/pin/create" >
             <Navigation />
