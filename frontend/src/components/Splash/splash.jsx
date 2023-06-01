@@ -29,16 +29,17 @@ const Splash = () => {
 
     return(
         <div className="SplashPage">
-        <section id="top">
         <Navigation/>
+        <section id="top">
+        
              <div className='splashTitles'>
             <p><b> Get your next</b></p>
             <div className="splashtitle1"> <b>weeknight dinner idea</b> </div>
         </div>
             <div className="image-container">
-                <div className="splish-columns" id="column1">
+                <div className="splishColumns" id="column1">
                     <div className="pic1">
-                    <img class Name="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea1.jpg" />
+                    <img className="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea1.jpg" />
                     </div>
                 </div>
             
