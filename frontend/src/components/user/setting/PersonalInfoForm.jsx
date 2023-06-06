@@ -26,15 +26,15 @@ export default function PersonalInfoForm() {
                 Gender
             </div>
             <div>
-                <label class="container">Male
+                <label class="setting-container">Male
                     <input type="radio" name="radio" value="Male" defaultChecked={true} onChange={handleChangeGender}/>
                         <span class="checkmark"></span>
                 </label>
-                <label class="container">Female
+                <label class="setting-container">Female
                     <input type="radio" name="radio" value="Female" onChange={handleChangeGender} />
                         <span class="checkmark"></span>
                 </label>
-                <label class="container">Non-binary
+                <label class="setting-container">Non-binary
                     <input type="radio" name="radio" value="Non-binary" onChange={handleChangeGender} />
                         <span class="checkmark"></span>
                 </label>

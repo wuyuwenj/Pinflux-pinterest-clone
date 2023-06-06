@@ -55,7 +55,7 @@
     /* flex-direction: row; */
 }
 
-.container  {
+.setting-container  {
     /* display: inline-block;
     position: relative; */
     padding-left: 5px;
@@ -70,7 +70,7 @@
 }
 /* Personal form */
 /* Hide the browser's default radio button */
-.container {
+.setting-container {
     display: block;
     position: relative;
     float: left;
@@ -87,7 +87,7 @@
 }
 
 /* Hide the browser's default radio button */
-.container input {
+.setting-container input {
 
     position: absolute;
     opacity: 0;
@@ -109,19 +109,19 @@
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input:not(:checked)~.checkmark {
+.setting-container:hover input:not(:checked)~.checkmark {
     opacity: 0.5;
 }
 
 /* When the radio button is checked, add a blue background */
-.container input:checked~.checkmark {
+.setting-container input:checked~.checkmark {
     background-color: #000305;
     height: 24px;
     width: 24px;
     border: none;
 }
 
-.container input:checked~.checkmark:after {
+.setting-container input:checked~.checkmark:after {
     top: 8px;
     left: 8px;
     width: 8px;
@@ -139,7 +139,7 @@
 }
 
 /* Show the indicator (dot/circle) when checked */
-.container input:checked~.checkmark:after {
+.setting-container input:checked~.checkmark:after {
     border: none;
     display: block;
 
