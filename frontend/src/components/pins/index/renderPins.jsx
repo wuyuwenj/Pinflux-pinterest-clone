@@ -10,7 +10,7 @@ import { fetchUsers, getUsers } from '../../../store/user';
 import Loading from '../../LoadingPage/Loading';
 import Navigation from '../../Navigation';
 
-export default function PinIndex({boardpins}) {
+export default function PinIndex({boardpins,nav=true}) {
     const [loading, setLoading] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth); // get initial window width
     const [gridWidth, setGridWidth] = useState(0);
@@ -79,8 +79,10 @@ export default function PinIndex({boardpins}) {
         return(
         <div>
 
-        
-        <Navigation />
+        {
+            nav && <Navigation />
+        }    
+
         <div className='grid'>
             {/* {pins.map(pin => <Link key={pin.id} to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link> ) } */}
             

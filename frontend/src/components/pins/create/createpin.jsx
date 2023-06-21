@@ -89,7 +89,7 @@ return(
                     <tr>
                         <td className='left'>
                             
-                            <div className='dotline'><img className="Uploadpic"  /></div>
+                        <div className='dotline'><img className="Uploadpic"  /></div>
                         
                         <input
                             className='uploadButton'

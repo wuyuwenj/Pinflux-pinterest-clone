@@ -89,7 +89,7 @@ export default function ShowBoard() {
                     <br />
                     <p>{board && board.body}</p>
                     <br />
-                    <PinIndex boardpins={boardPins} />
+                    <PinIndex boardpins={boardPins} nav={false}/>
 
                 </div>
 
