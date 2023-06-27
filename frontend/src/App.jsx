@@ -1,7 +1,5 @@
 import React from "react";
 import { Route, Switch,Redirect } from "react-router-dom";
-// import SignupFormPage from "./components/SignupFormPage";
-// import LoginFormPage from "./components/LoginFormPage";
 import Navigation from "./components/Navigation";
 import CreatePinPage from "./components/pins/create/createpin";
 import PinIndex from "./components/pins/index/renderPins";

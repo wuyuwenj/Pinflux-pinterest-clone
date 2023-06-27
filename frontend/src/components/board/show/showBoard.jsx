@@ -59,10 +59,6 @@ export default function ShowBoard() {
     }
 
 
-    // let user=null;
-    // if(pin.author){
-    //    user = useSelector(getUsers(author_id))
-    // }
   
     if (boards === undefined) {
         return null;

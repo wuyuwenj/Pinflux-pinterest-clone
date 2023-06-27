@@ -1,17 +1,8 @@
 import React from 'react'
-// import EditBoardButton from '../buttons/edit_board_button'
 import './board_cover.css'
 import greybg from '../../../images/greybj.png'
 const BoardCover = ({ openModal, board, isUser, user, pins }) => {
 
-    // const handleEditClick = (e) => {
-    //     e.preventDefault()
-    //     openModal("edit board",
-    //         {
-    //             boardName: board.name,
-    //             path: `/users/${user.username}`
-    //         })
-    // }
     return (
         <div className="boardPictureContainer">
             {/* <div>test</div> */}

@@ -17,7 +17,6 @@ const CreatePinPage=()=>{
     const [imgfile, setImgFile] = useState('')
     const [imgurl, setImgUrl] = useState('');
     const [redirect, setRedirect] = useState(false)
-    // const [boards, setBoard] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const history = useHistory();
