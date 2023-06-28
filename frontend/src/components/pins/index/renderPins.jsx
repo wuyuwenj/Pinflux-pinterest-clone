@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getPins } from "../../../store/pins";
 import RenderSingle from "./renderSingle";
@@ -8,7 +8,7 @@ import Navigation from "../../Navigation";
 import { useFetchPins } from "../../../hooks/useFetchPins";
 import "./indexPin.css";
 
-export default function PinIndex({ boardpins, nav = true }) {
+export default function PinIndex({ boardpins, HaveNav = true }) {
   const [loadingPins, setLoadingPins] = useState(true);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth); // get initial window width
@@ -44,29 +44,27 @@ export default function PinIndex({ boardpins, nav = true }) {
   }, []);
 
   useEffect(() => {//change the width of the grid based on the column count
-    const grid = document.querySelector(".my-masonry-grid");
-    let width = 236 * colCount + 20 * colCount;// 236 is the width of a pin, 20 is the margin between pins
-    setGridWidth(width);
-    if (grid) grid.style.width = width + "px";
+    let newWidth = 236 * colCount + 20 * colCount;// 236 is the width of a pin, 20 is the margin between pins
+    setGridWidth(newWidth);
   }, [colCount]);
 
 
   if (loadingPins) {
     return (
       <>
-        {nav && <Navigation />}
+        {HaveNav && <Navigation />}
         <Loading />
       </>
     );
   } else {
     return (
       <div>
-        {nav && <Navigation />}
+        {HaveNav && <Navigation />}
         <Masonry
           breakpointCols={breakpointColumnsObj}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
-          style={{ width: gridWidth + "px" }}
+          style={{ width: `${gridWidth}px` }}
         >
           {revpins.map((pin) => (
             <RenderSingle pin={pin}/>
