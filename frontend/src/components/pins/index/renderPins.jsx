@@ -1,20 +1,32 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchPins, getPins } from "../../../store/pins";
+import {  useSelector } from "react-redux";
+import {  getPins } from "../../../store/pins";
 import RenderSingle from "./renderSingle";
 import Masonry from "react-masonry-css";
 import "./indexPin.css";
 import { Link } from "react-router-dom";
-import { fetchUsers, getUsers } from "../../../store/user";
+import {  getUsers } from "../../../store/user";
 import Loading from "../../LoadingPage/Loading";
 import Navigation from "../../Navigation";
+import { useFetchPins } from "../../../hooks/useFetchPins";
+import { useFetchUsers } from "../../../hooks/useFetchUsers";
 
 export default function PinIndex({ boardpins, nav = true }) {
   const [loading, setLoading] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth); // get initial window width
   const [gridWidth, setGridWidth] = useState(0);
-
+const handleScroll = useCallback(() => {
+    const grid = document.querySelector(".grid");
+    const scrollBottom =
+      grid.scrollHeight - grid.scrollTop - grid.clientHeight;
+    if (scrollBottom < 100) {
+    //   console.log("fetch more pins",grid.scrollHeight,grid.scrollTop, grid.clientHeight);
+    }
+  }, []);
+    const handleResize = useCallback(() => {
+    setWindowWidth(window.innerWidth);
+  }, []);
   function updateGridMargin() {
       setWindowWidth(window.innerWidth)
       const grid = document.querySelector('.my-masonry-grid');
@@ -24,18 +36,19 @@ export default function PinIndex({ boardpins, nav = true }) {
   }
 
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    Promise.all([dispatch(fetchPins()), dispatch(fetchUsers())]).then(() => {
-      setLoading(false);
-    });
-  }, [dispatch]);
+    useFetchPins(setLoading)
+    useFetchUsers()
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleResize,handleScroll]);
+  
   useEffect(() => {
     updateGridMargin();
   }, [window.innerWidth]);
@@ -51,20 +64,20 @@ export default function PinIndex({ boardpins, nav = true }) {
       return boardpins.slice().reverse();
     }
   }, [pins, boardpins]);
+
   if (loading) {
     return (
       <>
+        {nav && <Navigation />}
         <Loading />
       </>
     );
   } else {
     return (
-      <div>
+      <div >
         {nav && <Navigation />}
 
-        <div className="grid">
-          {/* {pins.map(pin => <Link key={pin.id} to={`/pins/${pin.id}`} className='link'><img className='images' src={pin.imageUrl} alt={pin.title} /></Link> ) } */}
-
+        <div className="grid" onscroll={handleScroll}>
           <Masonry
             breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"
@@ -72,10 +85,7 @@ export default function PinIndex({ boardpins, nav = true }) {
             style={{ width: gridWidth + "px" }}
           >
             {revpins.map((pin) => (
-              <Link key={pin.id} to={`/pins/${pin.id}`} className="link">
-                <img className="images" src={pin.imageUrl} alt={pin.title} />
-                <h3 className="pintitle">{pin.title}</h3>
-              </Link>
+              <RenderSingle pin={pin}/>
             ))}
           </Masonry>
         </div>

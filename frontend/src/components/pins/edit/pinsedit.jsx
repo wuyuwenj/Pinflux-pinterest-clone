@@ -21,7 +21,6 @@ const PinEditForm = (props) => {
         }).then(() => {
             history.push('/')
         })
-
     }
 
     const handleSubmit = (e) => {
@@ -40,7 +39,7 @@ const PinEditForm = (props) => {
         })
         e.stopPropagation();
     }
-    
+    // console.log('passinghere')
     if (isLoading){
         return (<>
             <Loading />
