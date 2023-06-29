@@ -14,8 +14,9 @@
 .showboardloginbt {
 
     margin-left: 20px;
-        position: absolute;
-        margin-top: 27px;
+    position: flex;
+    /* margin-top: 27px; */
+    /* margin-bottom: 30px; */
     width: 60px;
     height: 4%;
     border-radius: 20px;
