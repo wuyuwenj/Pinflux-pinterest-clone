@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import "./LoginForm.css";
 import logo from "../../images/png/logo-black.png";
-import Loading from "../LoadingPage/Loading";
+import "./LoginForm.css";
+
 function LoginForm() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
     setErrors([]);
 
     if (!credential || !password) return;
     return dispatch(sessionActions.login({ credential, password }))
-      .then(() => {
-        setLoading(false);
-      })
       .catch(async (res) => {
         let data;
         try {
@@ -89,7 +84,7 @@ function LoginForm() {
         </label>
         <br />
         <br />
-        {isLoading && <Loading />}
+        
         <button type="submit" className="modalButton">
           Log In
         </button>

@@ -1,7 +1,6 @@
 import { useEffect, useState, createContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import "./user.css";
 import { Link } from "react-router-dom";
 import { getPins } from "../../store/pins";
 import { getBoards } from "../../store/boards";
@@ -13,6 +12,8 @@ import Loading from "../LoadingPage/Loading";
 import { useFetchPins } from "../../hooks/useFetchPins";
 import { useFetchUsers } from "../../hooks/useFetchUsers";
 import { useFetchBoards } from "../../hooks/useFetchBoards";
+import "./user.css";
+
 export const FollowingContext = createContext();
 
 export default function ShowUser({ userId }) {
@@ -22,34 +23,22 @@ export default function ShowUser({ userId }) {
   const [loadingPins, setLoadingPins] = useState(true);
   const [loadingBoards, setLoadingBoards] = useState(true);
   const [loadingUsers, setLoadingUsers] = useState(true);
-
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
   const { id } = useParams();
-  const User = useSelector(getUser(id));
-
-  useEffect(() => {
-    if (!showMenu) return;
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
-    document.addEventListener("click", closeMenu);
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
 
   useFetchPins(setLoadingPins);
-  useFetchUsers({ setLoadingUsers, dependencies: [Following] }); //fetching users again everytime the user follows/unfollows someone
-  useFetchBoards({ id: userId, setLoadingBoards });
+    const pins = useSelector(getPins);
+  useFetchUsers({ setLoadingUsers, dependency: Following }); //fetching users again everytime the user follows/unfollows someone
+  useFetchBoards({ id, setLoadingBoards });
 
   const boards = useSelector(getBoards);
-  const pins = useSelector(getPins);
   const users = useSelector(getUsers);
-  const currentUser = users.find((user) => user.id === sessionUser.id);
+  const User = useSelector(getUser(id));
+  
 
+  const currentUser = users.find((user) => user.id === sessionUser.id);
   const followersArr = useMemo(() => {
-    User.followers.map((id) => {
+    if(!User)return;
+      return User.followers.map((id) => {
       for (let i = 0; i < users.length; i++) {
         if (id === users[i].id) {
           return users[i];
@@ -59,24 +48,39 @@ export default function ShowUser({ userId }) {
   }, [User]);
 
   const followeesArr = useMemo(() => {
-    User.followings.map((id) => {
+    if(!User)return 
+      return User.followings.map((id) => {
       for (let i = 0; i < users.length; i++) {
         if (id === users[i].id) {
           return users[i];
         }
       }
-    });
+    })
   }, [User]);
 
   const boardspins = useMemo(() => {
-    boards.map((board) => {
+    // if(!boards || !pins) return;
+    return boards.map((board) => {
       let arr = [];
       for (let i = 0; i < board.pins.length; i++) {
         arr.push(pins.find((pin) => pin.id === board.pins[i]));
       }
       return arr;
     });
-  }, [boards]);
+  }, [boards,pins]);
+  
+   const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+  useEffect(() => {
+    if (!showMenu) return;
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+    document.addEventListener("click", closeMenu);
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
   if (loadingPins || loadingBoards || loadingUsers) {
     return <Loading />;
@@ -99,17 +103,17 @@ export default function ShowUser({ userId }) {
             <p className="username2">@{User && User.username}</p>
 
             <div className="FollowingRow">
-              {followersArr.length > 0 && (
+              {followersArr&&followersArr.length > 0 && (
                 <FollowingModal
                   followType={"following"}
                   followersArr={followersArr}
                   followeesArr={followeesArr}
                 />
               )}
-              {followersArr.length > 0 && followeesArr.length > 0 && (
+              {followeesArr&&followersArr&&followersArr.length > 0 && followeesArr.length > 0 && (
                 <span className="dot"> · </span>
               )}
-              {followeesArr.length > 0 && (
+              {followeesArr&&followeesArr.length > 0 && (
                 <FollowingModal
                   followType={"follower"}
                   followeesArr={followeesArr}
