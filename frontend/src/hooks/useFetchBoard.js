@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchBoard } from '../store/boards';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchBoard } from "../store/boards";
 
 export const useFetchBoard = ({ id, setLoadingBoard }) => {
   const dispatch = useDispatch();
@@ -8,5 +8,5 @@ export const useFetchBoard = ({ id, setLoadingBoard }) => {
     dispatch(fetchBoard(id)).then(() => {
       setLoadingBoard(false);
     });
-  }, [dispatch, id,setLoadingBoard]);
+  }, [dispatch, id, setLoadingBoard]);
 };

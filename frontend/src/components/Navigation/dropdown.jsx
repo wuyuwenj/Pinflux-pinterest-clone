@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./dropdown.css";
-import { useHistory,Redirect } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 const DropDown = () => {
   const sessionUser = useSelector((state) => state.session.user);

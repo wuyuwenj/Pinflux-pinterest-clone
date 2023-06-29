@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchUsers } from '../store/user';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchUsers } from "../store/user";
 
-export const useFetchUsers = ({setLoadingUsers,dependencies=null}) => {
+export const useFetchUsers = ({ setLoadingUsers, dependencies = null }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUsers()).then(() => {
-        setLoadingUsers(false);
+      setLoadingUsers(false);
     });
-  }, [dispatch,dependencies]);
+  }, [dispatch, dependencies]);
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch,Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import CreatePinPage from "./components/pins/create/createpin";
 import PinIndex from "./components/pins/index/renderPins";
@@ -16,39 +16,53 @@ function App() {
 
   return (
     <>
-        <Switch>
-          <Route path="/pin/create" >
-            <Navigation />
-            <CreatePinPage />
-          </Route>
-          <Route path="/pins/:id">
-            <Navigation />
-            {sessionUser&&<ShowPin userId={sessionUser.id}/>}
-          </Route>
+      <Switch>
+        <Route path="/pin/create">
+          <Navigation />
+          <CreatePinPage />
+        </Route>
+        <Route path="/pins/:id">
+          <Navigation />
+          {sessionUser && <ShowPin userId={sessionUser.id} />}
+        </Route>
         <Route path="/users/:id/setting">
           <Navigation />
           <Setting />
         </Route>
-        <Route  path="/user/:id">
+        <Route path="/user/:id">
           <Navigation />
-          {sessionUser&&<ShowUser userId={sessionUser.id}/>}
+          {sessionUser && <ShowUser userId={sessionUser.id} />}
         </Route>
-        <Route path="/boards/:id" >
+        <Route path="/boards/:id">
           <Navigation />
-          {sessionUser&&<ShowBoard userId={sessionUser.id}/>}
+          {sessionUser && <ShowBoard userId={sessionUser.id} />}
         </Route>
         <Route path="/board/create">
           <Navigation />
           <CreateBoardPage />
         </Route>
-        
-          <Route 
-  exact path="/" 
-  render={(props) => sessionUser ? <PinIndex {...props} /> : <Splash {...props} key={window.location.pathname + window.location.search + window.location.hash} />} 
-/>
+
+        <Route
+          exact
+          path="/"
+          render={(props) =>
+            sessionUser ? (
+              <PinIndex {...props} />
+            ) : (
+              <Splash
+                {...props}
+                key={
+                  window.location.pathname +
+                  window.location.search +
+                  window.location.hash
+                }
+              />
+            )
+          }
+        />
 
         <Redirect to="/" />
-        </Switch>
+      </Switch>
     </>
   );
 }

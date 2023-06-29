@@ -1,96 +1,118 @@
-import "./splash.css"
+import "./splash.css";
 import Navigation from "../Navigation";
 const Splash = () => {
-//   return (
-//     <div>
-//       <section id="top">
-//         <h2>Top Section</h2>
-//         <p>This is the content of the top section.</p>
-//         <a href="/#mid">Go to Mid Section</a>
-//       </section>
+  //   return (
+  //     <div>
+  //       <section id="top">
+  //         <h2>Top Section</h2>
+  //         <p>This is the content of the top section.</p>
+  //         <a href="/#mid">Go to Mid Section</a>
+  //       </section>
 
-//       <section id="mid">
-//         <h2>Mid Section</h2>
-//         <p>This is the content of the mid section.</p>
-//         <a href="/#bot">Go to Bot Section</a>
-//       </section>
+  //       <section id="mid">
+  //         <h2>Mid Section</h2>
+  //         <p>This is the content of the mid section.</p>
+  //         <a href="/#bot">Go to Bot Section</a>
+  //       </section>
 
-//       <section id="bot">
-//         <h2>Bot Section</h2>
-//         <p>This is the content of the bot section.</p>
-//         <a href="/#top">Go to Top Section</a>
-//       </section>
-//     </div>
-//   );
-// }
+  //       <section id="bot">
+  //         <h2>Bot Section</h2>
+  //         <p>This is the content of the bot section.</p>
+  //         <a href="/#top">Go to Top Section</a>
+  //       </section>
+  //     </div>
+  //   );
+  // }
 
-
-
-
-    return(
-        <div className="SplashPage">
-        <Navigation/>
-        <section id="top">
-        
-             <div className='splashTitles'>
-            <p><b> Get your next</b></p>
-            <div className="splashtitle1"> <b>weeknight dinner idea</b> </div>
+  return (
+    <div className="SplashPage">
+      <Navigation />
+      <section id="top">
+        <div className="splashTitles">
+          <p>
+            <b> Get your next</b>
+          </p>
+          <div className="splashtitle1">
+            {" "}
+            <b>weeknight dinner idea</b>{" "}
+          </div>
         </div>
-            <div className="image-container">
-                <div className="splishColumns" id="column1">
-                    <div className="pic1">
-                    <img className="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea1.jpg" />
-                    </div>
-                </div>
-            
-            
-                 <div className="splishColumns" id="column2">
-                 <div className="pic2">
-                     <img className="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea2.jpg" />
-                 </div>
-                 </div>
-                 <div className="splishColumns" id="column3">
-                 <div className="pic3">
-                     <img className="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea3.jpg" />
-                 </div>
-                 </div>
-                 <div className="splishColumns" id="column4">
-                 <div className="pic4">
-                     <img className="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea4.jpg" />
-                 </div>
-                     </div>
-                 <div className="splishColumns" id="column5">
-                 <div className="pic5">
-                     <img className="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea5.jpg" />
-                 </div>
-                         </div>
-                 <div className="splishColumns" id="column6">
-                 <div className="pic6">
-                     <img className="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea6.jpg" />
-                 </div>
-                             </div>
-                 <div className="splishColumns" id="column7">
-                 <div className="pic7">
-                     <img className="splishPic" src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea7.jpg" />
-                 </div>
-                 </div>
-         </div>
-         <div className="footer">
-             <div>
-             Here is how it works      
-             </div>
-             <svg class="aUZ R19 U90 kVc" height="12" width="12" viewBox="0 0 24 24" aria-label="arrow down icon" role="img">
- <path d="M12 19.5.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"></path>
- </svg>
-         </div>
-         </section>
-         </div>
-        
+        <div className="image-container">
+          <div className="splishColumns" id="column1">
+            <div className="pic1">
+              <img
+                className="splishPic"
+                src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea1.jpg"
+              />
+            </div>
+          </div>
 
-    )
-
-}
-
+          <div className="splishColumns" id="column2">
+            <div className="pic2">
+              <img
+                className="splishPic"
+                src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea2.jpg"
+              />
+            </div>
+          </div>
+          <div className="splishColumns" id="column3">
+            <div className="pic3">
+              <img
+                className="splishPic"
+                src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea3.jpg"
+              />
+            </div>
+          </div>
+          <div className="splishColumns" id="column4">
+            <div className="pic4">
+              <img
+                className="splishPic"
+                src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea4.jpg"
+              />
+            </div>
+          </div>
+          <div className="splishColumns" id="column5">
+            <div className="pic5">
+              <img
+                className="splishPic"
+                src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea5.jpg"
+              />
+            </div>
+          </div>
+          <div className="splishColumns" id="column6">
+            <div className="pic6">
+              <img
+                className="splishPic"
+                src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea6.jpg"
+              />
+            </div>
+          </div>
+          <div className="splishColumns" id="column7">
+            <div className="pic7">
+              <img
+                className="splishPic"
+                src="https://pinflux-prod.s3.us-west-1.amazonaws.com/dinnerIdea7.jpg"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="footer">
+          <div>Here is how it works</div>
+          <svg
+            class="aUZ R19 U90 kVc"
+            height="12"
+            width="12"
+            viewBox="0 0 24 24"
+            aria-label="arrow down icon"
+            role="img"
+          >
+            <path d="M12 19.5.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"></path>
+          </svg>
+        </div>
+      </section>
+    </div>
+  );
+};
 
 // import React, { useEffect, useRef, useState } from 'react';
 // import { useHistory, useLocation } from 'react-router-dom';
@@ -219,34 +241,29 @@ const Splash = () => {
 //   return (
 //     // <div style={{ position: 'fixed', width: '100%', height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
 //     <div>
-       
+
 //       <section id="section1" ref={section1Ref} class='st'>
-//         <Navigation/> 
+//         <Navigation/>
 //         <p>section1</p>
 //         {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />   */}
 //       </section>
 //       <section id="section2" ref={section2Ref} class='st'>
 //         <p>section2</p>
 
-//         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  
+//         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 //       </section>
 //       <section id="section3" ref={section3Ref} class='st'>
 //         <p>section3</p>
-//         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  
+//         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 //       </section>
 //       <section id="section4" ref={section4Ref} class='st'>
 //         <p>section4</p>
-//         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  
+//         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 //       </section>
 //     </div>
 //   );
 // }
 
 export default Splash;
-
-
-
-
-
 
 // export default Splash;

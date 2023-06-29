@@ -14,7 +14,6 @@ import { useFetchUsers } from "../../../hooks/useFetchUsers";
 import { useFetchBoards } from "../../../hooks/useFetchBoards";
 import "./show.css";
 
-
 export default function ShowPin({ userId }) {
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
@@ -27,20 +26,19 @@ export default function ShowPin({ userId }) {
   const history = useHistory();
 
   useFetchBoards({ id: userId, setLoadingBoards });
-  useFetchUsers(setLoadingUsers);
+  useFetchUsers({ setLoadingUsers });
   useFetchPin({ id, setLoadingPin });
 
   const boards = useSelector(getBoards);
   const pin = useSelector(getPin(id));
   const pinowner = useSelector(getUser(pin?.authorId));
-console.log(boards,pin,pinowner,'sg',userId)
-    useEffect(() => {
+  useEffect(() => {
     if (!pin) return;
-      const img = new Image();
-      img.src = pin.imageUrl;
-      img.onload = function () {
-        setBoxHeight(img.height * (440 / img.width));
-      };
+    const img = new Image();
+    img.src = pin.imageUrl;
+    img.onload = function () {
+      setBoxHeight(img.height * (440 / img.width));
+    };
   }, [pin]);
   useEffect(() => {
     if (!selectedboard && boards[0]) {

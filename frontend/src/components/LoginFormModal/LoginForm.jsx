@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./LoginForm.css";
-import logo from '../../images/png/logo-black.png'
+import logo from "../../images/png/logo-black.png";
 import Loading from "../LoadingPage/Loading";
 function LoginForm() {
   const dispatch = useDispatch();
@@ -13,13 +13,15 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     setErrors([]);
-  
-    if (!credential||!password)return;
-    return dispatch(sessionActions.login({ credential, password })).then(() => {
-      setLoading(false);
-    }).catch(async (res) => {
+
+    if (!credential || !password) return;
+    return dispatch(sessionActions.login({ credential, password }))
+      .then(() => {
+        setLoading(false);
+      })
+      .catch(async (res) => {
         let data;
         try {
           // .clone() essentially allows you to read the response body twice
@@ -48,15 +50,21 @@ function LoginForm() {
   };
   return (
     <>
-      <div className='modalLogo'><a href=""><img className="mLogo" src={logo} alt="" width="55" height="55" /></a></div>
+      <div className="modalLogo">
+        <a href="">
+          <img className="mLogo" src={logo} alt="" width="55" height="55" />
+        </a>
+      </div>
       <h1>Welcome to Pinflux</h1>
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map(error => <li key={error}>{error}</li>)}
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
         </ul>
         <label className="modalEmail">
           Email Address
-          <br/>
+          <br />
           <input
             className="modalinput"
             type="text"
@@ -81,13 +89,17 @@ function LoginForm() {
         </label>
         <br />
         <br />
-        {isLoading&&<Loading />}
-        <button type="submit" className="modalButton">Log In</button>
+        {isLoading && <Loading />}
+        <button type="submit" className="modalButton">
+          Log In
+        </button>
 
         <br />
         <p className="OR">OR</p>
-        <button className="modalButton" onClick={handleDemo}>Sign In with Demo User</button>
-        </form>
+        <button className="modalButton" onClick={handleDemo}>
+          Sign In with Demo User
+        </button>
+      </form>
     </>
   );
 }

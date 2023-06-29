@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import Loading from "../LoadingPage/Loading";
-import './SignupForm.css';
-import logo from '../../images/png/logo-black.png'
+import "./SignupForm.css";
+import logo from "../../images/png/logo-black.png";
 function SignupForm() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -16,49 +16,56 @@ function SignupForm() {
   const history = useHistory();
 
   useEffect(() => {
-    setUsername(email.split('@')[0])
-  }, [email])
+    setUsername(email.split("@")[0]);
+  }, [email]);
 
-  if (sessionUser){
-    history.push('/');
+  if (sessionUser) {
+    history.push("/");
   }
 
   const handleSubmit = (e) => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
-      setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
+    setErrors([]);
+    return dispatch(sessionActions.signup({ email, username, password }))
       .then(() => {
-        dispatch(sessionActions.login({ credential: email, password }))})
-        .then(() => {
-          setLoading(false);
-        }).catch(async (res) => {
-          let data;
-          try {
-            // .clone() essentially allows you to read the response body twice
-            data = await res.clone().json();
-          } catch {
-            data = await res.text(); // Will hit this case if, e.g., server is down
-          }
-          if (data?.errors) setErrors(data.errors);
-          else if (data) setErrors([data]);
-          else setErrors([res.statusText]);
-        });
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+        dispatch(sessionActions.login({ credential: email, password }));
+      })
+      .then(() => {
+        setLoading(false);
+      })
+      .catch(async (res) => {
+        let data;
+        try {
+          // .clone() essentially allows you to read the response body twice
+          data = await res.clone().json();
+        } catch {
+          data = await res.text(); // Will hit this case if, e.g., server is down
+        }
+        if (data?.errors) setErrors(data.errors);
+        else if (data) setErrors([data]);
+        else setErrors([res.statusText]);
+      });
+    return setErrors([
+      "Confirm Password field must be the same as the Password field",
+    ]);
   };
-
-
 
   return (
     <>
-    
-      <div className='modalLogo'><a href=""><img className="mLogo" src={logo} alt="" width="55" height="55" /></a></div>
+      <div className="modalLogo">
+        <a href="">
+          <img className="mLogo" src={logo} alt="" width="55" height="55" />
+        </a>
+      </div>
 
       <h1>Welcome to Pinflux</h1>
-      
+
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map((error) => <li key={error}>{error}</li>)}
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
         </ul>
         <label>
           Email
@@ -88,7 +95,13 @@ function SignupForm() {
         <br />
         <br />
         <br />
-        {isLoading ? <Loading /> : <button type="submit" className="modalButton">Sign Up</button>}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <button type="submit" className="modalButton">
+            Sign Up
+          </button>
+        )}
         {/* <div>
           Already a member?
           <p className="change-form" onClick={handleform}>Log in</p></div> */}

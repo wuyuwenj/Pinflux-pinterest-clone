@@ -16,21 +16,19 @@ const CreateBoardPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitting",{ name, body, private: false, owner_id: currentUserId });
     Promise.all([
       dispatch(
         createBoard({ name, body, private: false, owner_id: currentUserId })
       ),
       dispatch(fetchBoards()),
-    ]).then(() => {
-      setLoading(false);
-    }).then(() => {
-       history.push(`/user/${currentUserId}`)
-    })
-
+    ])
+      .then(() => {
+        setLoading(false);
+      })
+      .then(() => {
+        history.push(`/user/${currentUserId}`);
+      });
   };
-
-
 
   if (loading) {
     return (
