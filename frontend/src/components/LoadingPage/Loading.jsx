@@ -1,5 +1,4 @@
 import './Loading.css';
-import Navigation from '../Navigation';
 export const Loading = () => {
 
     return (

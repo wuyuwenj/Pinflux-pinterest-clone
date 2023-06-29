@@ -12,14 +12,19 @@ import FollowButton from "./following/followbutton";
 import FollowingModal from "./following/followingsModel";
 import BoardCover from "../board/index/board_cover";
 import Loading from "../LoadingPage/Loading";
-
+import { useFetchPins } from "../../hooks/useFetchPins";
+import { useFetchUsers } from "../../hooks/useFetchUsers";
+import { useFetchBoards } from "../../hooks/useFetchBoards";
 export const FollowingContext = createContext();
 
-export default function ShowUser() {
+export default function ShowUser({userId}) {
     const sessionUser = useSelector((state) => state.session.user)
     const [showMenu, setShowMenu] = useState(false)
     const [Following,setFollowing] = useState(false)
-    const [loaded, setLoaded] = useState(false);
+    const [loadingPins, setLoadingPins] = useState(true);
+    const [loadingBoards, setLoadingBoards] = useState(true);
+    const [loadingUsers, setLoadingUsers] = useState(true);
+
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
@@ -38,25 +43,12 @@ export default function ShowUser() {
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
-
-    useEffect(() => {
-        Promise.all([
-            dispatch(fetchPins()),
-            dispatch(fetchUsers()),
-            dispatch(fetchBoards(id))
-        ]).then(()=>{
-            setLoaded(true);
-        })
-        
-    }, [dispatch, id]);
-
+    useFetchPins(setLoadingPins);
+    useFetchUsers({setLoadingUsers,dependencies:[Following]});//fetching users again everytime the user follows/unfollows someone
+    useFetchBoards({ id: userId, setLoadingBoards });
 
    
-
-    // const pins = useSelector(getPins())
-
-    
-    const boards = useSelector(getBoards) || [];
+    const boards = useSelector(getBoards);
     const pins = useSelector(getPins);
     const users = useSelector(getUsers)
     const currentUser =users.find(user=>user.id===sessionUser.id)
@@ -64,14 +56,7 @@ export default function ShowUser() {
     let followersArr;
     let followeesArr;
   
-    //fetching users everytime the user follows/unfollows someone
-    useEffect(()=>{
-        if (User && User.followings) {
-            dispatch(fetchUsers());
-        }
-    }, [Following])
-    
-    //
+
     useEffect(()=>{
         if (User) {
             followersArr = User.followers.map(id => {
@@ -136,7 +121,7 @@ export default function ShowUser() {
        
     }
     
-    if (!loaded) {
+    if (loadingPins||loadingBoards||loadingUsers) {
         return (
             <Loading />
         )

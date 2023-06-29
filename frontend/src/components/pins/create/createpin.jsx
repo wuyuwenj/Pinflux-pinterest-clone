@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPin } from '../../../store/pins';
 import './createpin.css'
-import DropDown from './boarddrop';
-import { Redirect } from 'react-router-dom';
 import Loading from '../../LoadingPage/Loading';
 import { useHistory } from 'react-router-dom';
 const CreatePinPage=()=>{
@@ -16,7 +14,6 @@ const CreatePinPage=()=>{
     const [deslink, setDeslink] = useState('');
     const [imgfile, setImgFile] = useState('')
     const [imgurl, setImgUrl] = useState('');
-    const [redirect, setRedirect] = useState(false)
     const [loading, setLoading] = useState(false);
 
     const history = useHistory();
@@ -24,7 +21,6 @@ const CreatePinPage=()=>{
         const file = e.target.files[0];
         // Save file for submission
         setImgFile(file);
-
         // Preview image
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -57,11 +53,6 @@ const CreatePinPage=()=>{
         
     }
 
-    if (redirect) {
-        return (
-            <Redirect to={`/`} />
-        )
-    }
 
 if (loading) {
         return (<>

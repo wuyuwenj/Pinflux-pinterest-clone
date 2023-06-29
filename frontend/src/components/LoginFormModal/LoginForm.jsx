@@ -3,22 +3,23 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./LoginForm.css";
 import logo from '../../images/png/logo-black.png'
-import SignupFormModal from "../SignupFormModal";
+import Loading from "../LoadingPage/Loading";
 function LoginForm() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState("")
+  const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+    setLoading(true)
     setErrors([]);
   
     if (!credential||!password)return;
-    return dispatch(sessionActions.login({ credential, password }))
-      .catch(async (res) => {
+    return dispatch(sessionActions.login({ credential, password })).then(() => {
+      setLoading(false);
+    }).catch(async (res) => {
         let data;
         try {
           // .clone() essentially allows you to read the response body twice
@@ -80,7 +81,9 @@ function LoginForm() {
         </label>
         <br />
         <br />
-        <button className="modalButton" type="submit">Log In</button>
+        {isLoading&&<Loading />}
+        <button type="submit" className="modalButton">Log In</button>
+
         <br />
         <p className="OR">OR</p>
         <button className="modalButton" onClick={handleDemo}>Sign In with Demo User</button>

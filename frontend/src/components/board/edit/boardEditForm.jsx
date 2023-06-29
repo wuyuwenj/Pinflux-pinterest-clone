@@ -2,20 +2,21 @@ import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { deleteBoard } from "../../../store/boards"
 import { updateBoard } from "../../../store/boards"
-import { Redirect } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import "./boardEditForm.css"
 const BoardEditForm = (props) => {
     const currentUserId = useSelector(state => state.session.user.id)
     const { board } = props
     const [name, setName] = useState(board.name)
     const [body, setBody] = useState(board.body)
-    const [redirect, setRedirect] = useState(false)
+    const history = useHistory();
 
     const dispatch = useDispatch();
     const handleDelete = (e) => {
         e.preventDefault()
-        dispatch(deleteBoard(board.id));
-        setTimeout(setRedirect(true), 5000)
+        dispatch(deleteBoard(board.id)).then(() => {
+            history.push(`/user/${currentUserId}`)
+        })
     }
 
     const handleSubmit = (e) => {
@@ -25,15 +26,10 @@ const BoardEditForm = (props) => {
             name,
             body
         }
-        dispatch(updateBoard(Data));
-        setTimeout(setRedirect(true), 5000)
+        dispatch(updateBoard(Data)).then(() => {
+            history.push(`/user/${currentUserId}`)
+        })
 
-    }
-
-    if (redirect) {
-        return (
-            <Redirect to={`/user/${currentUserId}`} />
-        )
     }
     return (
         <div className="pin-edit-form-container">

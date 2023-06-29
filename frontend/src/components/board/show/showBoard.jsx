@@ -1,74 +1,41 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useMemo } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchPin, getPins, fetchPins } from "../../../store/pins";
-import { fetchUsers, getUsers } from "../../../store/user";
-import { Link } from "react-router-dom";
+import { getPins } from "../../../store/pins";
 import { Modal } from '../../../context/Modal';
 import BoardEditForm from "../edit/boardEditForm";
-import { fetchBoard } from "../../../store/boards";
 import { getBoards, getBoard } from "../../../store/boards";
-import { addPinBoardMapping } from "../../../store/pinboard";
 import PinIndex from "../../pins/index/renderPins";
 import "./showBoard.css"
 import Loading from "../../LoadingPage/Loading";
-export default function ShowBoard() {
+import { useFetchPins } from "../../../hooks/useFetchPins";
+import { useFetchBoards } from "../../../hooks/useFetchBoards";
+import { useFetchBoard } from "../../../hooks/useFetchBoard";
+export default function ShowBoard({userId}) {
     const { id } = useParams();
-    const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user)
-    const [selectedboard, setSelectedboard] = useState("")
     const [showModal, setShowModal] = useState(false);
-    const [loaded, setLoaded] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [loadingPins, setLoadingPins] = useState(true);
+    const [loadingBoard, setLoadingBoard] = useState(true);
+    const [loadingBoards, setLoadingBoards] = useState(true);
 
-    useEffect(() => {
-        Promise.all([
-        dispatch(fetchPins()),
-        dispatch(fetchBoard(id))
-        ]).then(() => {
-            setLoaded(true);
-        })
+    useFetchPins(setLoadingPins);
+    useFetchBoard({id,setLoadingBoard});
+    useFetchBoards({id:userId,setLoadingBoards});
 
-    }, [dispatch, id])
-
-
-
-
-
-    const boards = useSelector(getBoards) || [];
-    const pins = useSelector(getPins);
+    const boards = useSelector(getBoards);
+    const pins = useSelector(getPins);//fetch all the pins
     const board = useSelector(getBoard(id))
     
-
-    let imageUrl = [];
-    let boardPins=null;
-    
-
-
-    if (pins&&boards && boards.length > 0) {
-       
-        boardPins = boards.flatMap((board) => {
+    const boardPins = useMemo(()=>{
+        return boards.flatMap((board) => {
             if (board.id === Number(id)) {
-                return board.pins.map((pinId) => pins.find((pin) => pin.id === pinId));
+                return board.pins.map((pinId) => pins.find((pin) => pin.id === pinId));//find the pins that are on this board
             }
-            return [];
+            return []
         });
-       
+    },[id,boards,pins])
 
-
-    }
-
-
-  
-    if (boards === undefined) {
-        return null;
-    }
-    if (pins === undefined) {
-        return null;
-    }
-
- 
-    if (!loaded) {
+    if (loadingBoard||loadingPins||loadingBoards) {
         return <Loading />
     }else{
 
@@ -85,7 +52,8 @@ export default function ShowBoard() {
                     <br />
                     <p>{board && board.body}</p>
                     <br />
-                    <PinIndex boardpins={boardPins} nav={false}/>
+                    {!boardPins&&<p>There aren’t any Pins on this board yet</p>}
+                    {boardPins&&<PinIndex boardpins={boardPins} HaveNav={false}/>}
 
                 </div>
 

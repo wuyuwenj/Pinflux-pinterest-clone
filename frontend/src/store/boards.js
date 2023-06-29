@@ -14,6 +14,7 @@ export const receiveBoards = boards => {
 };
 
 export const receiveBoard = board => {
+    console.log(board,'gojhwifjeioho')
     return {
         type: RECEIVE_BOARD,
         board
@@ -54,18 +55,28 @@ export const fetchBoard = (boardId) => async dispatch => {
 // }
 
 export const createBoard = (boardData) => async dispatch => {
-    const res = await csrfFetch(`/api/boards`, {
-        method: 'POST',
-        body: JSON.stringify(boardData),
-        headers: {
-            'Content-Type': 'application/json'
+    console.log(boardData)
+    try {
+        const res = await csrfFetch(`/api/boards`, {
+            method: 'POST',
+            body: JSON.stringify(boardData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        
+        if (!res.ok) {
+            throw new Error('Network response was not ok');
         }
-    })
-    
-    const data = await res.json();
 
-    dispatch(receiveBoard(data))
+        const data = await res.json();
+        console.log(data, 'adasd')
+        dispatch(receiveBoard(data))
+    } catch (error) {
+        console.error("Error:", error);
+    }
 }
+
 
 
 
@@ -105,6 +116,7 @@ const boardsReducer = (state = {}, action) => {
             return {...action.boards };
         case RECEIVE_BOARD:
             nextState[action.board.id] = action.board
+            console.log('here', nextState)
             return nextState
         case REMOVE_BOARD:
             delete nextState[action.boardId];

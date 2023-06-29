@@ -1,36 +1,32 @@
-
-
 .Createboardbtn {
-    margin-top: 30px;
-    text-align: center;
-    width: 30%;
-    height: 40px;
-    border-radius: 20px;
-    border: none;
-    color: white;
-    background-color: rgb(230, 0, 35);
-    font-size: 15px;
-    cursor: pointer;
+  margin-top: 30px;
+  text-align: center;
+  width: 30%;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  background-color: rgb(230, 0, 35);
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .Createboardbtn:hover {
-    background-color: rgb(180, 0, 35);
+  background-color: rgb(180, 0, 35);
 }
 
 .boardtitleInput {
-    font-size: 14px;
-    width: 90%;
-    height: 38px;
-    border-radius: 15px;
-    border-color: rgba(167, 167, 167, 0.568);
-    padding-inline: 5%;
-    font-size: 18px;
+  font-size: 14px;
+  width: 90%;
+  height: 38px;
+  border-radius: 15px;
+  border-color: rgba(167, 167, 167, 0.568);
+  padding-inline: 5%;
+  font-size: 18px;
 }
 
-
-
 .boardtitleInput:focus {
-    outline: none;
-    border-color: rgba(0, 153, 255, 0.389);
-    border-width: 5px;
+  outline: none;
+  border-color: rgba(0, 153, 255, 0.389);
+  border-width: 5px;
 }

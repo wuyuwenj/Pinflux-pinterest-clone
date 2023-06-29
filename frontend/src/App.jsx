@@ -23,7 +23,7 @@ function App() {
           </Route>
           <Route path="/pins/:id">
             <Navigation />
-            <ShowPin />
+            {sessionUser&&<ShowPin userId={sessionUser.id}/>}
           </Route>
         <Route path="/users/:id/setting">
           <Navigation />
@@ -31,11 +31,11 @@ function App() {
         </Route>
         <Route  path="/user/:id">
           <Navigation />
-          <ShowUser />
+          {sessionUser&&<ShowUser userId={sessionUser.id}/>}
         </Route>
         <Route path="/boards/:id" >
           <Navigation />
-          <ShowBoard />
+          {sessionUser&&<ShowBoard userId={sessionUser.id}/>}
         </Route>
         <Route path="/board/create">
           <Navigation />

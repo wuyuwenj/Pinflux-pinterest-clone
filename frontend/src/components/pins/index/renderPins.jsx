@@ -10,7 +10,6 @@ import "./indexPin.css";
 
 export default function PinIndex({ boardpins, HaveNav = true }) {
   const [loadingPins, setLoadingPins] = useState(true);
-
   const [windowWidth, setWindowWidth] = useState(window.innerWidth); // get initial window width
   const [gridWidth, setGridWidth] = useState(0);
 

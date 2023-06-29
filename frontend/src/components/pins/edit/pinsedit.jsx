@@ -10,7 +10,6 @@ const PinEditForm = (props) => {
     const [title, setTitle] = useState(pin.title)
     const [body, setBody]=useState(pin.body)
     const dispatch=useDispatch();
-    const [redirect, setRedirect] = useState(false)
     const history = useHistory();
     const [isLoading, setLoading] = useState(false);
 
@@ -31,7 +30,6 @@ const PinEditForm = (props) => {
             title,
             body
         }
-        console.log(pin)
         dispatch(updatePin(Data)).then(() => {
             setLoading(false)
         }).then(()=>{
@@ -39,7 +37,6 @@ const PinEditForm = (props) => {
         })
         e.stopPropagation();
     }
-    // console.log('passinghere')
     if (isLoading){
         return (<>
             <Loading />
@@ -83,9 +80,6 @@ const PinEditForm = (props) => {
                     <button type="button" onClick={handleDelete} className="edit-delete-buttons">
                         <div>Delete</div>
                     </button>
-
-                    
-        
                 <button type="submit" className="edit-save-buttons">
                     <div>Save</div>
                 </button>
