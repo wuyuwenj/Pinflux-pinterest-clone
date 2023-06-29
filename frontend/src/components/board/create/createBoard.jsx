@@ -17,15 +17,12 @@ const CreateBoardPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     Promise.all([
-      dispatch(
-        createBoard({ name, body, private: false, owner_id: currentUserId })
-      ),
+      dispatch(createBoard({ name, body, private: false, owner_id: currentUserId })),
       dispatch(fetchBoards()),
     ])
-      .then(() => {
+    .then(() => {
         setLoading(false);
-      })
-      .then(() => {
+      }).then(() => {
         history.push(`/user/${currentUserId}`);
       });
   };

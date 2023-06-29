@@ -235,9 +235,9 @@ pin_board_relations52 = PinBoardRelation.create({board_id: board_11.id, pin_id: 
 pin_board_relations53 = PinBoardRelation.create({board_id: board_11.id, pin_id: pin_23.id})
 pin_board_relations54 = PinBoardRelation.create({board_id: board_11.id, pin_id: pin_24.id})
 pin_board_relations55 = PinBoardRelation.create({board_id: board_11.id, pin_id: pin_25.id})
-pin_board_relations56 = PinBoardRelation.create({board_id: board_10.id, pin_id: pin_26.id})
+pin_board_relations56 = PinBoardRelation.create({board_id: board_10.id, pin_id: pin_27.id})
 pin_board_relations57 = PinBoardRelation.create({board_id: board_2.id, pin_id: pin_12.id})
-pin_board_relations58 = PinBoardRelation.create({board_id: board_2.id, pin_id: pin_28.id})
+pin_board_relations58 = PinBoardRelation.create({board_id: board_2.id, pin_id: pin_29.id})
 pin_board_relations59 = PinBoardRelation.create({board_id: board_1.id, pin_id: pin_29.id})
 pin_board_relations50 = PinBoardRelation.create({board_id: board_1.id, pin_id: pin_30.id})
 

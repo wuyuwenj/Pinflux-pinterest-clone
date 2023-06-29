@@ -50,8 +50,7 @@ export const fetchBoard = (boardId) => async (dispatch) => {
 // }
 
 export const createBoard = (boardData) => async (dispatch) => {
-  try {
-    const res = await csrfFetch(`/api/boards`, {
+    const res = await csrfFetch('/api/boards', {
       method: "POST",
       body: JSON.stringify(boardData),
       headers: {
@@ -59,15 +58,9 @@ export const createBoard = (boardData) => async (dispatch) => {
       },
     });
 
-    if (!res.ok) {
-      throw new Error("Network response was not ok");
-    }
-
     const data = await res.json();
     dispatch(receiveBoard(data));
-  } catch (error) {
-    console.error("Error:", error);
-  }
+ 
 };
 
 export const updateBoard = (boardData) => async (dispatch) => {

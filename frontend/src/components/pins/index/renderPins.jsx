@@ -66,7 +66,7 @@ export default function PinIndex({ boardpins, HaveNav = true }) {
           style={{ width: `${gridWidth}px` }}
         >
           {revpins.map((pin) => (
-            <RenderSingle pin={pin}/>
+            <RenderSingle pin={pin} key={pin.id}/>
           ))}
         </Masonry>
       </div>
