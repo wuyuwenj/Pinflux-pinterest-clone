@@ -55,7 +55,7 @@ export default function ShowBoard({ userId }) {
           <br />
           <p>{board && board.body}</p>
           <br />
-          {boardPins && <p>There aren’t any Pins on this board yet</p>}
+          {boardPins&&boardPins.length===0 && <p>There aren’t any Pins on this board yet</p>}
           <PinIndex boardpins={boardPins} HaveNav={false} />
         </div>
       </div>

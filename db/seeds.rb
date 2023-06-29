@@ -172,7 +172,11 @@ board_6 = Board.create({name: 'Sweet Treats', body: 'Indulge your sweet tooth wi
 board_7 = Board.create({name: 'Appetizers and Snacks', body: 'Perfect for entertaining or as a quick bite', private:false, owner_id: user9.id})
 board_8 = Board.create({name: 'Holiday Recipes', body: 'Recipes to celebrate the holidays with family and friends', private:false, owner_id: user10.id})
 board_9 = Board.create({name: 'Comfort Food', body: 'Cozy and comforting recipes for those chilly nights', private:false, owner_id: user6.id})
-board_10 = Board.create({name: 'BBQ and Grilling', body: 'Fire up the grill with these delicious recipes for summer', private:false, owner_id: user3.id})
+board_10 = Board.create({name: 'Fav Dinner', body: '!!!!!!!!!!!', private:false, owner_id: demo_user.id})
+board_11 = Board.create({name: 'Fav Salmon Recipe', body: 'SALMON!!!', private:false, owner_id: demo_user.id})
+board_12 = Board.create({name: 'Fav FOOD', body: 'FAVOURATE FOOD', private:false, owner_id: demo_user.id})
+board_13 = Board.create({name: 'TOP5', body: 'MY TOP 5', private:false, owner_id: demo_user.id})
+
 
 # board_3 = Board.create({name: 'pie', user_id: user_1.id})
 # board_4 = Board.create({name: 'sunsets', user_id: user_1.id})
@@ -214,6 +218,28 @@ pin_board_relations27 = PinBoardRelation.create({board_id: board_1.id, pin_id: p
 pin_board_relations28 = PinBoardRelation.create({board_id: board_2.id, pin_id: pin_28.id})
 pin_board_relations29 = PinBoardRelation.create({board_id: board_3.id, pin_id: pin_29.id})
 pin_board_relations30 = PinBoardRelation.create({board_id: board_4.id, pin_id: pin_30.id})
+
+pin_board_relations41 = PinBoardRelation.create({board_id: board_13.id, pin_id: pin_11.id})
+pin_board_relations42 = PinBoardRelation.create({board_id: board_13.id, pin_id: pin_12.id})
+pin_board_relations43 = PinBoardRelation.create({board_id: board_13.id, pin_id: pin_13.id})
+pin_board_relations44 = PinBoardRelation.create({board_id: board_13.id, pin_id: pin_14.id})
+pin_board_relations45 = PinBoardRelation.create({board_id: board_13.id, pin_id: pin_15.id})
+pin_board_relations46 = PinBoardRelation.create({board_id: board_12.id, pin_id: pin_26.id})
+pin_board_relations47 = PinBoardRelation.create({board_id: board_12.id, pin_id: pin_27.id})
+pin_board_relations48 = PinBoardRelation.create({board_id: board_12.id, pin_id: pin_28.id})
+pin_board_relations49 = PinBoardRelation.create({board_id: board_12.id, pin_id: pin_29.id})
+pin_board_relations40 = PinBoardRelation.create({board_id: board_12.id, pin_id: pin_30.id})
+
+pin_board_relations51 = PinBoardRelation.create({board_id: board_11.id, pin_id: pin_21.id})
+pin_board_relations52 = PinBoardRelation.create({board_id: board_11.id, pin_id: pin_22.id})
+pin_board_relations53 = PinBoardRelation.create({board_id: board_11.id, pin_id: pin_23.id})
+pin_board_relations54 = PinBoardRelation.create({board_id: board_11.id, pin_id: pin_24.id})
+pin_board_relations55 = PinBoardRelation.create({board_id: board_11.id, pin_id: pin_25.id})
+pin_board_relations56 = PinBoardRelation.create({board_id: board_10.id, pin_id: pin_26.id})
+pin_board_relations57 = PinBoardRelation.create({board_id: board_2.id, pin_id: pin_12.id})
+pin_board_relations58 = PinBoardRelation.create({board_id: board_2.id, pin_id: pin_28.id})
+pin_board_relations59 = PinBoardRelation.create({board_id: board_1.id, pin_id: pin_29.id})
+pin_board_relations50 = PinBoardRelation.create({board_id: board_1.id, pin_id: pin_30.id})
 
   puts "seeding follows..."
 
