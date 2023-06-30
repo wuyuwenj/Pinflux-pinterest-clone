@@ -6,8 +6,7 @@ import { fetchBoards } from "../../../store/boards";
 import "./createBoard.css";
 import Loading from "../../LoadingPage/Loading";
 
-const CreateBoardPage = () => {
-  const currentUserId = useSelector((state) => state.session.user.id);
+const CreateBoardPage = ({ userId }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [body, setBody] = useState("");
@@ -17,13 +16,14 @@ const CreateBoardPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     Promise.all([
-      dispatch(createBoard({ name, body, private: false, owner_id: currentUserId })),
+      dispatch(createBoard({ name, body, private: false, owner_id: userId })),
       dispatch(fetchBoards()),
     ])
-    .then(() => {
+      .then(() => {
         setLoading(false);
-      }).then(() => {
-        history.push(`/user/${currentUserId}`);
+      })
+      .then(() => {
+        history.push(`/user/${userId}`);
       });
   };
 

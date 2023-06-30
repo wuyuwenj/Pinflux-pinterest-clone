@@ -1,51 +1,42 @@
 .modalinput {
-
-    width: 90%;
-    height: 38px;
-    border-radius: 15px;
-    border-color: rgba(167, 167, 167, 0.568);
-    padding-inline: 5%;
-    font-size: 18px;
-    color: grey;
+  width: 90%;
+  height: 38px;
+  border-radius: 15px;
+  border-color: rgba(167, 167, 167, 0.568);
+  padding-inline: 5%;
+  font-size: 18px;
+  color: grey;
 }
 
-.pin-edit-heading{
-    font-size: 28px;
-    text-align: center;
+.pin-edit-heading {
+  font-size: 28px;
+  text-align: center;
 }
 
 .editFormDeleteButton {
-
-    text-align: left;
-    /* width: 100px; */
-    /* height: 40px; */
-    border: none;
-    color: black;
-    background-color: rgb(255, 252, 254);
-    font-size: 10px;
-    cursor: pointer;
+  text-align: left;
+  /* width: 100px; */
+  /* height: 40px; */
+  border: none;
+  color: black;
+  background-color: rgb(255, 252, 254);
+  font-size: 10px;
+  cursor: pointer;
 }
 
-/* .editFormDeleteButton:hover {
-    background-color: rgba(200, 200, 200, 0.512);
-} */
 
 .editFormSaveButton {
-    /* justify-content: center;
-    align-items: center;
-    text-align: center; */
-    /* display: ; */
-    margin-top: 20px;
-    width: 70px;
-    height: 48px;
-    border-radius: 30px;
-    border: none;
-    color: white;
-    background-color: rgb(231, 17, 10);
-    font-size: 16px;
-    cursor: pointer;
+  margin-top: 20px;
+  width: 70px;
+  height: 48px;
+  border-radius: 30px;
+  border: none;
+  color: white;
+  background-color: rgb(231, 17, 10);
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .editFormSaveButton:hover {
-    background-color: rgb(180, 0, 35);
+  background-color: rgb(180, 0, 35);
 }

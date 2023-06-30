@@ -43,24 +43,16 @@ export const fetchBoard = (boardId) => async (dispatch) => {
   dispatch(receiveBoard(data));
 };
 
-// export const fetchUserBoards = (userId) => async dispatch => {
-//     const res = await csrfFetch(`/api/boards/user/${userId}`);
-//     const data = await res.json();
-//     dispatch(receiveBoards(data));
-// }
-
 export const createBoard = (boardData) => async (dispatch) => {
-    const res = await csrfFetch('/api/boards', {
-      method: "POST",
-      body: JSON.stringify(boardData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = await res.json();
-    dispatch(receiveBoard(data));
- 
+  const res = await csrfFetch("/api/boards", {
+    method: "POST",
+    body: JSON.stringify(boardData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await res.json();
+  dispatch(receiveBoard(data));
 };
 
 export const updateBoard = (boardData) => async (dispatch) => {

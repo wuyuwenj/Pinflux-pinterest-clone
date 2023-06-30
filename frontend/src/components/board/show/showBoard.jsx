@@ -41,11 +41,14 @@ export default function ShowBoard({ userId }) {
     return (
       <div className="showboardpagebg">
         <div>
-          <h1 className="boardname">{board && board.name}
-          <button
-            className="showboardloginbt"
-            onClick={() => setShowModal(true)}
-          >Edit</button>
+          <h1 className="boardname">
+            {board && board.name}
+            <button
+              className="showboardloginbt"
+              onClick={() => setShowModal(true)}
+            >
+              Edit
+            </button>
           </h1>
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
@@ -55,7 +58,9 @@ export default function ShowBoard({ userId }) {
           <br />
           <p>{board && board.body}</p>
           <br />
-          {boardPins&&boardPins.length===0 && <p>There aren’t any Pins on this board yet</p>}
+          {boardPins && boardPins.length === 0 && (
+            <p>There aren’t any Pins on this board yet</p>
+          )}
           <PinIndex boardpins={boardPins} HaveNav={false} />
         </div>
       </div>

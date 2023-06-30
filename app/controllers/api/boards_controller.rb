@@ -2,7 +2,7 @@ class Api::BoardsController < ApplicationController
 
   def create
    @board = Board.new(board_params)
-        @board.owner_id = current_user.id
+        
     if @board.save
             render :show
     else

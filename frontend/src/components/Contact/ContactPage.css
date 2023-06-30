@@ -1,42 +1,34 @@
 .addressContent {
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 40px;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .linksContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* .linkAddress {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-} */
-
 .linkAddress a {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .repo {
-    /* margin-top: 10px; */
-    font-size: 16px;
-    color: #0080ff;
-    text-decoration: none;
-}
-.ContactPagelogo{
-    width: 100px;
-    height: 100px;
-    margin-left: 225px;
-    
-    align-items: center;
-    justify-content: center;
+  font-size: 16px;
+  color: #0080ff;
+  text-decoration: none;
 }
 
-.linkAddress>a>img {
-    width: 50px;
-    height: 50px;
+.ContactPagelogo {
+  width: 100px;
+  height: 100px;
+  margin-left: 225px;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkAddress > a > img {
+  width: 50px;
+  height: 50px;
 }

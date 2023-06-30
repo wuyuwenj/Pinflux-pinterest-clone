@@ -1,27 +1,22 @@
-
-
 .my-masonry-grid {
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .my-masonry-grid_column {
-
-    margin-left: 10px;
-    margin-right: 10px;
-
-} 
-
-.images{
-   
-    margin-top: 0px;
-    width: 236px;
-    height: auto;
-    border-radius: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.pintitle{
-    font-size: 14px;
-    margin-bottom: 30px;
+.images {
+  margin-top: 0px;
+  width: 236px;
+  height: auto;
+  border-radius: 20px;
+}
+
+.pintitle {
+  font-size: 14px;
+  margin-bottom: 30px;
 }

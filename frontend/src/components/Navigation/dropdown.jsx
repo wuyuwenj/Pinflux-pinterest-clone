@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./dropdown.css";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const DropDown = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
-  const [redirect, setRedirect] = useState(false);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -22,23 +21,17 @@ const DropDown = () => {
     const closeMenu = () => {
       setShowMenu(false);
     };
-
     document.addEventListener("click", closeMenu);
-
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
   const logoutClick = (e) => {
     e.preventDefault();
-    setTimeout(setRedirect(true), 1000);
-
-    dispatch(sessionActions.logout());
+    dispatch(sessionActions.logout()).then(() => {
+      history.push("/");
+    });
   };
-  if (redirect) {
-    return <Redirect to={`/`} />;
-  }
 
-  // link for table will change later
   return (
     <div className="dropdown">
       <button className="dropbtn" onClick={openMenu}>

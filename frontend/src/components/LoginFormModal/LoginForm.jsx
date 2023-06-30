@@ -15,8 +15,8 @@ function LoginForm() {
     setErrors([]);
 
     if (!credential || !password) return;
-    return dispatch(sessionActions.login({ credential, password }))
-      .catch(async (res) => {
+    return dispatch(sessionActions.login({ credential, password })).catch(
+      async (res) => {
         let data;
         try {
           // .clone() essentially allows you to read the response body twice
@@ -27,7 +27,8 @@ function LoginForm() {
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
-      });
+      }
+    );
   };
 
   const handleDemo = async () => {
@@ -84,7 +85,7 @@ function LoginForm() {
         </label>
         <br />
         <br />
-        
+
         <button type="submit" className="modalButton">
           Log In
         </button>

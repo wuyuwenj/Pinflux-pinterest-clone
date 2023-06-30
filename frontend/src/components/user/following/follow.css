@@ -1,75 +1,74 @@
 .FollowButton {
-    margin-top: 20px;
-    width: 100px;
-    height: 48px;
-    border-radius: 22px;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-        font-weight: var(--font-weight-semibold);
+  margin-top: 20px;
+  width: 100px;
+  height: 48px;
+  border-radius: 22px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: var(--font-weight-semibold);
 }
-.FollowButton>p{
-    margin-top: 12px;
-}
-
-
-.red{
-    background-color: rgb(230, 0, 35);
+.FollowButton > p {
+  margin-top: 12px;
 }
 
-.black{
-    background-color: rgb(2, 2, 2);
+.red {
+  background-color: rgb(230, 0, 35);
 }
 
-.followRow{
-    width: 460px;
-    display: flex;
-    flex-direction: row;
-    font-size: 16px;
-    justify-content: space-between;
+.black {
+  background-color: rgb(2, 2, 2);
+}
+
+.followRow {
+  width: 460px;
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  justify-content: space-between;
 }
 
 .NopicSmall {
-    display: inline-block;
-    background-color: rgb(233, 233, 233);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    border: none;
-    outline: none;
+  display: inline-block;
+  background-color: rgb(233, 233, 233);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border: none;
+  outline: none;
 }
-.followRowName{
-    width: 200px;
-    margin-left: -100px;
-    margin-top: 10px;
+.followRowName {
+  width: 200px;
+  margin-left: -100px;
+  margin-top: 10px;
 }
 
 .followbutton {
-    margin-top: -15px !important;
+  margin-top: -15px !important;
 }
 
-.followmodeltitle{
-    text-align: center;
-            font-weight: var(--font-weight-semibold);
+.followmodeltitle {
+  text-align: center;
+  font-weight: var(--font-weight-semibold);
 }
 
 .youbutton {
-    /* margin-top: 30px; */
-    /* margin-left: 85%; */
-    margin-right: -24%;
-    width: 22%;
-    height: 48px;
-    border-radius: 25px;
-    border: none;
-    color: rgb(108, 105, 105);
-    background-color: rgb(240, 238, 239);
-    font-size: 16px;
-    cursor: pointer;
+  /* margin-top: 30px; */
+  /* margin-left: 85%; */
+  margin-right: -24%;
+  width: 22%;
+  height: 48px;
+  border-radius: 25px;
+  border: none;
+  color: rgb(108, 105, 105);
+  background-color: rgb(240, 238, 239);
+  font-size: 16px;
+  cursor: pointer;
 }
 
-span:hover{
-    cursor: pointer;
+span:hover {
+  cursor: pointer;
 }

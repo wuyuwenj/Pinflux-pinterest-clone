@@ -1,69 +1,63 @@
-.settingPage{
-    margin-top: 50px;
-    display: flex;
-    flex-direction: row;
+.settingPage {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
 }
-.formlabel{
-    font-size: 12px;
-
+.formlabel {
+  font-size: 12px;
 }
-.Selections{
-
-    /* width: 115px; */
-
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border-radius: 10px;
-    /* margin-bottom: 8px; */
-    font-family: var(--font-family-default-latin);
-    font-weight: var(--font-weight-semibold);
-    /* padding: 8px 8px 8px 8px; */
+.Selections {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 10px;
+  font-family: var(--font-family-default-latin);
+  font-weight: var(--font-weight-semibold);
 }
-.Selections>div {
-    display: inline-block;
-    font-size: 16px;
+.Selections > div {
+  display: inline-block;
+  font-size: 16px;
 }
-.Selections:hover{
-        display: inline-block;
-    cursor: pointer;
-    background-color: #dfdfdf;
+.Selections:hover {
+  display: inline-block;
+  cursor: pointer;
+  background-color: #dfdfdf;
 }
-.selected{
-    border-bottom: 3px solid #000305;
-    color: #000305;
-    font-weight: var(--font-weight-semibold);
+.selected {
+  border-bottom: 3px solid #000305;
+  color: #000305;
+  font-weight: var(--font-weight-semibold);
 }
-.settingformtitle{
-    margin-bottom: -5px;
-        word-wrap: break-word;
-    font-family: var(--font-family-default-latin);
-    font-size: 28px;
-    font-weight: var(--font-weight-semibold);
+.settingformtitle {
+  margin-bottom: -5px;
+  word-wrap: break-word;
+  font-family: var(--font-family-default-latin);
+  font-size: 28px;
+  font-weight: var(--font-weight-semibold);
 }
-.leftset{
-    /* flex: 1; */
-    margin-left: 20px;
-    /* margin-right: 20px; */
-    width: 300px;
-    min-width: 182px;
+.leftset {
+  /* flex: 1; */
+  margin-left: 20px;
+  /* margin-right: 20px; */
+  width: 300px;
+  min-width: 182px;
 }
-.rightset{
-    width: 488px;
-    /* display: flex; */
-    /* flex-direction: row; */
+.rightset {
+  width: 488px;
+  /* display: flex; */
+  /* flex-direction: row; */
 }
 
-.setting-container  {
-    /* display: inline-block;
+.setting-container {
+  /* display: inline-block;
     position: relative; */
-    padding-left: 5px;
-    margin-bottom: 12px;
-    margin-left: -0px;
-    cursor: pointer;
-    font-size: 22px;
-    /* -webkit-user-select: none;
+  padding-left: 5px;
+  margin-bottom: 12px;
+  margin-left: -0px;
+  cursor: pointer;
+  font-size: 22px;
+  /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; */
@@ -71,106 +65,101 @@
 /* Personal form */
 /* Hide the browser's default radio button */
 .setting-container {
-    display: block;
-    position: relative;
-    float: left;
-    margin-top: 12px;
-    padding-left: 40px;
-    margin-right: 50px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 16px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  display: block;
+  position: relative;
+  float: left;
+  margin-top: 12px;
+  padding-left: 40px;
+  margin-right: 50px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* Hide the browser's default radio button */
 .setting-container input {
-
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
 }
 
 /* Create a custom radio button */
 .checkmark {
-    position: absolute;
-    border: solid 2px #7e8081;
+  position: absolute;
+  border: solid 2px #7e8081;
 
-    /* top: 0; */
-    margin-top: -2px;
-    left: 0;
-    height: 20px;
-    width: 20px;
+  /* top: 0; */
+  margin-top: -2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
 
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 /* On mouse-over, add a grey background color */
-.setting-container:hover input:not(:checked)~.checkmark {
-    opacity: 0.5;
+.setting-container:hover input:not(:checked) ~ .checkmark {
+  opacity: 0.5;
 }
 
 /* When the radio button is checked, add a blue background */
-.setting-container input:checked~.checkmark {
-    background-color: #000305;
-    height: 24px;
-    width: 24px;
-    border: none;
+.setting-container input:checked ~ .checkmark {
+  background-color: #000305;
+  height: 24px;
+  width: 24px;
+  border: none;
 }
 
-.setting-container input:checked~.checkmark:after {
-    top: 8px;
-    left: 8px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: white;
+.setting-container input:checked ~ .checkmark:after {
+  top: 8px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmark:after {
-    content: "";
-    border: none;
-    position: absolute;
-    display: none;
+  content: "";
+  border: none;
+  position: absolute;
+  display: none;
 }
 
 /* Show the indicator (dot/circle) when checked */
-.setting-container input:checked~.checkmark:after {
-    border: none;
-    display: block;
-
+.setting-container input:checked ~ .checkmark:after {
+  border: none;
+  display: block;
 }
 
-.gender{
-    margin-top: 25px;
-    font-size: 12px;
+.gender {
+  margin-top: 25px;
+  font-size: 12px;
 }
-
 
 /* Public profile*/
 
-.public-form-buttons{
-    margin-top: 30px;
-    margin-left: 85%;
-        width: 68px;
-        height: 48px;
-        border-radius: 30px;
-        border: none;
-        color: black;
-        background-color: rgb(240, 238, 239);
-        font-size: 10px;
-        cursor: pointer;
+.public-form-buttons {
+  margin-top: 30px;
+  margin-left: 85%;
+  width: 68px;
+  height: 48px;
+  border-radius: 30px;
+  border: none;
+  color: black;
+  background-color: rgb(240, 238, 239);
+  font-size: 10px;
+  cursor: pointer;
 }
-.save-but-content{
-    font-size: 16px;
-    margin-top: 12px;
-    font-weight: var(--font-weight-semibold);
-    justify-content: center;
-    align-items: center;
-    /* text-align: center; */
-    
+.save-but-content {
+  font-size: 16px;
+  margin-top: 12px;
+  font-weight: var(--font-weight-semibold);
+  justify-content: center;
+  align-items: center;
 }

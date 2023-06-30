@@ -39,7 +39,7 @@ function App() {
         </Route>
         <Route path="/board/create">
           <Navigation />
-          <CreateBoardPage />
+          {sessionUser && <CreateBoardPage userId={sessionUser.id} />}
         </Route>
 
         <Route

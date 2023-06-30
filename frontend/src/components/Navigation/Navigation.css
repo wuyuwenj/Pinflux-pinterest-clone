@@ -3,7 +3,8 @@
 }
 
 .navBar {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   display: flex;
   justify-content: space-between;
   flex: 1;
@@ -16,7 +17,7 @@
   display: flex;
   justify-content: flex-start;
 }
-.pinflux{
+.pinflux {
   color: red;
   margin-top: 12px;
   font-size: 20px;
@@ -26,15 +27,14 @@
 }
 
 a {
-    text-decoration: initial;
-    color: black;
+  text-decoration: initial;
+  color: black;
 }
 .sessionButtons {
-  
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-right: 7%
+  margin-right: 7%;
 }
 
 .sessionbutt {
@@ -46,7 +46,8 @@ a {
 .sessionButtons p {
   margin-inline: 5%;
   font-size: 16px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: bold;
 }
 
@@ -71,7 +72,8 @@ a {
   font-size: 18px;
   color: black;
   align-items: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .backNav {
@@ -128,15 +130,15 @@ a {
   background-color: rgba(132, 130, 130, 0.429);
 }
 
-.selectedButton{
+.selectedButton {
   color: white;
-    background-color: black;
-    padding: 14px;
-    border-radius: 30px
+  background-color: black;
+  padding: 14px;
+  border-radius: 30px;
 }
 .unselectedButton {
   color: black;
   background-color: white;
   padding: 14px;
-  border-radius: 30px
+  border-radius: 30px;
 }
