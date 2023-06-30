@@ -6,9 +6,10 @@ import { useHistory } from "react-router-dom";
 import "./boardEditForm.css";
 const BoardEditForm = (props) => {
   const currentUserId = useSelector((state) => state.session.user.id);
+  console.log(currentUserId);
   const { board } = props;
-  const [name, setName] = useState(board.name);
-  const [body, setBody] = useState(board.body);
+  const [name, setName] = useState("");
+  const [body, setBody] = useState("");
   const history = useHistory();
 
   const dispatch = useDispatch();
