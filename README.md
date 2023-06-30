@@ -40,7 +40,7 @@ The solution makes use of FormData to create pins with images using AWS and Redu
 
  const handleSubmit = (e)=>{
         e.preventDefault();
-       
+        
         setLoading(true)
         const formData = new FormData();
         formData.append('pin[title]', title);
@@ -60,31 +60,54 @@ The solution makes use of FormData to create pins with images using AWS and Redu
     }
  ```
  
-By filtering only the necessary information for rendering pins on the main page using Jbuilder, the efficiency of page loading is significantly improved. Additionally, setting the key of the pin to its ID enhances the efficiency of searching for a specific pin in other functions.
 
- ```
- #index.json.jbuilder
-   @pins.each do |pin|
-    json.set! pin.id do
-      json.extract! pin, :id, :title
-      json.imageUrl url_for(pin.image) if pin.image.attached?
-    end
-  end
- 
- #sample state
-  {
-  entities: {
-    pins: {
-      1: {
-        id: 1,
-        body: "Check out this amazing recipe for homemade pizza!",
-        title: "Homemade Pizza Recipe"
-      },
-      2: {
-        id: 2,
-        body: "This is a great article on the benefits of meditation.",
-        title: "Benefits of Meditation"
-       }
+Utilizing custom hooks for fetching data to improve readability and reuseablility of components, and allows components to automatically re-render when the fetched data changes. Additionally, using useMemo to cache rendering pins, optimizing performance by avoiding unnecessary recalculations of revpins array when the dependencies (pins and boardpins) haven't changed.
+
+```
+
+#useFetchPins.js
+
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchPins } from '../store/pins';
+export const useFetchPins = (setLoadingPins) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPins()).then(() => {
+        setLoadingPins(false);
+    });
+  }, [dispatch]);
+};
+
+
+#renderPins.jsx
+
+export default function PinIndex({ boardpins, HaveNav = true }){
+  const [loadingPins, setLoadingPins] = useState(true);
+
+  useFetchPins(setLoadingPins);//using custom hook to fetch pins
+
+  const pins = useSelector(getPins);
+
+  const revpins = useMemo(() => {//using memo to avoid unnecessary calculation when pins and boardpins are not changed
+    if (!boardpins) {//reverse the pins so that the newest pin is on the top
+      return pins.slice().reverse();//using slice to avoid mutating the original array
+    } else {
+      return boardpins.slice().reverse();
     }
+  }, [pins, boardpins]);
+}
+
+  #showBoard.jsx
+
+  export default function ShowBoard({ userId }) {
+  const { id } = useParams();
+  const [loadingPins, setLoadingPins] = useState(true);
+  const [loadingBoard, setLoadingBoard] = useState(true);
+
+  useFetchPins(setLoadingPins);//reusing useFetchPins here
+  useFetchBoard({ id, setLoadingBoard });
   }
-  ```
+
+```

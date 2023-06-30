@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchBoard } from "../store/boards";
-
 export const useFetchBoard = ({ id, setLoadingBoard }) => {
   const dispatch = useDispatch();
   useEffect(() => {
