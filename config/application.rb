@@ -25,6 +25,7 @@ module Pinflux
         config.active_storage.service = :amazon
         config.railties_order = [:all, :main_app]
  
+    config.middleware.use Rack::Deflater
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,
       key: '_auth_me_session',

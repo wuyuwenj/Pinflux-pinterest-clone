@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 import "./boardEditForm.css";
 const BoardEditForm = (props) => {
   const currentUserId = useSelector((state) => state.session.user.id);
-  console.log(currentUserId);
   const { board } = props;
   const [name, setName] = useState("");
   const [body, setBody] = useState("");

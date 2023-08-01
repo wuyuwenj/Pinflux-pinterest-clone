@@ -25,6 +25,8 @@ gem "jbuilder"
 gem "faker"
 
 gem 'activestorage'
+gem 'rack-rewrite'
+
 
 gem "aws-sdk-s3"
 group :development, :test do
