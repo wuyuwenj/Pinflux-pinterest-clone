@@ -108,12 +108,10 @@ export default function ShowPin({ userId }) {
                   <span className="showUsername">{pinowner.username[0]}</span>
                   <span className="showfullUsername">{pinowner.username}</span>
                 </Link>
-                {/* <FollowButton followeeId={pinowner.id} followerId={sessionUser.id}  /> */}
               </div>
               <br />
               <br />
               <br />
-              {/* <div>Uploaded by {pin.author.username}</div> */}
               <div className="Pintitle">{pin.title}</div>
               <div className="Pinbody">{pin.body}</div>
               <div>{pin.alt_text}</div>

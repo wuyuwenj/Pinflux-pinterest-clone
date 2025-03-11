@@ -9,7 +9,7 @@ export default function FollowerShow({
   followeesArr,
   setShowModal,
 }) {
-  const { Following, setFollowing, currentUser } = useContext(FollowingContext);
+  const { setFollowing, currentUser } = useContext(FollowingContext);
   const sessionUser = useSelector((state) => state.session.user);
 
   let followeesIdArr = followeesArr.map((user) => user.id);

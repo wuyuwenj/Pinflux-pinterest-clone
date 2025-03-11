@@ -24,7 +24,6 @@ function Root() {
         <Provider store={store}>
           <BrowserRouter>
             <App />
-            {/* <Carrot /> */}
           </BrowserRouter>
         </Provider>
       </ConnectPageModalProvider>
@@ -32,8 +31,10 @@ function Root() {
   );
 }
 
+const root = ReactDOM.createRoot(document.getElementById("root")); // Use createRoot
+
 const renderApplication = () => {
-  ReactDOM.render(
+  root.render(
     <React.StrictMode>
       <Root />
     </React.StrictMode>,

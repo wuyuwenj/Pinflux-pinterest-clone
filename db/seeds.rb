@@ -46,7 +46,7 @@ User.destroy_all
   ApplicationRecord.connection.reset_pk_sequence!('pins')
   ApplicationRecord.connection.reset_pk_sequence!('boards')
   ApplicationRecord.connection.reset_pk_sequence!('pin_board_relations')
-    ApplicationRecord.connection.reset_pk_sequence!('users')
+  ApplicationRecord.connection.reset_pk_sequence!('users')
 
 
   puts "seeding users..."
@@ -96,7 +96,7 @@ user10 = User.create!({
   password: "password"
 })
 
-  puts "seeding pins..."
+puts "seeding pins..."
 
 pin_1 = Pin.create!({title: "Creamy Garlic Chicken", body: "This creamy garlic chicken recipe is perfect for a comforting dinner. Tender chicken breasts are cooked in a creamy garlic sauce that is infused with aromatic herbs and spices for a flavorful and delicious meal.", alt_text: "chicks", author_id:demo_user.id})
 pin_2 = Pin.create!({title: "Marry Me Chicken", body: "This chicken dish is so delicious, you'll want to marry it! Juicy chicken breasts are cooked in a creamy tomato sauce that is flavored with garlic, parmesan cheese, and balsamic vinegar for a dish that is savory, tangy, and simply irresistible.", alt_text: "chicks", author_id:demo_user.id})

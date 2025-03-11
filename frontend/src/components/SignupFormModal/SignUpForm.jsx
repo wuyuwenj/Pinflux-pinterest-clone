@@ -46,9 +46,6 @@ function SignupForm() {
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
       });
-    return setErrors([
-      "Confirm Password field must be the same as the Password field",
-    ]);
   };
 
   return (
@@ -102,9 +99,6 @@ function SignupForm() {
             Sign Up
           </button>
         )}
-        {/* <div>
-          Already a member?
-          <p className="change-form" onClick={handleform}>Log in</p></div> */}
       </form>
     </>
   );

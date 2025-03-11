@@ -6,10 +6,8 @@ export default function FollowButton(props) {
   const { followeeId, followerId, followeesArr, setFollowing } = props;
   let status = null;
   if (status === null && followeesArr.includes(followeeId)) {
-    // setStatus('Following')
     status = "Following";
   } else if (status === null) {
-    // setStatus('Follow')
     status = "Follow";
   }
   const dispatch = useDispatch();

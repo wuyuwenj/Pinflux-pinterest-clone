@@ -1,6 +1,6 @@
 import React from 'react'
 import './board_cover.css'
-const BoardCover = ({ openModal, board, isUser, user, pins }) => {
+const BoardCover = ({ board, pins }) => {
 
     return (
         <div className="boardPictureContainer">

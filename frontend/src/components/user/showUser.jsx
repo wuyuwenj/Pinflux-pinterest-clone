@@ -26,19 +26,18 @@ export default function ShowUser({ userId }) {
   const { id } = useParams();
 
   useFetchPins(setLoadingPins);
-    const pins = useSelector(getPins);
+  const pins = useSelector(getPins);
   useFetchUsers({ setLoadingUsers, dependency: Following }); //fetching users again everytime the user follows/unfollows someone
   useFetchBoards({ id, setLoadingBoards });
 
   const boards = useSelector(getBoards);
   const users = useSelector(getUsers);
   const User = useSelector(getUser(id));
-  
 
   const currentUser = users.find((user) => user.id === sessionUser.id);
   const followersArr = useMemo(() => {
-    if(!User)return;
-      return User.followers.map((id) => {
+    if (!User) return;
+    return User.followers.map((id) => {
       for (let i = 0; i < users.length; i++) {
         if (id === users[i].id) {
           return users[i];
@@ -48,18 +47,17 @@ export default function ShowUser({ userId }) {
   }, [User]);
 
   const followeesArr = useMemo(() => {
-    if(!User)return 
-      return User.followings.map((id) => {
+    if (!User) return;
+    return User.followings.map((id) => {
       for (let i = 0; i < users.length; i++) {
         if (id === users[i].id) {
           return users[i];
         }
       }
-    })
+    });
   }, [User]);
 
   const boardspins = useMemo(() => {
-    // if(!boards || !pins) return;
     return boards.map((board) => {
       let arr = [];
       for (let i = 0; i < board.pins.length; i++) {
@@ -67,9 +65,9 @@ export default function ShowUser({ userId }) {
       }
       return arr;
     });
-  }, [boards,pins]);
-  
-   const openMenu = () => {
+  }, [boards, pins]);
+
+  const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
@@ -103,17 +101,18 @@ export default function ShowUser({ userId }) {
             <p className="username2">@{User && User.username}</p>
 
             <div className="FollowingRow">
-              {followersArr&&followersArr.length > 0 && (
+              {followersArr && followersArr.length > 0 && (
                 <FollowingModal
                   followType={"following"}
                   followersArr={followersArr}
                   followeesArr={followeesArr}
                 />
               )}
-              {followeesArr&&followersArr&&followersArr.length > 0 && followeesArr.length > 0 && (
-                <span className="dot"> · </span>
-              )}
-              {followeesArr&&followeesArr.length > 0 && (
+              {followeesArr &&
+                followersArr &&
+                followersArr.length > 0 &&
+                followeesArr.length > 0 && <span className="dot"> · </span>}
+              {followeesArr && followeesArr.length > 0 && (
                 <FollowingModal
                   followType={"follower"}
                   followeesArr={followeesArr}
@@ -131,8 +130,6 @@ export default function ShowUser({ userId }) {
             )}
 
             <div>
-              {/* <Link to="/"><button>created</button></Link>
-                            <Link to="/"><button>saved</button></Link> */}
             </div>
             {User && sessionUser && sessionUser.id === User.id && (
               <div className="plusButton">
@@ -160,8 +157,6 @@ export default function ShowUser({ userId }) {
 
             <p>Boards</p>
             <div>
-              {/* {imageUrl.map((url,i) => (<Link key={boards[i].id} to={`/boards/${boards[i].id}`} className='link'><img src={url} alt="" className="boardimg"/></Link>))} */}
-
               {boardspins &&
                 boards.map((url, i) => (
                   <Link
@@ -169,21 +164,10 @@ export default function ShowUser({ userId }) {
                     to={`/boards/${boards[i].id}`}
                     className="link"
                   >
-                    {/* <div className="boardContainer"> */}
                     <BoardCover pins={boardspins[i]} board={boards[i]} />
-
-                    {/* </div> */}
                   </Link>
                 ))}
-
-              {/* {boards.each(board=>(<img ></img>))} */}
             </div>
-            {/* <table>
-                            <tbody>    
-                                <td><Link to="">created</Link></td>
-                                <td><button>saved</button></td>
-                            </tbody>
-                        </table> */}
           </h1>
         </FollowingContext.Provider>
       </div>

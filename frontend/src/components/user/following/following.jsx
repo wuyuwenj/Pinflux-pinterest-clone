@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./follow.css";
 export default function FollowingShow({ followeesArr, setShowModal }) {
-  const { Following, setFollowing, currentUser } = useContext(FollowingContext);
+  const { setFollowing, currentUser } = useContext(FollowingContext);
   const sessionUser = useSelector((state) => state.session.user);
   let followeesIdArr = followeesArr.map((user) => user.id);
   if (followeesIdArr !== currentUser.followings)

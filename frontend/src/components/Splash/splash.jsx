@@ -1,28 +1,6 @@
 import "./splash.css";
 import Navigation from "../Navigation";
 const Splash = () => {
-  //   return (
-  //     <div>
-  //       <section id="top">
-  //         <h2>Top Section</h2>
-  //         <p>This is the content of the top section.</p>
-  //         <a href="/#mid">Go to Mid Section</a>
-  //       </section>
-
-  //       <section id="mid">
-  //         <h2>Mid Section</h2>
-  //         <p>This is the content of the mid section.</p>
-  //         <a href="/#bot">Go to Bot Section</a>
-  //       </section>
-
-  //       <section id="bot">
-  //         <h2>Bot Section</h2>
-  //         <p>This is the content of the bot section.</p>
-  //         <a href="/#top">Go to Top Section</a>
-  //       </section>
-  //     </div>
-  //   );
-  // }
 
   return (
     <div className="SplashPage">
