@@ -5,26 +5,28 @@ import * as sessionActions from "../../store/session";
 import "./showdropdown.css";
 
 const ShowDropDown = () => {
+  console.log("ShowDropDown component rendered")
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+    // if (showMenu) return;
+    console.log(showMenu,"showm")
+    setShowMenu(!showMenu);
   };
 
-  useEffect(() => {
-    if (!showMenu) return;
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
+  // useEffect(() => {
+  //   if (!showMenu) return;
+  //   const closeMenu = () => {
+  //     setShowMenu(false);
+  //   };
 
-    document.addEventListener("click", closeMenu);
+  //   document.addEventListener("click", closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
   const logoutClick = (e) => {
     e.preventDefault();

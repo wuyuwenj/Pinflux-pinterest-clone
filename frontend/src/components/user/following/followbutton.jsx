@@ -1,14 +1,15 @@
 import { useDispatch } from "react-redux";
 import { addFollow } from "../../../store/follows";
 import { deleteFollow } from "../../../store/follows";
+import { useState } from "react";
 import "./follow.css";
 export default function FollowButton(props) {
   const { followeeId, followerId, followeesArr, setFollowing } = props;
-  let status = null;
+  const [status, setStatus] = useState(null)
   if (status === null && followeesArr.includes(followeeId)) {
-    status = "Following";
+    setStatus("Following");
   } else if (status === null) {
-    status = "Follow";
+    setStatus("Follow");
   }
   const dispatch = useDispatch();
   const handleFollow = (e) => {
@@ -16,11 +17,11 @@ export default function FollowButton(props) {
     if (status === "Follow") {
       dispatch(addFollow(followeeId, followerId));
       setFollowing(true);
-      status = "Following";
+      setStatus("Following");
     } else {
       dispatch(deleteFollow(followeeId, followerId));
       setFollowing(true);
-      status = "Follow";
+      setStatus("Follow");
     }
   };
   return (

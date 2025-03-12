@@ -15,7 +15,7 @@ export default function FollowingShow({ followeesArr, setShowModal }) {
       <h2 className="followmodeltitle">Following</h2>
       {followeesArr &&
         followeesArr.map((user, i) => (
-          <h1 className="followRow">
+          <h1 className="followRow" key={i}>
             {user.imgurl ? (
               <img className="pfpPic" src={user.imgurl} alt="" />
             ) : (

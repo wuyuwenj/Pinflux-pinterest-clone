@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { createRoot } from 'react-dom/client';
 import { ModalProvider } from "./context/Modal";
 import "./index.css";
 import App from "./App";
@@ -31,14 +32,13 @@ function Root() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root")); // Use createRoot
+const root = createRoot(document.getElementById("root")); // Use createRoot
 
 const renderApplication = () => {
   root.render(
     <React.StrictMode>
       <Root />
     </React.StrictMode>,
-    document.getElementById("root")
   );
 };
 

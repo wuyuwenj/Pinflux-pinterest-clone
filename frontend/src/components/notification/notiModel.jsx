@@ -10,7 +10,7 @@ function NotificationModel() {
     <>
       <div className="icons">
         <button className="circleButton" onClick={() => setShowModal(true)}>
-          <i class="fa-solid fa-bell"></i>
+          <i className="fa-solid fa-bell"></i>
         </button>
       </div>
       {showModal && (

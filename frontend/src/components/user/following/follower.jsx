@@ -22,7 +22,7 @@ export default function FollowerShow({
 
       {followersArr &&
         followersArr.map((user, i) => (
-          <h1 className="followRow">
+          <h1 className="followRow" key={i}>
             {user.imgurl ? (
               <img className="pfpPic" src={user.imgurl} alt="" />
             ) : (

@@ -9,7 +9,7 @@ function MessageModel() {
     <>
       <div className="icons">
         <button className="messageButton" onClick={() => setShowModal(true)}>
-          <i class="fa-solid fa-comment-dots"></i>
+          <i className="fa-solid fa-comment-dots"></i>
         </button>
       </div>
       {showModal && (

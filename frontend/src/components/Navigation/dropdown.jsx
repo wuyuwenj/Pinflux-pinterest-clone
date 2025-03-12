@@ -12,18 +12,10 @@ const DropDown = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+    setShowMenu(!showMenu);
   };
 
-  useEffect(() => {
-    if (!showMenu) return;
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
-    document.addEventListener("click", closeMenu);
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  
 
   const logoutClick = (e) => {
     e.preventDefault();

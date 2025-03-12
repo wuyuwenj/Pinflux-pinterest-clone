@@ -68,17 +68,9 @@ export default function ShowUser({ userId }) {
   }, [boards, pins]);
 
   const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+    setShowMenu(!showMenu);
   };
-  useEffect(() => {
-    if (!showMenu) return;
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
-    document.addEventListener("click", closeMenu);
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+
 
   if (loadingPins || loadingBoards || loadingUsers) {
     return <Loading />;

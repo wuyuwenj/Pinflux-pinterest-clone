@@ -26,7 +26,7 @@ export default function PersonalInfoForm() {
       </div>
       <div className="gender">Gender</div>
       <div>
-        <label class="setting-container">
+        <label className="setting-container">
           Male
           <input
             type="radio"
@@ -35,9 +35,9 @@ export default function PersonalInfoForm() {
             defaultChecked={true}
             onChange={handleChangeGender}
           />
-          <span class="checkmark"></span>
+          <span className="checkmark"></span>
         </label>
-        <label class="setting-container">
+        <label className="setting-container">
           Female
           <input
             type="radio"
@@ -45,9 +45,9 @@ export default function PersonalInfoForm() {
             value="Female"
             onChange={handleChangeGender}
           />
-          <span class="checkmark"></span>
+          <span className="checkmark"></span>
         </label>
-        <label class="setting-container">
+        <label className="setting-container">
           Non-binary
           <input
             type="radio"
@@ -55,7 +55,7 @@ export default function PersonalInfoForm() {
             value="Non-binary"
             onChange={handleChangeGender}
           />
-          <span class="checkmark"></span>
+          <span className="checkmark"></span>
         </label>
       </div>
       <button

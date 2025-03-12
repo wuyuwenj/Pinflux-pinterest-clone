@@ -1,23 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "../../../context/Modal";
 import FollowingShow from "./following";
 import FollowerShow from "./follower";
 import "./follow.css";
 
-function FollowingModal({ followType, followersArr, followeesArr }) {
+function FollowingModal({ followType, followersArr = [], followeesArr = [] }) {
   const [showModal, setShowModal] = useState(false);
-
+  const followerCount = followersArr.length;
+  const followeeCount = followeesArr.length;
+  
   return (
     <>
       {followType === "following" && (
         <div className="followers" onClick={() => setShowModal(true)}>
-          <span>{followersArr.length} followers</span>
+          <span>{followerCount} followers</span>
         </div>
       )}
 
       {followType === "follower" && (
         <div className="followees" onClick={() => setShowModal(true)}>
-          <span>{followeesArr.length} following</span>
+          <span>{followeeCount} following</span>
         </div>
       )}
       {showModal && (

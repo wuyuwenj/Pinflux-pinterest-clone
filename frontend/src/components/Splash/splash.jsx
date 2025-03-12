@@ -77,7 +77,7 @@ const Splash = () => {
         <div className="footer">
           <div>Here is how it works</div>
           <svg
-            class="aUZ R19 U90 kVc"
+            className="aUZ R19 U90 kVc"
             height="12"
             width="12"
             viewBox="0 0 24 24"

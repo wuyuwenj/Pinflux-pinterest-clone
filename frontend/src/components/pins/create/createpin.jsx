@@ -68,7 +68,7 @@ const CreatePinPage = () => {
                 <td>
                   <div className="icons">
                     <button className="circleButton" type="button">
-                      <i class="fa-solid fa-ellipsis"></i>
+                      <i className="fa-solid fa-ellipsis"></i>
                     </button>
                   </div>
                 </td>
